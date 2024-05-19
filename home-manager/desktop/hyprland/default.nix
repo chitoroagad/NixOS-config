@@ -5,7 +5,10 @@
 	pkgs,
 	...
 } : {
-	imports = [];
+	imports = [
+        ./binds.nix
+        ./env.nix
+	];
 
 	xdg.portal = let
 		hyprland = config.wayland.windowManager.hyprland.package;
@@ -17,7 +20,10 @@
 
 	home.packages = with pkgs; [
 		hyprpicker
+		inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
 	];
+
+
 
 	wayland.windowManager.hyprland = {
 		enable = true;
@@ -30,6 +36,10 @@
 			# active = "0xaa${lib.removePrefix "#" config.colorscheme.colors.primary}";
 			# inactive = "0xaa${lib.removePrefix "#" config.colorscheme.colors.surface_bright}";
 		in {
+			monitor = [
+				"eDP-2,2560x1600@165,0x0,1,vrr,1"
+				"eDP-1,2560x1600@165,0x0,1,vrr,1"
+			];
 			general = {
 				cursor_inactive_timeout = 4;
 				gaps_in = 5;
@@ -41,10 +51,14 @@
 			};
 			decoration = {
 				rounding = 10;
+				active_opacity = 0.97;
+				inactive_opacity = 0.77;
 				blur = {
 					enabled = true;
-					size = 10;
-					passes = 1;
+					size = 5;
+					passes = 3;
+					new_optimizations = true;
+					ignore_opacity = true;
 				};
 			};
 			animations = {
@@ -75,7 +89,10 @@
 				grimblast = lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
 			in [
 				# Lauch Terminal
-				"$mainMod, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
+				"SUPER, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
+
+				# Launch Browser
+				"SUPER, B, exec, ${lib.getExe pkgs.brave}"
 
 				# Brightness Control
 				", XF86BrightnessUp, exec, brightnessctl set 5%+"
@@ -88,8 +105,38 @@
 
 				# Screenshotting
 				", Print, exec, ${grimblast} --notify --copy output"
-				"$mainMod, P, exec, ${grimblast} --notify --copy area"
-			];
+				"SUPER, P, exec, ${grimblast} --notify --copy area"
+
+				# Quit apps
+				"SUPER, Q, killactive"
+				"SUPERALTSHIFT, Q, exit"
+			]
+			++ (
+				let
+					playerctl = lib.getExe' config.services.playerctld.package "playerctl";
+					playerctld = lib.getExe' config.services.playerctld.package "playerctld";
+				in
+					lib.optionals config.services.playerctld.enable [
+						# Media control
+						",XF86AudioNext,exec,${playerctl} next"
+						",XF86AudioPrev,exec,${playerctl} previous"
+						",XF86AudioPlay,exec,${playerctl} play-pause"
+						",XF86AudioStop,exec,${playerctl} stop"
+						"ALT,XF86AudioNext,exec,${playerctld} shift"
+						"ALT,XF86AudioPrev,exec,${playerctld} unshift"
+						"ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
+					]
+				)
+				++ 
+				# Notification manager
+				(
+					let 
+						makoctl = lib.getExe' config.services.mako.package "makoctl";
+					in
+						lib.optionals config.services.mako.enable [
+							"SUPERSHIFT,w,exec,${makoctl} restore"
+						]
+				);
 		};
 
 	};

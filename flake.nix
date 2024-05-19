@@ -53,7 +53,7 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      fakeLeMachine = nixpkgs.lib.nixosSystem {
+      LeMachine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix

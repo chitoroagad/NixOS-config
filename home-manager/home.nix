@@ -15,10 +15,13 @@
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
-	./hyprland.nix
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-  ];
+
+	./desktop/common
+	./desktop/hyprland
+  ]
+  ++ (builtins.attrValues outputs.homeManagerModules);
 
   nixpkgs = {
     # You can add overlays here
@@ -78,8 +81,11 @@
 		pciutils
 		usbutils
 
-		# Hyprland utils
-		inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+		# Browser
+		brave
+
+		# Shell
+		zsh
     ];
   };
 
@@ -90,21 +96,11 @@
 		  userEmail = "darius.chitoroaga@proton.me";
 	  };
 
-	  kitty = {
-		enable = true;
-	  };
-
 	  zsh = {
 	  	enable = true;
 	  };
 
   };
-
-  # wayland.windowManager.hyprland = {
-  #       enable = true;
-  #       xwayland.enable = true;
-  #       systemd.variables = ["--all"];
-  # };
 
 
   # Add stuff for your user as you see fit:

@@ -26,22 +26,11 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
-
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = false;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-3ab29898-a2f0-494e-a9de-35db56ad562b".device = "/dev/disk/by-uuid/3ab29898-a2f0-494e-a9de-35db56ad562b";
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
-
-  boot.loader.grub.enableCryptodisk=true;
-
-  boot.initrd.luks.devices."luks-8531ddab-de00-44ba-b636-41591f2d40ed".keyFile = "/crypto_keyfile.bin";
-  boot.initrd.luks.devices."luks-3ab29898-a2f0-494e-a9de-35db56ad562b".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-1ff10d2e-5580-4c23-9efe-60fc2771934b".device = "/dev/disk/by-uuid/1ff10d2e-5580-4c23-9efe-60fc2771934b";
 
   # Newer kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -88,7 +77,7 @@
   };
 
 
-  networking.hostName = "fakeLeMachine";
+  networking.hostName = "LeMachine";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -122,6 +111,7 @@
 
   # Enable sound
   security.rtkit.enable = true;
+  hardware.pulseaudio.enable = false;
   services.pipewire = {
   	enable = true;
 	alsa.enable = true;
@@ -138,10 +128,12 @@
 	curl
 	git
 	neovim
-	zsh
   ];
 
   programs.hyprland.enable = true;
+
+  # fix mime list problem
+  home-manager.backupFileExtension = ".home-manager-backup";
 
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -155,7 +147,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
