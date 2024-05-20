@@ -9,11 +9,16 @@
 		./font.nix
 		./playerctl.nix
 		./mako.nix
+        ./wofi.nix
+        ./waybar.nix
 	];
 
 	home.packages = with pkgs; [
 		libnotify
 		wl-clipboard
+        grim
+        slurp
+        xdg-utils
 	];
 
 	dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";

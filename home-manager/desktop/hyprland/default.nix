@@ -136,8 +136,21 @@
 						lib.optionals config.services.mako.enable [
 							"SUPERSHIFT,w,exec,${makoctl} restore"
 						]
-				);
+				)++
+                (
+                 let
+                     wofi = lib.getExe config.programs.wofi.package;
+                 in
+                     lib.optionals config.programs.wofi.enable [
+                     "SUPER,A,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+                 ]
+                );
 		};
 
-	};
+        extraConfig = ''
+            exec-once = [workspace 1 silent] $browser
+            exec-once = [workspace 2 silent] $terminal --hold sh -c "tmux -u"
+        '';
+
+};
 }

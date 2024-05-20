@@ -10,6 +10,6 @@
             image_size = 40;
             columns = 2;
             allow_images = true;
-        }
-    }
+        };
+    };
 }
