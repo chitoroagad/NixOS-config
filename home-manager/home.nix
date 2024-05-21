@@ -20,6 +20,8 @@
 
 	./desktop/common
 	./desktop/hyprland
+
+    ./cli
   ]
   ++ (builtins.attrValues outputs.homeManagerModules);
 

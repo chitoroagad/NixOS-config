@@ -102,7 +102,14 @@
   users.users.darius = {
     isNormalUser = true;
     description = "darius";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+    "networkmanager" 
+    "wheel" 
+    "video"
+    "cdrom"
+    "audio"
+    "git"
+    ];
     packages = with pkgs; [];
   };
 
@@ -130,7 +137,12 @@
 	neovim
   ];
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   programs.hyprland.enable = true;
+  programs = {
+      light.enable = true;
+  };
 
   # fix mime list problem
   home-manager.backupFileExtension = ".home-manager-backup";

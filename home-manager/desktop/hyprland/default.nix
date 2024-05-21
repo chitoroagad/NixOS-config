@@ -23,8 +23,6 @@
 		inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
 	];
 
-
-
 	wayland.windowManager.hyprland = {
 		enable = true;
 		systemd = {
@@ -41,7 +39,6 @@
 				"eDP-1,2560x1600@165,0x0,1,vrr,1"
 			];
 			general = {
-				cursor_inactive_timeout = 4;
 				gaps_in = 5;
 				gaps_out = 5;
 				border_size = 2;
@@ -87,6 +84,7 @@
 				notify-send = lib.getExe' pkgs.libnotify "nofity-send";
 				wpctl = lib.getExe' pkgs.wireplumber "wpctl";
 				grimblast = lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
+                brightnessctl = lib.getExe pkgs.brightnessctl;
 			in [
 				# Lauch Terminal
 				"SUPER, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
@@ -95,8 +93,8 @@
 				"SUPER, B, exec, ${lib.getExe pkgs.brave}"
 
 				# Brightness Control
-				", XF86BrightnessUp, exec, brightnessctl set 5%+"
-				", XF86BrightnessDown, exec, birghtnessctl set 5%-"
+				", XF86MonBrightnessUp, exec, light -A 5"
+				", XF86MonBrightnessDown, exec, light -U 5"
 
 				# Volume Control
 				", XF86AudioRaiseVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+"
