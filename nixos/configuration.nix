@@ -76,7 +76,6 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-
   networking.hostName = "LeMachine";
   networking.networkmanager.enable = true;
 
@@ -102,13 +101,13 @@
   users.users.darius = {
     isNormalUser = true;
     description = "darius";
-    extraGroups = [ 
-    "networkmanager" 
-    "wheel" 
-    "video"
-    "cdrom"
-    "audio"
-    "git"
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "cdrom"
+      "audio"
+      "git"
     ];
     packages = with pkgs; [];
   };
@@ -120,33 +119,30 @@
   security.rtkit.enable = true;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
-  	enable = true;
-	alsa.enable = true;
-	alsa.support32Bit = true;
-	pulse.enable = true;
-	jack.enable = true;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
-
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	curl
-	git
-	neovim
+    curl
+    git
+    neovim
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.hyprland.enable = true;
   programs = {
-      light.enable = true;
+    light.enable = true;
   };
 
   # fix mime list problem
   home-manager.backupFileExtension = ".home-manager-backup";
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

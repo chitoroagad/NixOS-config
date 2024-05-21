@@ -9,21 +9,22 @@
   ...
 }: {
   # You can import other home-manager modules here
-  imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
+  imports =
+    [
+      # If you want to use modules your own flake exports (from modules/home-manager):
+      # outputs.homeManagerModules.example
 
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
+      # Or modules exported from other flakes (such as nix-colors):
+      # inputs.nix-colors.homeManagerModules.default
+      # You can also split up your configuration and import pieces of it here:
+      # ./nvim.nix
 
-	./desktop/common
-	./desktop/hyprland
+      ./desktop/common
+      ./desktop/hyprland
 
-    ./cli
-  ]
-  ++ (builtins.attrValues outputs.homeManagerModules);
+      ./cli
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
 
   nixpkgs = {
     # You can add overlays here
@@ -54,56 +55,54 @@
     username = "darius";
     homeDirectory = "/home/darius";
     packages = with pkgs; [
-		fastfetch
+      fastfetch
 
-		# archives
-		zip
-		unzip
-		xz
+      # archives
+      zip
+      unzip
+      xz
 
-		# utils
-		ripgrep
-		jq
-		eza
-		fzf
+      # utils
+      ripgrep
+      jq
+      eza
+      fzf
 
-		# misc
-		which
-		tlrc
+      # misc
+      which
+      tlrc
 
-		# nix related
-		nix-output-monitor
-		nh
+      # nix related
+      nix-output-monitor
+      nh
 
-		# prod
-		glow
-		btop
+      # prod
+      glow
+      btop
 
-		# sys tools
-		pciutils
-		usbutils
+      # sys tools
+      pciutils
+      usbutils
 
-		# Browser
-		brave
+      # Browser
+      brave
 
-		# Shell
-		zsh
+      # Shell
+      zsh
     ];
   };
 
   programs = {
-	  git = {
-		  enable = true;
-		  userName = "DariusChit";
-		  userEmail = "darius.chitoroaga@proton.me";
-	  };
+    git = {
+      enable = true;
+      userName = "DariusChit";
+      userEmail = "darius.chitoroaga@proton.me";
+    };
 
-	  zsh = {
-	  	enable = true;
-	  };
-
+    zsh = {
+      enable = true;
+    };
   };
-
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;

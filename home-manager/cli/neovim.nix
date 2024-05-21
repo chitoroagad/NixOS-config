@@ -1,34 +1,42 @@
-{ config, pkgs, ...}: {
-    home.packages = with pkgs; [ 
-        neovim 
-        
-        # formatters
-        stylua
-        biome
-        prettierd
-        nodePackages.prettier
-        shfmt
-        rustfmt
+{
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    neovim
 
-        # linters
-        luajitPackages.luacheck
-        ruff
-        shellcheck
-        cpplint
-        hadolint
+    # formatters
+    alejandra
+    stylua
+    biome
+    prettierd
+    nodePackages.prettier
+    shfmt
+    rustfmt
 
-        # LSPs
-        lua-language-server
-        vscode-langservers-extracted # jsonls
-        pyright
-        nodePackages.bash-language-server
-        dockerfile-language-server-nodejs
-        clang-tools
-        nodePackages.typescript-language-server
-        ltex-ls
-        emmet-ls
+    # linters
+    luajitPackages.luacheck
+    ruff
+    shellcheck
+    cpplint
+    hadolint
 
-    ];
-        
-    programs.neovim.defaultEditor = true;
-    }
+    # LSPs
+    lua-language-server
+    vscode-langservers-extracted # jsonls
+    pyright
+    nodePackages.bash-language-server
+    dockerfile-language-server-nodejs
+    clang-tools
+    nodePackages.typescript-language-server
+    ltex-ls
+    emmet-ls
+    nil
+
+    # misc
+    luajitPackages.jsregexp
+  ];
+
+  programs.neovim.defaultEditor = true;
+}

@@ -1,13 +1,15 @@
 {
-    lib,
-    pkgs,
-    config,
-    ...
+  lib,
+  pkgs,
+  config,
+  ...
 }: {
-    imports = [
+  imports = [
     ./neovim.nix
-    ];
+  ];
 
-    home.packages = with pkgs; [];
-
+  home.packages = with pkgs; [
+    gcc
+    fd
+  ];
 }

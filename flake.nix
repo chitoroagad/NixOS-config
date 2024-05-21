@@ -1,5 +1,4 @@
 {
-
   description = "My NixOS config";
 
   inputs = {
@@ -58,13 +57,12 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
-	  home-manager.nixosModules.home-manager 
-	  {
-		home-manager.users.darius = import ./home-manager/home.nix;
-		home-manager.extraSpecialArgs = { inherit inputs outputs; };
-	  }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.users.darius = import ./home-manager/home.nix;
+            home-manager.extraSpecialArgs = {inherit inputs outputs;};
+          }
         ];
-
       };
     };
   };
