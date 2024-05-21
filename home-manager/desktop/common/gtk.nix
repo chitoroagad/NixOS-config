@@ -3,26 +3,33 @@
   pkgs,
   lib,
   ...
-}: let
-  inherit
-    (builtins)
-    hashString
-    toJson
-    ;
-  rendersvg = pkgs.runCommand "rendersvg" {} ''
-    mkdir -p $out/bin
-    ln -s ${pkgs.resvg}/bin/resvg $out/bin/rendersvg
-  '';
-  candyTheme = name: colours:
-    pkgs.stdenv.mkDerivation {
-      name = "generated-gtk-theme";
-      src = pkgs.fetchFromGitHub {
-        owner = "EliverLara";
-        repo = "Nordic";
-        rev = "c30a0e8f107b641ed6c648466829345d2601e2d2";
-        hash = "";
-      };
+}: rec {
+  gtk = {
+    enable = true;
+    font = {
+      name = config.fontProfiles.regular.family;
+      size = 12;
     };
-in {
-  ting = true;
+    catppuccin = {
+      enable = true;
+      flavour = "mocha";
+      accent = "red";
+      size = "standard";
+      tweaks = ["normal"];
+    };
+    iconTheme = {
+      name = "Papirus";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
+  services.xsettingsd = {
+    enable = true;
+    settings = {
+      "Net/ThemeName" = "Catppuccin-mocha";
+      "Net/IconThemeName" = "${gtk.iconTheme.name}";
+    };
+  };
+
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 }

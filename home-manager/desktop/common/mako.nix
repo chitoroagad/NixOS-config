@@ -1,6 +1,7 @@
 {config, ...}: {
   services.mako = {
     enable = true;
+    catppuccin.enable = true;
     # iconPath = "${config.gtk.iconTheme.package}/share/icons/Candy-Icons";
     font = "${config.fontProfiles.regular.family}";
     padding = "10,20";

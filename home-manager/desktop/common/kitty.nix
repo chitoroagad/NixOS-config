@@ -10,7 +10,7 @@
 
   programs.kitty = {
     enable = true;
-    theme = "Catppuccin-Mocha";
+    catppuccin.enable = true;
     font = {
       name = config.fontProfiles.monospace.family;
       size = 12;

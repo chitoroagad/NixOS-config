@@ -25,6 +25,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    catppuccin.enable = true;
     systemd = {
       enable = true;
       variables = ["--all"];

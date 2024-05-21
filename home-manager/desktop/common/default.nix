@@ -11,6 +11,8 @@
     ./mako.nix
     ./wofi.nix
     ./waybar.nix
+    ./gtk.nix
+    ./qt.nix
   ];
 
   home.packages = with pkgs; [

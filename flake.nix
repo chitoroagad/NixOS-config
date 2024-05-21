@@ -13,12 +13,16 @@
     # Hyprland tools
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Catppuccin theming
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    catppuccin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -58,8 +62,14 @@
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
+          catppuccin.nixosModules.catppuccin
           {
-            home-manager.users.darius = import ./home-manager/home.nix;
+            home-manager.users.darius = {
+              imports = [
+                ./home-manager/home.nix
+                catppuccin.homeManagerModules.catppuccin
+              ];
+            };
             home-manager.extraSpecialArgs = {inherit inputs outputs;};
           }
         ];

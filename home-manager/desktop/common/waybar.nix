@@ -46,6 +46,7 @@ in {
   systemd.user.services.waybar = {Unit.StartLimitBurst = 30;};
   programs.waybar = {
     enable = true;
+    catppuccin.enable = true;
     systemd.enable = true;
     settings = {
       primary = {
@@ -64,7 +65,7 @@ in {
           "temperature"
           "tray"
         ];
-        modules-centre = ["simpleclock"];
+        modules-centre = ["clock"];
         modules-right = [
           "backlight"
           "wireplumber"
@@ -136,7 +137,8 @@ in {
           icon-size = 18;
           spacing = 10;
         };
-        simpleclock = {
+        clock = {
+          interval = 60;
           format = "{:%H:%M  }";
         };
         cpu = {

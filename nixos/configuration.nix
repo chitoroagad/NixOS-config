@@ -141,6 +141,8 @@
     light.enable = true;
   };
 
+  catppuccin.flavour = "mocha";
+
   # fix mime list problem
   home-manager.backupFileExtension = ".home-manager-backup";
 
