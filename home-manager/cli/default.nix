@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./neovim.nix
+    ./zsh.nix
   ];
 
   home.packages = with pkgs; [

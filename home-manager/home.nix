@@ -87,8 +87,7 @@
       # Browser
       brave
 
-      # Shell
-      zsh
+      libreoffice
     ];
   };
 

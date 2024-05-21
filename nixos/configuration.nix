@@ -139,7 +139,10 @@
   programs.hyprland.enable = true;
   programs = {
     light.enable = true;
+    zsh.enable = true;
   };
+
+  users.defaultUserShell = pkgs.zsh;
 
   catppuccin.flavour = "mocha";
 
