@@ -7,6 +7,7 @@
   imports = [
     ./neovim.nix
     ./zsh.nix
+    ./starship.nix
   ];
 
   home.packages = with pkgs; [

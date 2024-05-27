@@ -4,7 +4,9 @@
   config,
   ...
 }: {
-  programs.zsh = {
+  programs.zsh = let
+    zsh-plugins = import ./zsh-plugins.nix {inherit pkgs;};
+  in {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -23,6 +25,25 @@
           Hyprland
       fi
     '';
+    plugins = [
+      {
+        name = "nix-shell";
+        src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
+      }
+      {
+        name = "you should use";
+        src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+      }
+      {
+        name = "zsh-vi-mode";
+        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+      }
+      {
+        name = "fast-syntax-highlighting";
+        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      }
+    ];
+
     # loginExtra = ''
     #   if! pgrep -f Hyprland > /dev/null;
     #       Hyprland
