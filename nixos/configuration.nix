@@ -144,7 +144,10 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  catppuccin.flavour = "mocha";
+  # Colorscheme
+  catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
+  console.catppuccin.enable = true;
 
   # fix mime list problem
   home-manager.backupFileExtension = ".home-manager-backup";

@@ -91,6 +91,10 @@
     ];
   };
 
+  # Colorscheme
+  catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
+
   programs = {
     git = {
       enable = true;

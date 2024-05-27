@@ -14,7 +14,7 @@
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Catppuccin theming
+    # Colorscheme
     catppuccin.url = "github:catppuccin/nix";
   };
 

@@ -7,7 +7,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestions.enable = true;
+    autosuggestion.enable = true;
     dotDir = ".config/zsh";
     history = {
       ignoreAllDups = true;
@@ -19,15 +19,21 @@
       enable = true;
     };
     loginExtra = ''
-      if! pgrep -f Hyprland > /dev/null; then
+      if ! pgrep -f Hyprland >/dev/null; then
           Hyprland
       fi
     '';
-    antidote = {
-      enable = true;
-      plugins = [
-        "zsh-users/zsh-autosuggestions"
-      ];
-    };
+    # loginExtra = ''
+    #   if! pgrep -f Hyprland > /dev/null;
+    #       Hyprland
+    #   fi
+    # '';
+    # "zsh-users/zsh-autosuggestions"
+    # "zsh-users/zsh-syntax-highlighting"
+    # "none9632/zsh-sudo"
+    # "jeffreytse/zsh-vi-mode"
+    # "MenkeTechnologies/zsh-cargo-completion"
+    # "greymd/docker-zsh-completion"
+    # "https://github.com/romkatv/powerlevel10k"
   };
 }

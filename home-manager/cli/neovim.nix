@@ -39,5 +39,4 @@
   ];
 
   programs.neovim.defaultEditor = true;
-  programs.neovim.catppuccin.enable = true;
 }

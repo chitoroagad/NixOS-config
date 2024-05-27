@@ -46,7 +46,6 @@ in {
   systemd.user.services.waybar = {Unit.StartLimitBurst = 30;};
   programs.waybar = {
     enable = true;
-    catppuccin.enable = true;
     systemd.enable = true;
     settings = {
       primary = {
