@@ -14,6 +14,8 @@
       name = "Papirus";
       package = pkgs.papirus-icon-theme;
     };
+
+    catppuccin.cursor.enable = false;
   };
 
   # services.xsettingsd = {

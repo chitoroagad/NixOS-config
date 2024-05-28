@@ -147,6 +147,7 @@
   # Colorscheme
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
+  catppuccin.accent = "sapphire";
   console.catppuccin.enable = true;
 
   # fix mime list problem

@@ -94,6 +94,7 @@
   # Colorscheme
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
+  catppuccin.accent = "sapphire";
 
   programs = {
     git = {
