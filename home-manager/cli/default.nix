@@ -12,6 +12,7 @@
     ./bat.nix
     ./eza.nix
     ./zoxide.nix
+    ./yazi.nix
     # ./starship.nix
   ];
 

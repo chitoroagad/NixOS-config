@@ -64,7 +64,7 @@ in {
           "temperature"
           "tray"
         ];
-        modules-centre = ["clock"];
+        modules-center = ["clock"];
         modules-right = [
           "backlight"
           "wireplumber"

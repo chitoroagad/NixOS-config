@@ -16,6 +16,9 @@
 
     # Colorscheme
     catppuccin.url = "github:catppuccin/nix";
+
+    # Wallpaper
+    swww.url = "github:LGFae/swww";
   };
 
   outputs = {
