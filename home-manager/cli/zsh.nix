@@ -55,6 +55,11 @@
       setopt hist_find_no_dups
       bindkey '^p' history-search-backwards
       bindkey '^n' history-search-forwards
+
+      # Aliases
+      alias cat="bat"
+      alias cd="z"
+      alias cdi="zi"
     '';
 
     plugins = [

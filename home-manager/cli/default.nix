@@ -11,6 +11,7 @@
     ./tmux.nix
     ./bat.nix
     ./eza.nix
+    ./zoxide.nix
     # ./starship.nix
   ];
 
