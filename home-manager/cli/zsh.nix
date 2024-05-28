@@ -12,13 +12,11 @@
 
     history = {
       ignoreAllDups = true;
-      path = "$ZSHDOTDIR/.zsh_history";
+      ignoreSpace = true;
+      path = "$ZDOTDIR/.zsh_history";
       save = 1000000;
-      size = 10000000;
-    };
-
-    historySubstringSearch = {
-      enable = true;
+      size = 1000000;
+      share = true;
     };
 
     loginExtra = ''
@@ -41,15 +39,23 @@
 
       unsetopt correct # autocorrect commands
 
-      setopt hist_ignore_all_dups # remove older duplicate entries from history
-      setopt hist_reduce_blanks # remove superfluous blanks from history items
       setopt inc_append_history # save history entries as soon as they are entered
 
       # auto complete options
-      setopt auto_list # automatically list choices on ambiguous completion
-      setopt auto_menu # automatically use menu completion
+      # setopt auto_list # automatically list choices on ambiguous completion
+      # setopt auto_menu # automatically use menu completion
       zstyle ':completion:*' group-name "" # group results by category
       zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # completions not case sensitive
+      zstyle ':completion:*' list-colors "$\{(s.:.)LS_COLORS}"
+      zstyle ':completion:*' menu no
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
+      # Extra history options
+      setopt hist_find_no_dups
+        bindkey '^p' history-search-backwards
+        bindkey '^n' history-search-forwards
+
     '';
 
     plugins = [
@@ -79,19 +85,11 @@
         src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
         file = "powerlevel10k.zsh-theme";
       }
+      {
+        name = "zsh-fzf-tab";
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+        file = "fzf-tab.zsh";
+      }
     ];
-
-    # loginExtra = ''
-    #   if! pgrep -f Hyprland > /dev/null;
-    #       Hyprland
-    #   fi
-    # '';
-    # "zsh-users/zsh-autosuggestions"
-    # "zsh-users/zsh-syntax-highlighting"
-    # "none9632/zsh-sudo"
-    # "jeffreytse/zsh-vi-mode"
-    # "MenkeTechnologies/zsh-cargo-completion"
-    # "greymd/docker-zsh-completion"
-    # "https://github.com/romkatv/powerlevel10k"
   };
 }
