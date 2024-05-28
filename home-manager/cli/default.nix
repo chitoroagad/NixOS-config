@@ -7,6 +7,8 @@
   imports = [
     ./neovim.nix
     ./zsh.nix
+    ./fzf.nix
+    ./tmux.nix
     # ./starship.nix
   ];
 

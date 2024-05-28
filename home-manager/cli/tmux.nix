@@ -5,6 +5,7 @@
     historyLimit = 5000;
     keyMode = "vi";
     mouse = true;
+    clock24 = true;
     newSession = true;
     prefix = "C-a";
     sensibleOnTop = true;
