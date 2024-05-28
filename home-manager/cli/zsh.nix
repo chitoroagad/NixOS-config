@@ -55,11 +55,6 @@
       setopt hist_find_no_dups
       bindkey '^p' history-search-backwards
       bindkey '^n' history-search-forwards
-
-        # Aliases
-        alias ls = eza
-        # alias la = eza --
-
     '';
 
     plugins = [

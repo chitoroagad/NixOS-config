@@ -9,6 +9,7 @@
     ./zsh.nix
     ./fzf.nix
     ./tmux.nix
+    ./bat.nix
     ./eza.nix
     # ./starship.nix
   ];
