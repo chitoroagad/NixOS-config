@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   gtk.catppuccin.cursor.enable = false;
   home.pointerCursor = {
-    name = "phinger-cursors-light";
+    name = "phinger-cursors-dark";
     package = pkgs.phinger-cursors;
     size = 32;
     gtk.enable = true;

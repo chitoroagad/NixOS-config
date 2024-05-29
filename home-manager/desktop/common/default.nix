@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./cursor.nix
     ./kitty.nix
     ./font.nix
     ./playerctl.nix

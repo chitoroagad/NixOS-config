@@ -71,6 +71,7 @@
       # misc
       which
       tlrc
+      trashy
 
       # nix related
       nix-output-monitor
@@ -78,7 +79,6 @@
 
       # prod
       glow
-      btop
 
       # sys tools
       pciutils
@@ -95,18 +95,6 @@
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
   catppuccin.accent = "sapphire";
-
-  programs = {
-    git = {
-      enable = true;
-      userName = "DariusChit";
-      userEmail = "darius.chitoroaga@proton.me";
-    };
-
-    zsh = {
-      enable = true;
-    };
-  };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
