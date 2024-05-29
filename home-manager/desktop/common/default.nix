@@ -14,6 +14,7 @@
     ./waybar.nix
     ./gtk.nix
     ./qt.nix
+    ./extaBluetooth.nix
   ];
 
   home.packages = with pkgs; [

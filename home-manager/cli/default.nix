@@ -13,6 +13,7 @@
     ./eza.nix
     ./zoxide.nix
     ./yazi.nix
+    ./git.nix
     # ./starship.nix
   ];
 

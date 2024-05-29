@@ -1,4 +1,4 @@
-# This is your home-manager configuration file
+#bThis is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
@@ -87,6 +87,8 @@
       # Browser
       brave
 
+      # Other
+      spotify
       libreoffice
     ];
   };
