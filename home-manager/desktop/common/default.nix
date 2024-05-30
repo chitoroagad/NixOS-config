@@ -14,6 +14,8 @@
     ./waybar.nix
     ./gtk.nix
     ./qt.nix
+    ./hypridle.nix
+    ./hyprlock.nix
     # ./extraBluetooth.nix
   ];
 
