@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       general = {
-        grace = 5;
+        grace = 3;
         no_fade_in = false;
         hide_cursor = true;
       };
@@ -11,7 +11,11 @@
       background = {
         monitor = "";
         path = "screenshot";
-        blur_passes = 3;
+        blur_passes = 4;
+        contrast = 0.8916;
+        brightness = 0.8172;
+        vibrancy = 0.1696;
+        vibrancy_darkness = 0.0;
       };
 
       input-field = {
@@ -27,7 +31,7 @@
         fade_on_empty = false;
         font_family = "JetBrains Mono Nerd Font Mono";
         placeholder_text = ''
-          <i><span foreground="##cdd6f4">Password</span></i>
+          <i><span foreground="##cdd6f4">󰌆 </span></i>
         '';
         hide_input = false;
         position = "0, -120";

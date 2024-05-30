@@ -164,7 +164,7 @@
   console.catppuccin.enable = true;
 
   # fix mime list problem
-  home-manager.backupFileExtension = ".home-manager-backup";
+  home-manager.backupFileExtension = "home-manager-backup";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
