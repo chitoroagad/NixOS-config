@@ -30,6 +30,7 @@
     ./darius.nix
     ./desktop.nix
     ./docker.nix
+    ./greeter.nix
     ./nix.nix
     ./nixpkgs.nix
     ./root.nix

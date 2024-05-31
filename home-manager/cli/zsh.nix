@@ -19,11 +19,11 @@
       share = true;
     };
 
-    loginExtra = ''
-      if ! pgrep -f Hyprland >/dev/null; then
-          Hyprland
-      fi
-    '';
+    # loginExtra = ''
+    #   if ! pgrep -f Hyprland >/dev/null; then
+    #       Hyprland
+    #   fi
+    # '';
 
     initExtraFirst = ''
       # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
