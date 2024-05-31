@@ -62,14 +62,16 @@
     nixosConfigurations = {
       LeMachine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+
         modules = [
-          ./nixos/configuration.nix
+          ./nixos
           home-manager.nixosModules.home-manager
           catppuccin.nixosModules.catppuccin
+
           {
             home-manager.users.darius = {
               imports = [
-                ./home-manager/home.nix
+                ./home-manager
                 catppuccin.homeManagerModules.catppuccin
               ];
             };
