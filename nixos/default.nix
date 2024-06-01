@@ -25,6 +25,7 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
+    ./automount.nix
     ./boot.nix
     ./bluetooth.nix
     ./darius.nix
@@ -32,10 +33,13 @@
     ./docker.nix
     ./nix.nix
     ./nixpkgs.nix
+    ./opengl.nix
+    ./polkit.nix
     ./root.nix
     ./seat.nix
     ./sound.nix
     ./tlp.nix
+    ./virt.nix
   ];
 
   networking.hostName = "LeMachine";
