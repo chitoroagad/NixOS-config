@@ -23,6 +23,7 @@ in {
         "network"
         "docker"
         "libvirtd"
+        "seat"
       ];
     # packages = with pkgs; [];
   };

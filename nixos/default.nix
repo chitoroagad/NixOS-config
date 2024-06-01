@@ -30,11 +30,12 @@
     ./darius.nix
     ./desktop.nix
     ./docker.nix
-    ./greeter.nix
     ./nix.nix
     ./nixpkgs.nix
     ./root.nix
+    ./seat.nix
     ./sound.nix
+    ./tlp.nix
   ];
 
   networking.hostName = "LeMachine";
