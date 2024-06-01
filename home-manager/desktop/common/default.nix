@@ -16,6 +16,7 @@
     ./qt.nix
     ./hypridle.nix
     ./hyprlock.nix
+    ./swww.nix
     # ./extraBluetooth.nix
   ];
 

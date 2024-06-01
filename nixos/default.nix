@@ -31,6 +31,7 @@
     ./darius.nix
     ./desktop.nix
     ./docker.nix
+    ./extra-udev.nix
     ./nix.nix
     ./nixpkgs.nix
     ./opengl.nix
