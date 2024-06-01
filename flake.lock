@@ -136,11 +136,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1716902313,
-        "narHash": "sha256-tB4K3RKFDHguBvQd7FIoLYyxq4gpvCA4apOTrsy/66I=",
+        "lastModified": 1717175312,
+        "narHash": "sha256-UZjnBl/3EFHeMrKDrHSzPiubptqN6012erx2jepZoZY=",
         "owner": "LGFae",
         "repo": "swww",
-        "rev": "c1ecdb02f5af7a60a4b8ac673b0552b2ca2bb9b2",
+        "rev": "319b7fbdf4286fc0e3ccd0e853afb6321378d2bf",
         "type": "github"
       },
       "original": {
