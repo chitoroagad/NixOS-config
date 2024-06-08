@@ -1,4 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  # Radeon 7700S
+  gpuIDs = [
+    "1002:7480" # Graphics
+    "1002:ab30" # Audio
+  ];
+in {
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -13,4 +23,10 @@
   };
 
   programs.virt-manager.enable = true;
+
+  boot.kernelParams = ["amd_iommu=on"] ++ [("vfio-pic.ids=" + lib.concatStringsSep "," gpuIDs)];
+  boot.initrd.kernelModules = [
+    "vfio_pci"
+    "vfio"
+  ];
 }
