@@ -17,6 +17,9 @@
     ./hypridle.nix
     ./hyprlock.nix
     ./swww
+    ./wlsunset.nix
+    ./wlogout.nix
+
     # ./extraBluetooth.nix
   ];
 
