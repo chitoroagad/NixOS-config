@@ -41,7 +41,7 @@
     ./seat.nix
     ./sound.nix
     ./tlp.nix
-    ./virt.nix
+    # ./virt.nix
   ];
 
   networking.hostName = "LeMachine";

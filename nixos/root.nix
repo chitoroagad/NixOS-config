@@ -6,6 +6,8 @@
     curl
     git
     neovim
+    networkmanagerapplet
+    nvtopPackages.amd
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
