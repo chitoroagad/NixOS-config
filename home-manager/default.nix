@@ -90,6 +90,9 @@
       # Other
       spotify
       libreoffice
+      slack
+      protonvpn-gui
+      discord
     ];
   };
 

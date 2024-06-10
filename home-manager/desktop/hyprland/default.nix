@@ -94,8 +94,8 @@
           "SUPER, B, exec, ${lib.getExe pkgs.brave}"
 
           # Brightness Control
-          ", XF86MonBrightnessUp, exec, light -A 5"
-          ", XF86MonBrightnessDown, exec, light -U 5"
+          ", XF86MonBrightnessUp, exec, ${brightnessctl} set 5%+"
+          ", XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
 
           # Volume Control
           ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+"
@@ -149,6 +149,8 @@
     extraConfig = ''
       exec-once = [workspace 1 silent] $browser
       exec-once = [workspace 2 silent] $terminal --hold sh -c "tmux -u"
+      exec-once = nm-applet
+      exec-once = blueman-applet
     '';
   };
 }

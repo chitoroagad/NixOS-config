@@ -45,6 +45,16 @@
 
         # Lock Screen
         "$mainMod, L, exec, hyprlock"
+
+        # Misc
+        "$mainMod, V, togglefloating,"
+        "$mainMod SHIFT, J, togglesplit,"
+
+        # Move/Resize windows with mainMod + LMB/RMB and dragging
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizeactive"
+        "Super, Z, movewindow"
+        "Super, X, resizeactive"
       ];
     };
   };
