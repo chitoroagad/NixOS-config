@@ -21,9 +21,15 @@
   home.packages = with pkgs; [
     hyprpicker
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+    swappy
   ];
 
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = let
+    browser = lib.getExe pkgs.brave;
+    term = lib.getExe pkgs.kitty;
+    nm-applet = lib.getExe pkgs.networkmanagerapplet;
+    blueman-applet = lib.getExe' pkgs.blueman "blueman-applet";
+  in {
     enable = true;
     systemd = {
       enable = true;
@@ -85,6 +91,7 @@
         wpctl = lib.getExe' pkgs.wireplumber "wpctl";
         grimblast = lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
         brightnessctl = lib.getExe pkgs.brightnessctl;
+        screenshot-script = ./screenshot-script.sh;
       in
         [
           # Lauch Terminal
@@ -103,8 +110,10 @@
           ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
           # Screenshotting
-          ", Print, exec, ${grimblast} --notify --copy output"
-          "SUPER, P, exec, ${grimblast} --notify --copy area"
+          "$mainMod,      P, exec, nix-shell ${screenshot-script} s # drag to snip an area / click on a window to print it"
+          "$mainMod Ctrl, P, exec, nix-shell ${screenshot-script} sf # frozen screen, drag to snip an area / click on a window to print it"
+          "$mainMod Alt,  P, exec, nix-shell ${screenshot-script} m # print focused monitor"
+          ", Print, exec, nix-shell ${screenshot-script} p # print all monitor outputs"
 
           # Quit apps
           "SUPER, Q, killactive"
@@ -136,21 +145,22 @@
               "SUPERSHIFT,w,exec,${makoctl} restore"
             ]
         )
+        # App launcher
         ++ (
           let
             wofi = lib.getExe config.programs.wofi.package;
           in
             lib.optionals config.programs.wofi.enable [
-              "SUPER,A,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+              "SUPER,A,exec,${wofi} -S drun -W 25% -H 60%"
             ]
         );
     };
 
     extraConfig = ''
-      exec-once = [workspace 1 silent] $browser
-      exec-once = [workspace 2 silent] $terminal --hold sh -c "tmux -u"
-      exec-once = nm-applet
-      exec-once = blueman-applet
+      exec-once = [workspace 1 silent] ${browser}
+      exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u"
+      exec-once = ${nm-applet}
+      exec-once = ${blueman-applet}
     '';
   };
 }

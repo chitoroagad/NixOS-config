@@ -38,5 +38,9 @@
     luajitPackages.jsregexp
   ];
 
-  programs.neovim.defaultEditor = true;
+  programs.neovim = {
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
 }

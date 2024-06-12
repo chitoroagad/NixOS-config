@@ -3,7 +3,7 @@
   pkgs,
   lib,
   ...
-}: rec {
+}: {
   gtk = {
     enable = true;
     font = {
@@ -16,6 +16,7 @@
     };
 
     catppuccin.cursor.enable = false;
+    catppuccin.enable = true;
   };
 
   # services.xsettingsd = {

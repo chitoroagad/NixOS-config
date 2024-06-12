@@ -2,11 +2,22 @@
   inputs,
   config,
   lib,
+  pkgs,
   ...
 }: {
   wayland.windowManager.hyprland = {
-    settings = {
+    settings = let
+      hyprlock = lib.getExe pkgs.hyprlock;
+    in {
       "$mainMod" = "SUPER";
+
+      bindm = [
+        # Move/Resize windows with mainMod + LMB/RMB and dragging
+        "$mainMod,mouse:272,movewindow"
+        "$mainMod,mouse:273,resizewindow"
+        "$mainMod, Z, movewindow"
+      ];
+
       bind = [
         # Workspace movement
         "$mainMod, J, workspace, -1"
@@ -44,17 +55,11 @@
         "$mainMod SHIFT, 0, movetoworkspace, 10"
 
         # Lock Screen
-        "$mainMod, L, exec, hyprlock"
+        "$mainMod, L, exec, ${hyprlock}"
 
         # Misc
         "$mainMod, V, togglefloating,"
         "$mainMod SHIFT, J, togglesplit,"
-
-        # Move/Resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizeactive"
-        "Super, Z, movewindow"
-        "Super, X, resizeactive"
       ];
     };
   };

@@ -55,14 +55,15 @@
       setopt hist_find_no_dups
       bindkey '^p' history-search-backwards
       bindkey '^n' history-search-forwards
-
-      # Aliases
-      alias cat="bat"
-      alias cd="z"
-      alias cdi="zi"
-      alias tp="trash"
-      alias open="xdg-open"
     '';
+
+    shellAliases = {
+      cat = "bat";
+      cd = "z";
+      cdi = "zi";
+      tp = "trash";
+      open = "xdg-open";
+    };
 
     plugins = [
       {

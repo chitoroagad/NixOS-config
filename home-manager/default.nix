@@ -72,6 +72,7 @@
       which
       tlrc
       trashy
+      btop
 
       # nix related
       nix-output-monitor
@@ -86,6 +87,7 @@
 
       # Browser
       brave
+      google-chrome
 
       # Other
       spotify
