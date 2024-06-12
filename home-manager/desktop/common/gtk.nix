@@ -16,7 +16,9 @@
     };
 
     catppuccin.cursor.enable = false;
+    catppuccin.icon.enable = false;
     catppuccin.enable = true;
+    catppuccin.accent = "sapphire";
   };
 
   # services.xsettingsd = {
