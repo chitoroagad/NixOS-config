@@ -32,6 +32,7 @@
     ./desktop.nix
     ./docker.nix
     ./extra-udev.nix
+    ./filesystem-index.nix
     ./nix.nix
     ./nixpkgs.nix
     ./ollama.nix
