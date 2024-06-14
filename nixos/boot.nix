@@ -22,7 +22,7 @@
 
     # Quiet boot
     consoleLogLevel = 0;
-    initrd.verbose = false;
+    # initrd.verbose = false;
 
     # Use systemd for initramfs rather than udev
     initrd.systemd.enable = true;
