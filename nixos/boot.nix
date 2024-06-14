@@ -1,9 +1,20 @@
 {pkgs, ...}: {
   boot = {
     # Bootloader.
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    loader.timeout = 0;
+    # loader.systemd-boot.enable = true;
+    loader = {
+      timeout = 5;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/EFI";
+
+      grub = {
+        enable = true;
+        enableCryptodisk = true;
+        devices = ["/dev/nvme0n1" "/dev/nvme1n1"];
+        efiSupport = true;
+        useOSProber = true;
+      };
+    };
 
     # LUKS
     initrd.luks.devices."luks-1ff10d2e-5580-4c23-9efe-60fc2771934b".device = "/dev/disk/by-uuid/1ff10d2e-5580-4c23-9efe-60fc2771934b";
