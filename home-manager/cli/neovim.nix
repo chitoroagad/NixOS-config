@@ -26,7 +26,7 @@
     lua-language-server
     vscode-langservers-extracted # jsonls
     pyright
-    nodePackages.bash-language-server
+    # nodePackages_latest.bash-language-server
     dockerfile-language-server-nodejs
     clang-tools
     nodePackages.typescript-language-server

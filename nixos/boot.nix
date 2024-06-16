@@ -5,12 +5,12 @@
     loader = {
       timeout = 5;
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/EFI";
+      # efi.efiSysMountPoint = "/boot/EFI";
 
       grub = {
         enable = true;
         enableCryptodisk = true;
-        devices = ["/dev/nvme0n1" "/dev/nvme1n1"];
+        device = "nodev";
         efiSupport = true;
         useOSProber = true;
       };
@@ -33,7 +33,7 @@
 
     # Quiet boot
     consoleLogLevel = 0;
-    # initrd.verbose = false;
+    initrd.verbose = false;
 
     # Use systemd for initramfs rather than udev
     initrd.systemd.enable = true;
