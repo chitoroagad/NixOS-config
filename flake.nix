@@ -19,6 +19,9 @@
 
     # Wallpaper
     swww.url = "github:LGFae/swww";
+
+    # Hyprland git
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
 
   outputs = {

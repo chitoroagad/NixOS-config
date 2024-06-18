@@ -28,6 +28,7 @@
     ./automount.nix
     ./boot.nix
     ./bluetooth.nix
+    ./cachix.nix
     ./darius.nix
     ./desktop.nix
     ./docker.nix

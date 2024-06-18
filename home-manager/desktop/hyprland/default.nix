@@ -29,6 +29,8 @@
     term = lib.getExe pkgs.kitty;
     nm-applet = lib.getExe pkgs.networkmanagerapplet;
     blueman-applet = lib.getExe' pkgs.blueman "blueman-applet";
+    # auth-agent = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+    auth-agent = lib.getExe' pkgs.kdePackages.polkit-kde-agent-1 "polkit-kde-authentication-agent-1";
   in {
     enable = true;
     systemd = {
@@ -161,6 +163,7 @@
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u"
       exec-once = ${nm-applet}
       exec-once = ${blueman-applet}
+      exec-once = ${auth-agent}
     '';
   };
 }
