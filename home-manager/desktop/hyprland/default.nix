@@ -33,6 +33,7 @@
     auth-agent = lib.getExe' pkgs.kdePackages.polkit-kde-agent-1 "polkit-kde-authentication-agent-1";
   in {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
       variables = ["--all"];
@@ -163,7 +164,7 @@
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u"
       exec-once = ${nm-applet}
       exec-once = ${blueman-applet}
-      exec-once = ${auth-agent}
+      # exec-once = ${auth-agent}
     '';
   };
 }
