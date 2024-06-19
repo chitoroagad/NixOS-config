@@ -45,7 +45,6 @@
       # setopt auto_list # automatically list choices on ambiguous completion
       # setopt auto_menu # automatically use menu completion
       zstyle ':completion:*' group-name "" # group results by category
-      zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # completions not case sensitive
       zstyle ':completion:*' list-colors "$\{(s.:.)LS_COLORS}"
       zstyle ':completion:*' menu no
