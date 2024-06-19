@@ -10,13 +10,13 @@
     ./env.nix
   ];
 
-  xdg.portal = let
-    hyprland = config.wayland.windowManager.hyprland.package;
-    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
-  in {
-    extraPortals = [xdph];
-    configPackages = [hyprland];
-  };
+  # xdg.portal = let
+  #   hyprland = config.wayland.windowManager.hyprland.package;
+  #   xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+  # in {
+  #   extraPortals = [xdph];
+  #   configPackages = [hyprland];
+  # };
 
   home.packages = with pkgs; [
     hyprpicker
