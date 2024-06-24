@@ -34,6 +34,7 @@
     ./docker.nix
     ./extra-udev.nix
     ./filesystem-index.nix
+    ./flox.nix
     ./fwupd.nix
     ./kwallet.nix
     ./nix-ld.nix
