@@ -10,6 +10,7 @@
       name = config.fontProfiles.regular.family;
       size = 12;
     };
+
     iconTheme = lib.mkDefault {
       name = "Papirus";
       package = pkgs.papirus-icon-theme;
