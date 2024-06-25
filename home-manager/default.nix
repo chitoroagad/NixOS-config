@@ -72,7 +72,6 @@
       which
       tlrc
       trashy
-      btop
 
       # nix related
       nix-output-monitor

@@ -5,15 +5,16 @@
   ...
 }: {
   imports = [
-    ./neovim.nix
-    ./zsh.nix
-    ./fzf.nix
-    ./tmux.nix
     ./bat.nix
+    ./btop.nix
     ./eza.nix
-    ./zoxide.nix
-    ./yazi.nix
+    ./fzf.nix
     ./git.nix
+    ./neovim.nix
+    ./tmux.nix
+    ./yazi.nix
+    ./zoxide.nix
+    ./zsh.nix
     # ./starship.nix
   ];
 
