@@ -24,7 +24,7 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     # Flox
-    flox.url = "github:flox/flox";
+    # flox.url = "github:flox/flox";
   };
 
   outputs = {

@@ -76,8 +76,8 @@ in {
         };
         wireplumber = {
           on-click = mkScript {
-            deps = [pkgs.helvum];
-            script = "helvum";
+            deps = [pkgs.qpwgraph];
+            script = "qpwgraph";
           };
           format = "{icon} {volume}%";
           format-muted = "";

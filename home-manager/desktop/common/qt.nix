@@ -3,7 +3,7 @@
     enable = true;
     style.name = "kvantum";
     platformTheme = {
-      name = "gtk3";
+      name = "kvantum";
       package = pkgs.qt6.qtbase;
     };
   };
