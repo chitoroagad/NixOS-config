@@ -24,6 +24,19 @@
     swappy
   ];
 
+  xdg.portal = let
+    hyprland = config.wayland.windowManager.hyprland.package;
+    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+  in {
+    extraPortals = [
+      xdph
+      # Extra portals for desktop sharing
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    configPackages = [hyprland];
+  };
+
   wayland.windowManager.hyprland = let
     browser = lib.getExe pkgs.brave;
     term = lib.getExe pkgs.kitty;
