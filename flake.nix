@@ -23,6 +23,9 @@
     # Hyprland git
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
+    # Ags
+    ags.url = "github:Aylur/ags";
+
     # Flox
     # flox.url = "github:flox/flox";
   };

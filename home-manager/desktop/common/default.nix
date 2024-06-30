@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./ags.nix
     ./cursor.nix
     ./kitty.nix
     ./font.nix
