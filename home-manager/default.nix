@@ -94,6 +94,8 @@
       slack
       protonvpn-gui
       discord
+      vlc
+      pavucontrol
     ];
   };
 
