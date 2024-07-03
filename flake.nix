@@ -80,7 +80,7 @@
           {
             home-manager.users.darius = {
               imports = [
-                ./home-manager
+                ./home
                 catppuccin.homeManagerModules.catppuccin
               ];
             };
