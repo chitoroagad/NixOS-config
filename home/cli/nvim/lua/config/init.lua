@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("config.globals")
 require("config.options")
 require("config.keymaps")
-require("config.autocmds")
+-- require("config.autocmds")
 
 -- CONFIG LAZY
 local opts = {
@@ -38,6 +38,9 @@ local opts = {
 	},
 	change_detection = {
 		notify = false,
+	},
+	spec = {
+		{ import = "lazyvim.plugins.extras.lang.nix" },
 	},
 }
 

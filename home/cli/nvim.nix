@@ -29,91 +29,57 @@
     withRuby = true;
     withNodeJs = true;
     withPython3 = true;
-
-    extraPackages = with pkgs; [
-      git
-      gcc
-      gnumake
-      unzip
-      wget
-      curl
-      tree-sitter
-      ripgrep
-      fd
-      fzf
-      cargo
-
-      nil
-      lua-language-server
-      stylua
-
-      # formatters
-      alejandra
-      stylua
-      biome
-      prettierd
-      nodePackages.prettier
-      shfmt
-      rustfmt
-
-      # linters
-      luajitPackages.luacheck
-      ruff
-      ruff-lsp
-      shellcheck
-      cpplint
-      hadolint
-
-      # LSPs
-      lua-language-server
-      vscode-langservers-extracted # jsonls
-      pyright
-      nodePackages_latest.bash-language-server
-      dockerfile-language-server-nodejs
-      clang-tools
-      nodePackages.typescript-language-server
-      ltex-ls
-      emmet-ls
-      nil
-
-      # misc
-      luajitPackages.jsregexp
-    ];
   };
 
-  # home.packages = with pkgs; [
-  #   neovim
-  #
-  #   # formatters
-  #   alejandra
-  #   stylua
-  #   biome
-  #   prettierd
-  #   nodePackages.prettier
-  #   shfmt
-  #   rustfmt
-  #
-  #   # linters
-  #   luajitPackages.luacheck
-  #   ruff
-  #   ruff-lsp
-  #   shellcheck
-  #   cpplint
-  #   hadolint
-  #
-  #   # LSPs
-  #   lua-language-server
-  #   vscode-langservers-extracted # jsonls
-  #   pyright
-  #   nodePackages_latest.bash-language-server
-  #   dockerfile-language-server-nodejs
-  #   clang-tools
-  #   nodePackages.typescript-language-server
-  #   ltex-ls
-  #   emmet-ls
-  #   nil
-  #
-  #   # misc
-  #   luajitPackages.jsregexp
-  # ];
+  home.packages = with pkgs; [
+    neovim
+
+    git
+    gcc
+    gnumake
+    unzip
+    wget
+    curl
+    tree-sitter
+    ripgrep
+    fd
+    fzf
+    cargo
+
+    nil
+    lua-language-server
+    stylua
+
+    # formatters
+    alejandra
+    stylua
+    biome
+    prettierd
+    nodePackages.prettier
+    shfmt
+    rustfmt
+
+    # linters
+    luajitPackages.luacheck
+    ruff
+    ruff-lsp
+    shellcheck
+    cpplint
+    hadolint
+
+    # LSPs
+    lua-language-server
+    vscode-langservers-extracted # jsonls
+    pyright
+    nodePackages_latest.bash-language-server
+    dockerfile-language-server-nodejs
+    clang-tools
+    nodePackages.typescript-language-server
+    ltex-ls
+    emmet-ls
+    nil
+
+    # misc
+    luajitPackages.jsregexp
+  ];
 }
