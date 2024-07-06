@@ -96,6 +96,7 @@
       discord
       vlc
       pavucontrol
+      zoom-us
     ];
   };
 
