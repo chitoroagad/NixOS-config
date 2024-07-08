@@ -15,3 +15,7 @@ Some notable inclusions:
 - Tmux
 - Hyprland
 - Waybar
+
+## Running
+
+You can run this config by enabling flakes in nix and copying this repo into `/etc/nixos/` and running `nixos-rebuild switch`.
