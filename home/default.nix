@@ -97,6 +97,7 @@
       vlc
       pavucontrol
       zoom-us
+      obs-studio
     ];
   };
 

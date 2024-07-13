@@ -41,7 +41,7 @@
     ./nix.nix
     ./nixpkgs.nix
     # ./ollama.nix
-    ./opengl.nix
+    # ./opengl.nix
     ./polkit.nix
     ./root.nix
     ./seat.nix
