@@ -1,6 +1,11 @@
-{...}: {
+{
+  pkgs-stable,
+  pkgs,
+  ...
+}: {
   programs.hyprlock = {
     enable = true;
+    package = pkgs-stable.${pkgs.system}.hyprlock;
     settings = {
       general = {
         grace = 3;
