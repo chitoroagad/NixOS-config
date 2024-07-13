@@ -10,14 +10,6 @@
     ./env.nix
   ];
 
-  # xdg.portal = let
-  #   hyprland = config.wayland.windowManager.hyprland.package;
-  #   xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
-  # in {
-  #   extraPortals = [xdph];
-  #   configPackages = [hyprland];
-  # };
-
   home.packages = with pkgs; [
     hyprpicker
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
@@ -26,13 +18,14 @@
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
-    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+    # xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+    xdph = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   in {
+    enable = true;
     extraPortals = [
       xdph
       # Extra portals for desktop sharing
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
     ];
     configPackages = [hyprland];
   };
@@ -42,7 +35,6 @@
     term = lib.getExe pkgs.kitty;
     nm-applet = lib.getExe pkgs.networkmanagerapplet;
     blueman-applet = lib.getExe' pkgs.blueman "blueman-applet";
-    # auth-agent = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
     auth-agent = lib.getExe' pkgs.kdePackages.polkit-kde-agent-1 "polkit-kde-authentication-agent-1";
   in {
     enable = true;

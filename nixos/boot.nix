@@ -21,19 +21,19 @@
 
     # Newer kernel
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
-      "quiet"
-    ];
-
-    # Plymouth
-    plymouth = {
-      enable = true;
-      # Catppuccin theme enabled in desktop.nix
-    };
-
-    # Quiet boot
-    consoleLogLevel = 0;
-    initrd.verbose = false;
+    # kernelParams = [
+    #   "quiet"
+    # ];
+    #
+    # # Plymouth
+    # plymouth = {
+    #   enable = true;
+    #   # Catppuccin theme enabled in desktop.nix
+    # };
+    #
+    # # Quiet boot
+    # consoleLogLevel = 0;
+    # initrd.verbose = false;
 
     # Use systemd for initramfs rather than udev
     initrd.systemd.enable = true;

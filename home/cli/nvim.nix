@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  pkgs-stable,
   ...
 }: {
   xdg = {
@@ -45,6 +46,8 @@
     fd
     fzf
     cargo
+    luajitPackages.luarocks
+    lua5_1
 
     nil
     lua-language-server
@@ -64,7 +67,7 @@
     ruff
     ruff-lsp
     shellcheck
-    cpplint
+    # cpplint
     hadolint
 
     # LSPs
@@ -82,4 +85,5 @@
     # misc
     luajitPackages.jsregexp
   ];
+  # ++ [pkgs-stable.cpplint];
 }

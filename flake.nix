@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -49,6 +49,8 @@
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
+
+    pkgs-stable = forAllSystems (system: inputs.nixpkgs-stable.legacyPackages.${system});
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
@@ -70,7 +72,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       LeMachine = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs pkgs-stable;};
 
         modules = [
           ./nixos
@@ -84,7 +86,7 @@
                 catppuccin.homeManagerModules.catppuccin
               ];
             };
-            home-manager.extraSpecialArgs = {inherit inputs outputs;};
+            home-manager.extraSpecialArgs = {inherit inputs outputs pkgs-stable;};
           }
         ];
       };

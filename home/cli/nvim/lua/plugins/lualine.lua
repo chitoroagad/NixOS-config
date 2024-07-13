@@ -14,7 +14,7 @@ local config = function()
 				{ "mode", separator = { left = "" }, padding = { right = 1 } },
 			},
 			lualine_b = {
-				{ "filename", padding = { left = 1 } },
+				{ "location", padding = { left = 1 } },
 			},
 			lualine_c = { "branch", "diff", "diagnostics" },
 			lualine_x = { { "filetype" } },
