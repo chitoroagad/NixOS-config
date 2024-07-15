@@ -1,11 +1,7 @@
-{
-  pkgs-stable,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.hyprlock = {
     enable = true;
-    package = pkgs-stable.${pkgs.system}.hyprlock;
+    package = pkgs.hyprlock;
     settings = {
       general = {
         grace = 3;
@@ -17,6 +13,7 @@
         monitor = "";
         path = "screenshot";
         blur_passes = 4;
+        noise = 0.0117;
         contrast = 0.8916;
         brightness = 0.8172;
         vibrancy = 0.1696;
@@ -34,7 +31,6 @@
         inner_color = "rgba(0, 0, 0, 0.5)";
         font_color = "rgb(200, 200, 200)";
         fade_on_empty = false;
-        font_family = "JetBrains Mono Nerd Font Mono";
         placeholder_text = ''
           <i><span foreground="##cdd6f4">󰌆 </span></i>
         '';
@@ -50,7 +46,7 @@
         text = ''
           cmd[update:1000] echo "$(date +"%H:%M")"
         '';
-        color = "$foreground";
+        color = "rgba(205, 214, 244, 1)";
         font_size = 120;
         font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
         position = "0, -300";
