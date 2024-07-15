@@ -40,8 +40,8 @@
     ./nix-ld.nix
     ./nix.nix
     ./nixpkgs.nix
-    # ./ollama.nix
-    # ./opengl.nix
+    ./ollama.nix
+    ./opengl.nix
     ./polkit.nix
     ./root.nix
     ./seat.nix
