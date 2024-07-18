@@ -20,6 +20,7 @@
     };
 
     loginExtra = ''
+      sleep 1
       if ! pgrep -f Hyprland >/dev/null; then
           Hyprland
       fi
