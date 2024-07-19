@@ -63,6 +63,7 @@
       cdi = "zi";
       tp = "trash";
       open = "xdg-open";
+      git-tree = "git log --graph --pretty=oneline --abbrev-commit";
     };
 
     plugins = [
