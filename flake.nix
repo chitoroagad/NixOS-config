@@ -23,6 +23,9 @@
     # Hyprland git
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
+    # Hyprlock git
+    hyprlock.url = "git+https://github.com/hyprwm/hyprlock";
+
     # Ags
     ags.url = "github:Aylur/ags";
 
