@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  gtk.catppuccin.cursor.enable = false;
+  catppuccin.pointerCursor.enable = false;
   home.pointerCursor = {
     name = "phinger-cursors-light";
     package = pkgs.phinger-cursors;
