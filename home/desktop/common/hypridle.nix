@@ -1,10 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = [
     pkgs.qmk_hid
   ];
 
   services.hypridle = {
     enable = true;
+    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";

@@ -26,6 +26,9 @@
     # Hyprlock git
     hyprlock.url = "git+https://github.com/hyprwm/hyprlock";
 
+    # Hypridel git
+    hypridle.url = "git+https://github.com/hyprwm/hypridle";
+
     # Ags
     ags.url = "github:Aylur/ags";
 
