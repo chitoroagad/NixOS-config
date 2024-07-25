@@ -39,11 +39,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721755137,
-        "narHash": "sha256-DcJkFNaHGRMIkexx/ol2oNiUFT/zqnZH6dwODdHubIU=",
+        "lastModified": 1721853718,
+        "narHash": "sha256-QEkCryhEMBW8maWEbwN0LoJIjdt640FviwMeJpghJXM=",
         "owner": "hyprwm",
         "repo": "aquamarine",
-        "rev": "4c72cd4d0b0368ce78bf94ea7f23d47670f0d429",
+        "rev": "353dc1b7299d43f08de44276b93ae32726ff9d70",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721804110,
-        "narHash": "sha256-i4jINRazBKPqlaS+qhlP+kV/UHEq3vs5itfpblqu4ZM=",
+        "lastModified": 1721852138,
+        "narHash": "sha256-JH8N5uoqoVA6erV4O40VtKKHsnfmhvMGbxMNDLtim5o=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "af70fc502a15d7e1e4c5a4c4fc8e06c2ec561e0c",
+        "rev": "304a011325b7ac7b8c9950333cd215a7aa146b0e",
         "type": "github"
       },
       "original": {
@@ -165,11 +165,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1721835765,
-        "narHash": "sha256-Y1OWvKtHD5p0ukY+DrMGgzofCVenZXQDGh9815INKjQ=",
+        "lastModified": 1721859555,
+        "narHash": "sha256-bugSUsaP1ov+1+yq8jJpLryFiqXFShrBbQJ7CLAEt6M=",
         "ref": "refs/heads/main",
-        "rev": "3f1ddcd4cd7082aaaee1fafd92ea92da0e0aff9f",
-        "revCount": 4974,
+        "rev": "4beac91cbd791657cc53d6e483eb41bf4df1ec0c",
+        "revCount": 4980,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -322,11 +322,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1721822339,
-        "narHash": "sha256-dkhgyxPxmOI/ZHk/LZRQZAVjtk9kPx2RFQRnuEoXQ4s=",
+        "lastModified": 1721855891,
+        "narHash": "sha256-S70Pif/SaChwtJwV0K4rUh+pU8kyVtzbGtNtsOQ8geo=",
         "ref": "refs/heads/main",
-        "rev": "58e1a4a4997728be886a46d031514b3f09763c5d",
-        "revCount": 234,
+        "rev": "cf0e975fedcddde897a75c5b6a2a111177b0baad",
+        "revCount": 236,
         "type": "git",
         "url": "https://github.com/hyprwm/hyprlock"
       },
