@@ -90,7 +90,6 @@
 
       # Other
       spotify
-      psst
       libreoffice
       slack
       protonvpn-gui
