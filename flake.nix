@@ -55,8 +55,6 @@
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
-
-    pkgs-stable = forAllSystems (system: inputs.nixpkgs-stable.legacyPackages.${system});
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
@@ -79,7 +77,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       LeMachine = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs pkgs-stable;};
+        specialArgs = {inherit inputs outputs;};
 
         modules = [
           ./nixos
@@ -93,7 +91,7 @@
                 catppuccin.homeManagerModules.catppuccin
               ];
             };
-            home-manager.extraSpecialArgs = {inherit inputs outputs pkgs-stable;};
+            home-manager.extraSpecialArgs = {inherit inputs outputs;};
           }
         ];
       };

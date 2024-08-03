@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  pkgs-stable,
   ...
 }: {
   xdg = {
@@ -86,5 +85,5 @@
       # misc
       luajitPackages.jsregexp
     ]
-    ++ [pkgs-stable.${pkgs.system}.cpplint];
+    ++ [pkgs.stable.cpplint];
 }

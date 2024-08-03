@@ -1,10 +1,6 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}: {
+{pkgs, ...}: {
   services.ollama = {
-    package = pkgs-stable.${pkgs.system}.ollama;
+    package = pkgs.stable.ollama;
     enable = true;
     acceleration = "rocm";
     environmentVariables = {
