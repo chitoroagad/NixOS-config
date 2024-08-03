@@ -10,8 +10,6 @@
         vaapiVdpau
         libvdpau-va-gl
       ];
-      # driSupport = true;
-      # driSupport32Bit = true;
     };
   };
 }
