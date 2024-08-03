@@ -10,6 +10,7 @@
     prefix = "C-a";
     sensibleOnTop = true;
     terminal = "screen-256color";
+    disableConfirmationPrompt = true;
     plugins = with pkgs.tmuxPlugins; [
       {
         plugin = yank;

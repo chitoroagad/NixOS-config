@@ -16,6 +16,8 @@ in {
     };
     Service = {
       ExecStart = "${lib.getExe' swww "swww-daemon"}";
+      ExecStop = "${lib.getExe swww} kill";
+      TimeoutStopSec = "5s";
     };
   };
 }
