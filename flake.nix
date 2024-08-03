@@ -81,18 +81,18 @@
 
         modules = [
           ./nixos
-          home-manager.nixosModules.home-manager
           catppuccin.nixosModules.catppuccin
+        ];
+      };
+    };
 
-          {
-            home-manager.users.darius = {
-              imports = [
-                ./home
-                catppuccin.homeManagerModules.catppuccin
-              ];
-            };
-            home-manager.extraSpecialArgs = {inherit inputs outputs;};
-          }
+    homeConfigurations = {
+      "darius@LeMachine" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./home
+          catppuccin.homeManagerModules.catppuccin
         ];
       };
     };
