@@ -98,6 +98,7 @@
       pavucontrol
       zoom-us
       obs-studio
+      gimp
     ];
   };
 
