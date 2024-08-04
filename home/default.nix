@@ -93,6 +93,7 @@
       libreoffice
       slack
       protonvpn-gui
+      proton-pass
       discord
       vlc
       pavucontrol

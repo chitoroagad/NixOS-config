@@ -36,6 +36,7 @@
     nm-applet = lib.getExe pkgs.networkmanagerapplet;
     blueman-applet = lib.getExe' pkgs.blueman "blueman-applet";
     auth-agent = lib.getExe' pkgs.kdePackages.polkit-kde-agent-1 "polkit-kde-authentication-agent-1";
+    proton-vpn = lib.getExe pkgs.protonvpn-gui;
   in {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -165,8 +166,9 @@
     };
 
     extraConfig = ''
-      exec-once = [workspace 1 silent] ${browser}
+      exec-once = [workspace 1] ${browser}
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u"
+      exec-once = [workspace 3 silent] ${proton-vpn}
       exec-once = ${nm-applet}
       exec-once = ${blueman-applet}
       # exec-once = ${auth-agent}

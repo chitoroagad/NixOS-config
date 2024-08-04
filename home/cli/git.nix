@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     userName = "DariusChit";
-    userEmail = "darius.chitoroaga@proton.me";
+    userEmail = "darius.chitoroaga@pm.me";
     lfs.enable = true;
     extraConfig = {
       color.ui = true;
