@@ -36,6 +36,7 @@
     ./filesystem-index.nix
     # ./flox.nix
     ./fwupd.nix
+    ./keyboard.nix
     ./kwallet.nix
     ./nix-ld.nix
     ./nix.nix
