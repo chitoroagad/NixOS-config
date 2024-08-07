@@ -99,6 +99,7 @@
       pavucontrol
       zoom-us
       obs-studio
+      obsidian
       gimp
     ];
   };

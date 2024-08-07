@@ -31,6 +31,7 @@
     ./cachix.nix
     ./darius.nix
     ./desktop.nix
+    # ./disble-sleep.nix
     ./docker.nix
     ./extra-udev.nix
     ./filesystem-index.nix
