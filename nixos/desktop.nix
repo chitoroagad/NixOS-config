@@ -9,7 +9,10 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
     xwayland.enable = true;
-
+    hyprlock = {
+      enable = true;
+      package = pkgs.hyprlock;
+    };
     zsh.enable = true;
   };
 
