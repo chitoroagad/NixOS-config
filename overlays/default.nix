@@ -10,18 +10,6 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-
-    # Apply patch to prevent hanging on shutdown
-    tmux = prev.tmux.overrideAttrs (old: {
-      patches =
-        (prev.patches or [])
-        ++ [
-          (prev.fetchpatch {
-            url = "https://github.com/tmux/tmux/commit/3823fa2c577d440649a84af660e4d3b0c095d248.patch";
-            hash = "sha256-FZDy/ZgVdwUAam8g5SfGBSnMhp2nlHHfrO9eJNIhVPo=";
-          })
-        ];
-    });
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
