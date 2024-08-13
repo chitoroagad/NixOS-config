@@ -38,7 +38,14 @@
 
   xdg = {
     portal.enable = true;
-    mimeApps.enable = true;
     configFile."mimeapps.list".force = true;
+    mimeApps = {
+      enable = true;
+      associations.added = {
+        "video/mp4" = "vlc.desktop";
+        "video/mpeg" = "vlc.desktop";
+        "video/x-msvideo" = "vlc.desktop";
+      };
+    };
   };
 }

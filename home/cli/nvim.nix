@@ -31,59 +31,57 @@
     withPython3 = true;
   };
 
-  home.packages = with pkgs;
-    [
-      neovim
+  home.packages = with pkgs; [
+    neovim
 
-      git
-      gcc
-      gnumake
-      unzip
-      wget
-      curl
-      tree-sitter
-      ripgrep
-      fd
-      fzf
-      cargo
-      luajitPackages.luarocks
-      lua5_1
+    git
+    gcc
+    gnumake
+    unzip
+    wget
+    curl
+    tree-sitter
+    ripgrep
+    fd
+    fzf
+    cargo
+    luajitPackages.luarocks
+    lua5_1
 
-      nil
-      lua-language-server
-      stylua
+    nil
+    lua-language-server
+    stylua
 
-      # formatters
-      alejandra
-      stylua
-      biome
-      prettierd
-      nodePackages.prettier
-      shfmt
-      rustfmt
+    # formatters
+    alejandra
+    stylua
+    biome
+    prettierd
+    nodePackages.prettier
+    shfmt
+    rustfmt
 
-      # linters
-      luajitPackages.luacheck
-      ruff
-      ruff-lsp
-      shellcheck
-      # cpplint
-      hadolint
+    # linters
+    stable.luajitPackages.luacheck
+    ruff
+    ruff-lsp
+    shellcheck
+    stable.cpplint
+    hadolint
 
-      # LSPs
-      lua-language-server
-      vscode-langservers-extracted # jsonls
-      pyright
-      nodePackages_latest.bash-language-server
-      dockerfile-language-server-nodejs
-      clang-tools
-      nodePackages.typescript-language-server
-      ltex-ls
-      emmet-ls
-      nil
+    # LSPs
+    lua-language-server
+    vscode-langservers-extracted # jsonls
+    pyright
+    nodePackages_latest.bash-language-server
+    dockerfile-language-server-nodejs
+    clang-tools
+    nodePackages.typescript-language-server
+    ltex-ls
+    emmet-ls
+    nil
 
-      # misc
-      luajitPackages.jsregexp
-    ]
-    ++ [pkgs.stable.cpplint];
+    # misc
+    luajitPackages.jsregexp
+  ];
 }
