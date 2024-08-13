@@ -5,7 +5,7 @@
 }: {
   programs.hyprlock = {
     enable = true;
-    package = pkgs.hyprlock;
+    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       general = {
         grace = 3;
