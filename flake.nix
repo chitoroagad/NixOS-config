@@ -19,18 +19,23 @@
 
     # Wallpaper
     swww.url = "github:LGFae/swww";
+    swww.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprland git
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprlock git
     hyprlock.url = "git+https://github.com/hyprwm/hyprlock";
+    hyprlock.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hypridel git
     hypridle.url = "git+https://github.com/hyprwm/hypridle";
+    hypridle.inputs.nixpkgs.follows = "nixpkgs";
 
     # Ags
     ags.url = "github:Aylur/ags";
+    ags.inputs.nixpkgs.follows = "nixpkgs";
 
     # Flox
     # flox.url = "github:flox/flox";
