@@ -10,7 +10,7 @@
     ./eza.nix
     ./fzf.nix
     ./git.nix
-    ./nvim.nix
+    ./nvim
     ./tmux.nix
     ./yazi.nix
     ./zoxide.nix
