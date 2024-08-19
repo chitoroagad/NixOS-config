@@ -25,4 +25,4 @@ You can run this config by enabling flakes in nix and copying this repo into `/e
 
 # Credits
 
-Thanks to [Aylur](https://github.com/Aylur/dotfiles/tree/main) for the fabulous ags config
+Thanks to [Aylur](https://github.com/Aylur) for the fabulous ags config
