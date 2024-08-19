@@ -10,16 +10,16 @@
     ./kitty.nix
     ./font.nix
     ./playerctl.nix
-    ./mako.nix
-    ./wofi.nix
-    ./waybar.nix
+    # ./mako.nix
+    # ./wofi.nix
+    # ./waybar.nix
     ./gtk.nix
     ./qt.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./swww
     ./wlsunset.nix
-    ./wlogout.nix
+    # ./wlogout.nix
 
     # ./extraBluetooth.nix
   ];

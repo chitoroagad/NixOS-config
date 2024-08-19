@@ -36,6 +36,7 @@
     # Ags
     ags.url = "github:Aylur/ags";
     ags.inputs.nixpkgs.follows = "nixpkgs";
+    matugen.url = "github:InioX/matugen?ref=v2.2.0";
 
     # Flox
     # flox.url = "github:flox/flox";
@@ -82,7 +83,9 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       LeMachine = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {
+          inherit inputs outputs;
+        };
 
         modules = [
           ./nixos
@@ -94,7 +97,10 @@
     homeConfigurations = {
       "darius@LeMachine" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          asztal = nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/desktop/common/ags {inherit inputs;};
+        };
         modules = [
           ./home
           catppuccin.homeManagerModules.catppuccin

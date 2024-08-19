@@ -23,3 +23,7 @@ Some extra directories are included, such as `modules` for adding your own modul
 ## Running
 
 You can run this config by enabling flakes in nix and copying this repo into `/etc/nixos/` and running `nixos-rebuild switch`.
+
+# Credits
+
+Thanks to @Aylur for the fabulous ags config

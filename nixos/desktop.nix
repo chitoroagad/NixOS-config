@@ -25,5 +25,9 @@
   console.catppuccin.enable = true;
 
   # fix mime list problem
-  home-manager.backupFileExtension = "home-manager-backup";
+  home-manager = {
+    backupFileExtension = "home-manager-backup";
+    useGlobalPkgs = true;
+    useUserPackages = true;
+  };
 }
