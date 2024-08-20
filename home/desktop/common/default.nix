@@ -21,7 +21,7 @@
     ./wlsunset.nix
     # ./wlogout.nix
 
-    # ./extraBluetooth.nix
+    ./extraBluetooth.nix
   ];
 
   home.packages = with pkgs; [

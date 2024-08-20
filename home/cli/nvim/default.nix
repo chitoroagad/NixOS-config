@@ -71,7 +71,7 @@
 
     # LSPs
     lua-language-server
-    vscode-langservers-extracted # jsonls
+    stable.vscode-langservers-extracted # jsonls
     pyright
     nodePackages_latest.bash-language-server
     dockerfile-language-server-nodejs
