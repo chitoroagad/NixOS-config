@@ -5,16 +5,6 @@
 }: {
   xdg = {
     configFile.nvim.source = ./.;
-    desktopEntries."nvim" = lib.mkIf pkgs.stdenv.isLinux {
-      name = "NeoVim";
-      comment = "Edit text files";
-      icon = "nvim";
-      exec = "kitty --hold ${pkgs.neovim}/bin/nvim %F";
-      categories = ["TerminalEmulator"];
-      terminal = false;
-      mimeType = ["text/plain"];
-    };
-  };
 
   home.sessionVariables = {
     EDITOR = "nvim";
