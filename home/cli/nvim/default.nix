@@ -5,6 +5,7 @@
 }: {
   xdg = {
     configFile.nvim.source = ./.;
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";
