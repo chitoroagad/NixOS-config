@@ -19,12 +19,9 @@
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
-    # xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
-    xdph = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   in {
     enable = true;
     extraPortals = [
-      xdph
       # Extra portals for desktop sharing
       pkgs.xdg-desktop-portal-gtk
     ];
@@ -34,12 +31,12 @@
   wayland.windowManager.hyprland = let
     browser = lib.getExe pkgs.brave;
     term = lib.getExe pkgs.kitty;
-    # auth-agent = lib.getExe' pkgs.kdePackages.polkit-kde-agent-1 "polkit-kde-authentication-agent-1";
     proton-vpn = lib.getExe pkgs.protonvpn-gui;
     nm-applet = lib.getExe pkgs.networkmanagerapplet;
   in {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+
     systemd = {
       enable = true;
       variables = ["--all"];
@@ -172,7 +169,7 @@
     extraConfig = ''
       exec-once = [workspace 1] ${browser}
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u"
-      exec-once = [workspace 3 silent] ${proton-vpn}
+      # exec-once = [workspace 3 silent] ${proton-vpn}
       exec-once = ${nm-applet}
     '';
   };
