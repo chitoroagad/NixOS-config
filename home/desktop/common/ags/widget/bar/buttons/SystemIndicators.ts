@@ -90,7 +90,7 @@ export default () =>
 			ProfileIndicator(),
 			DNDIndicator(),
 			BluetoothIndicator(),
-			NetworkIndicator(),
+			//NetworkIndicator(),
 			AudioIndicator(),
 			MicrophoneIndicator(),
 		]),
