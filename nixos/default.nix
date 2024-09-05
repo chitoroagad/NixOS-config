@@ -38,7 +38,7 @@
     # ./flox.nix
     ./fwupd.nix
     ./keyboard.nix
-    ./kwallet.nix
+    # ./kwallet.nix
     ./nix-ld.nix
     ./nix.nix
     ./nixpkgs.nix
