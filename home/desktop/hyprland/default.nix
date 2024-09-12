@@ -42,10 +42,7 @@
       variables = ["--all"];
     };
 
-    settings = let
-      # active = "0xaa${lib.removePrefix "#" config.colorscheme.colors.primary}";
-      # inactive = "0xaa${lib.removePrefix "#" config.colorscheme.colors.surface_bright}";
-    in {
+    settings = {
       monitor = [
         "eDP-2,2560x1600@165,0x0,1,vrr,1"
         "eDP-1,2560x1600@165,0x0,1,vrr,1"
@@ -54,8 +51,6 @@
         gaps_in = 5;
         gaps_out = 5;
         border_size = 2;
-        # "col.border_active" = active;
-        # "col.border_inactive" = inactive;
         layout = "dwindle";
       };
       decoration = {
@@ -65,7 +60,7 @@
         blur = {
           enabled = true;
           size = 5;
-          passes = 3;
+          passes = 4;
           new_optimizations = true;
           ignore_opacity = true;
         };
