@@ -86,6 +86,7 @@
 
       # Browser
       brave
+      firefox
       google-chrome
 
       # Other
