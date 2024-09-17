@@ -61,7 +61,7 @@
       cat = "bat";
       cd = "z";
       cdi = "zi";
-      tp = "trash";
+      tp = "trashy";
       open = "xdg-open";
       git-tree = "git log --graph --pretty=oneline --abbrev-commit";
     };
