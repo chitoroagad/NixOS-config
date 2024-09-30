@@ -93,7 +93,7 @@
       spotify
       libreoffice
       slack
-      protonvpn-gui
+      stable.protonvpn-gui
       proton-pass
       discord
       vlc
