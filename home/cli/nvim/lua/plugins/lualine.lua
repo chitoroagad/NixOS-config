@@ -14,17 +14,15 @@ local config = function()
 				{ "mode", separator = { left = "" }, padding = { right = 1 } },
 			},
 			lualine_b = {
-				{ "location", padding = { left = 1 } },
+				{ "filename", padding = { left = 1 } },
 			},
 			lualine_c = { "branch", "diff", "diagnostics" },
 			lualine_x = { { "filetype" } },
 			lualine_y = {
 				{
 					function()
-						local lsps = vim.lsp.get_clients()
-						local icon = require("nvim-web-devicons").get_icon_by_filetype(
-							vim.api.nvim_buf_get_option(0, "filetype")
-						)
+						local lsps = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+						local icon = require("nvim-web-devicons").get_icon_by_filetype(vim.bo.filetype)
 						if lsps and #lsps > 0 then
 							local names = {}
 							for _, lsp in ipairs(lsps) do
@@ -39,9 +37,7 @@ local config = function()
 						vim.api.nvim_command("LspInfo")
 					end,
 					color = function()
-						local _, color = require("nvim-web-devicons").get_icon_cterm_color_by_filetype(
-							vim.api.nvim_buf_get_option(0, "filetype")
-						)
+						local _, color = require("nvim-web-devicons").get_icon_cterm_color_by_filetype(vim.bo.filetype)
 						return { fg = color }
 					end,
 					padding = { right = 1 },
@@ -51,13 +47,11 @@ local config = function()
 				{ "location", separator = { right = "" }, padding = { left = 1 } },
 			},
 		},
-		inactive_sections = {
-			lualine_a = { "filename" },
-			lualine_b = {},
-			lualine_c = {},
-			lualine_x = {},
-			lualine_y = {},
-			lualine_z = { "location" },
+		extensions = {
+			"nvim-tree",
+			"lazy",
+			"fugitive",
+			"fzf",
 		},
 	})
 end
