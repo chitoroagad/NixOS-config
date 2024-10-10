@@ -1,4 +1,4 @@
-#bThis is your home-manager configuration file
+#bThis is your home-manager configuration aile
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
@@ -85,7 +85,7 @@
       usbutils
 
       # Browser
-      brave
+      stable.brave
       firefox
       google-chrome
 
