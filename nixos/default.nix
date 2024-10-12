@@ -49,6 +49,7 @@
     ./seat.nix
     ./sound.nix
     ./tlp.nix
+    ./upower.nix
     # ./virt.nix
   ];
 
