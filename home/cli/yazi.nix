@@ -3,21 +3,21 @@
   lib,
   ...
 }: {
-  xdg.desktopEntries.yazi = {
-    name = "Yazi";
-    genericName = "File Manager";
-    icon = "yazi";
-    comment = "Blazing fast terminal file manager written in Rust, based on async I/O";
-    terminal = true;
-    exec = "kitty -e yazi";
-    type = "Application";
-    mimeType = ["inode/directory"];
-    categories = ["Utility" "Core" "System" "FileTools" "FileManager" "ConsoleOnly"];
-    settings = {
-      Keywords = "File;Manager;Explorer;Browser;Launcher";
-      TryExec = "yazi";
-    };
-  };
+  # xdg.desktopEntries.yazi = {
+  #   name = "Yazi";
+  #   genericName = "File Manager";
+  #   icon = "yazi";
+  #   comment = "Blazing fast terminal file manager written in Rust, based on async I/O";
+  #   terminal = true;
+  #   exec = "kitty -e yazi";
+  #   type = "Application";
+  #   mimeType = ["inode/directory"];
+  #   categories = ["Utility" "Core" "System" "FileTools" "FileManager" "ConsoleOnly"];
+  #   settings = {
+  #     Keywords = "File;Manager;Explorer;Browser;Launcher";
+  #     TryExec = "yazi";
+  #   };
+  # };
 
   programs.yazi = {
     enable = true;
