@@ -71,6 +71,7 @@
     ltex-ls
     emmet-ls
     nil
+    glsl_analyzer
 
     # misc
     luajitPackages.jsregexp

@@ -142,5 +142,11 @@ return {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
+
+		-- GLSL
+		lspconfig.glsl_analyzer.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
 	end,
 }
