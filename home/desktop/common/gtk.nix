@@ -17,7 +17,7 @@
     };
 
     catppuccin.icon.enable = false;
-    catppuccin.enable = true;
+    catppuccin.enable = false;
     catppuccin.accent = "sapphire";
   };
 

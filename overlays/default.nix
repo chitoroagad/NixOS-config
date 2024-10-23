@@ -35,6 +35,7 @@
         outputHash = "sha256-2QITAwh2Gpp+9JtJG77hcXZ5zhxwNztAtdfLmPH4J3Y=";
       });
     });
+    utillinux = final.util-linux;
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will

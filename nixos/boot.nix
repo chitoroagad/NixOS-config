@@ -22,10 +22,10 @@
     ];
 
     # Plymouth
-    plymouth = {
-      enable = true;
-      # Catppuccin theme enabled in desktop.nix
-    };
+    # plymouth = {
+    #   enable = true;
+    #   # Catppuccin theme enabled in desktop.nix
+    # };
 
     # Quiet boot
     consoleLogLevel = 0;
