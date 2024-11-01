@@ -22,9 +22,9 @@
     ];
 
     # Plymouth
-    plymouth = {
-      enable = true;
-    };
+    # plymouth = {
+    #   enable = true;
+    # };
 
     # Quiet boot
     consoleLogLevel = 0;
