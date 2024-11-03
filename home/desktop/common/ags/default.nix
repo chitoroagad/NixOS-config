@@ -12,7 +12,7 @@
   brightnessctl,
   accountsservice,
   slurp,
-  wf-recorder,
+  # wf-recorder,
   wl-clipboard,
   wayshot,
   swappy,
@@ -28,6 +28,8 @@
     extraPackages = [accountsservice];
   };
 
+  stable = import inputs.nixpkgs-stable {inherit system;};
+
   dependencies = [
     which
     dart-sass
@@ -37,7 +39,7 @@
     swww
     inputs.matugen.packages.${system}.default
     slurp
-    wf-recorder
+    stable.wf-recorder
     wl-clipboard
     wayshot
     swappy
