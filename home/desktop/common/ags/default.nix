@@ -28,6 +28,7 @@
     extraPackages = [accountsservice];
   };
 
+  # requires nixpkgs-stable as in input in flake.nix
   stable = import inputs.nixpkgs-stable {inherit system;};
 
   dependencies = [
