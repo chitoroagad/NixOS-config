@@ -104,6 +104,7 @@
       gimp
     ];
   };
+  news.display = "show";
 
   # Colorscheme
   catppuccin.enable = true;
