@@ -75,7 +75,6 @@
 
       # nix related
       nix-output-monitor
-      nh
 
       # prod
       glow
