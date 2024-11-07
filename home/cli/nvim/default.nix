@@ -53,11 +53,11 @@
     rustfmt
 
     # linters
-    stable.luajitPackages.luacheck
+    luajitPackages.luacheck
     ruff
     ruff-lsp
     shellcheck
-    stable.cpplint
+    cpplint
     hadolint
 
     # LSPs

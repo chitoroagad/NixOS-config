@@ -84,7 +84,7 @@
       usbutils
 
       # Browser
-      stable.brave
+      brave
       firefox
       google-chrome
 
