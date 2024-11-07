@@ -24,6 +24,7 @@
     extraPortals = [
       # Extra portals for desktop sharing
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
     ];
     configPackages = [hyprland];
   };

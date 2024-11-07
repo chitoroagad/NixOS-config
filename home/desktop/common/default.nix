@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   config,
   ...
 }: {
@@ -37,7 +38,19 @@
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
   xdg = {
-    portal.enable = true;
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      config = {
+        common.default = ["gtk"];
+        hyprland.default = ["hyprland" "gtk"];
+      };
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+      ];
+    };
+
     configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
