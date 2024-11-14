@@ -34,8 +34,8 @@
     hypridle.inputs.nixpkgs.follows = "nixpkgs";
 
     # Ags
-    ags.url = "github:Aylur/ags";
-    ags.inputs.nixpkgs.follows = "nixpkgs";
+    ags.url = "github:Aylur/ags?tree/v1";
+    # ags.inputs.nixpkgs.follows = "nixpkgs";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
 
     # Flox
