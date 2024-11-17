@@ -13,6 +13,7 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		"windwp/nvim-autopairs",
 		"j-hui/fidget.nvim",
+		"nvim-java/nvim-java",
 	},
 	config = function()
 		require("neoconf").setup({})
@@ -145,6 +146,12 @@ return {
 
 		-- GLSL
 		lspconfig.glsl_analyzer.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- Java
+		lspconfig.jdtls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
