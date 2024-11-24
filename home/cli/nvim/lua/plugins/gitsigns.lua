@@ -1,27 +1,24 @@
 return {
-    'lewis6991/gitsigns.nvim',
-    lazy = false,
-    opts = {
-        signs = {
-            add = { text = "│" },
-            change = { text = "│" },
-            delete = { text = "󰍵" },
-            topdelete = { text = "‾" },
-            changedelete = { text = "~" },
-            untracked = { text = "│" },
-        },
-        on_attach = function(bufnr)
-            vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
-            -- local gs = package.loaded.gitsigns
-            -- vim.keymap.set({'n', 'v'}, ']c', function()
-            --     if vim.wo.diff then
-            --         return ']c'
-            --     end
-            --     vim.schedule(function()
-            --         gs.next_hunk()
-            --     end)
-            --     return '<Ignore>'
-            -- end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
-        end,
-    },
+	"lewis6991/gitsigns.nvim",
+	lazy = false,
+	config = function()
+		require("gitsigns").setup({
+			signs = {
+				add = { text = "│" },
+				change = { text = "│" },
+				delete = { text = "󰍵" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+				untracked = { text = "│" },
+			},
+		})
+	end,
+	on_attach = function(bufnr)
+		vim.keymap.set(
+			"n",
+			"<leader>hp",
+			require("gitsigns").preview_hunk,
+			{ buffer = bufnr, desc = "Preview git hunk" }
+		)
+	end,
 }
