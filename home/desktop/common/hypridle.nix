@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }: {
@@ -10,7 +11,9 @@
   services.hypridle = {
     enable = true;
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
-    settings = {
+    settings = let
+      brightnessctl = lib.getExe pkgs.brightnessctl;
+    in {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
@@ -20,8 +23,8 @@
       listener = [
         {
           timeout = 150;
-          on-timeout = "brightnessctl -s set 5"; # Set monitor backlight to min
-          on-resume = "brightnessctl -r"; # restore backlight
+          on-timeout = "${brightnessctl} -s set 5"; # Set monitor backlight to min
+          on-resume = "${brightnessctl} -r"; # restore backlight
         }
 
         {
