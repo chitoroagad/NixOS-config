@@ -45,8 +45,9 @@
 
     settings = {
       monitor = [
-        "eDP-2,2560x1600@165,0x0,1,vrr,1"
-        "eDP-1,2560x1600@165,0x0,1,vrr,1"
+        "eDP-2, 2560x1600@165, 0x0, 1, vrr, 1"
+        "eDP-1, 2560x1600@165, 0x0, 1, vrr, 1"
+        ", preferred, auto, 1, mirror, eDP-2" # HDMI on FM
       ];
       general = {
         gaps_in = 5;
