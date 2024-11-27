@@ -38,6 +38,9 @@
     # ags.inputs.nixpkgs.follows = "nixpkgs";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
 
+    # idle inhibitor
+    vigiland.url = "github:jappie3/vigiland";
+
     # Flox
     # flox.url = "github:flox/flox";
   };

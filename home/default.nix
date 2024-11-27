@@ -54,54 +54,56 @@
   home = {
     username = "darius";
     homeDirectory = "/home/darius";
-    packages = with pkgs; [
-      fastfetch
+    packages = with pkgs;
+      [
+        fastfetch
 
-      # archives
-      zip
-      unzip
-      xz
+        # archives
+        zip
+        unzip
+        xz
 
-      # utils
-      ripgrep
-      jq
-      eza
-      fzf
+        # utils
+        ripgrep
+        jq
+        eza
+        fzf
 
-      # misc
-      which
-      tlrc
-      trashy
+        # misc
+        which
+        tlrc
+        trashy
 
-      # nix related
-      nix-output-monitor
+        # nix related
+        nix-output-monitor
 
-      # prod
-      glow
+        # prod
+        glow
 
-      # sys tools
-      pciutils
-      usbutils
+        # sys tools
+        pciutils
+        usbutils
 
-      # Browser
-      brave
-      firefox
-      google-chrome
+        # Browser
+        brave
+        firefox
+        google-chrome
 
-      # Other
-      spotify
-      libreoffice
-      slack
-      protonvpn-gui
-      proton-pass
-      discord
-      vlc
-      pavucontrol
-      zoom-us
-      obs-studio
-      obsidian
-      gimp
-    ];
+        # Other
+        spotify
+        libreoffice
+        slack
+        protonvpn-gui
+        proton-pass
+        discord
+        vlc
+        pavucontrol
+        zoom-us
+        obs-studio
+        obsidian
+        gimp
+      ]
+      ++ [inputs.vigiland.packages.${pkgs.system}.vigiland];
   };
   news.display = "show";
 
