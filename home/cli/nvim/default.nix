@@ -4,7 +4,7 @@
   ...
 }: {
   xdg = {
-    configFile.nvim.source = ./.;
+    # configFile.nvim.source = ./.;
   };
 
   home.sessionVariables = {
@@ -72,6 +72,7 @@
     emmet-ls
     nil
     glsl_analyzer
+    rust-analyzer
 
     # misc
     luajitPackages.jsregexp
