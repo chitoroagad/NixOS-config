@@ -36,6 +36,7 @@
     ./extra-udev.nix
     ./filesystem-index.nix
     # ./flox.nix
+    ./fonts.nix
     ./fwupd.nix
     ./gc.nix
     ./keyboard.nix
