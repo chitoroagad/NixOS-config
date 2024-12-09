@@ -13,6 +13,7 @@
     font = {
       name = config.fontProfiles.monospace.family;
       size = 12;
+      package = config.fontProfiles.monospace.package;
     };
     settings = {
       scrollback_lines = 100000;
