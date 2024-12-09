@@ -7,13 +7,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { noremap = true, silent = true, buffer = bufnr }
 		if client and client.name == "rust-analyzer" then
 			opts.desc = "Show docs"
-			set("n", "K", vim.cmd.RustLsp({ "hover", "actions" }))
+			set("n", "K", vim.lsp.buf.hover, opts)
 
 			opts.desc = "Explain Error"
-			set("n", "<leader>ee", vim.cmd.RustLsp("explainError"))
+			set("n", "<leader>ee", vim.cmd.RustLsp("explainError"), opts)
 
 			opts.desc = "Join Lines"
-			set("n", "<leader>J", vim.cmd.RustLsp("joinLines"))
+			set("n", "<leader>J", vim.cmd.RustLsp("joinLines"), opts)
 
 			opts.desc = "Code actions"
 			set("n", "<leader>ca", vim.cmd.RustLsp("codeAction"), opts) -- see available code actions
