@@ -13,6 +13,7 @@
       core.editor = "nvim";
       credential.helper = "store";
       push.autoSetupRemote = true;
+      init.defaultBranch = "main";
     };
   };
 }
