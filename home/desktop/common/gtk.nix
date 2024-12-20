@@ -15,11 +15,10 @@
       name = "Papirus";
       package = pkgs.papirus-icon-theme;
     };
-
-    catppuccin.icon.enable = false;
-    catppuccin.enable = true;
-    catppuccin.accent = "sapphire";
   };
+  catppuccin.gtk.icon.enable = false;
+  catppuccin.gtk.enable = true;
+  catppuccin.gtk.accent = "sapphire";
 
   # services.xsettingsd = {
   #   enable = true;

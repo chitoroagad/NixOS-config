@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  catppuccin.pointerCursor.enable = false;
+  catppuccin.cursors.enable = false;
   home.pointerCursor = {
     name = "phinger-cursors-light";
     package = pkgs.phinger-cursors;
