@@ -23,7 +23,7 @@
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
   catppuccin.accent = "sapphire";
-  console.catppuccin.enable = true;
+  catppuccin.tty.enable = true;
 
   # fix mime list problem
   home-manager = {
