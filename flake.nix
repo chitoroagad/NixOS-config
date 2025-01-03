@@ -44,6 +44,13 @@
 
     # Flox
     # flox.url = "github:flox/flox";
+
+    # Ghostty
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs-unstable.follows = "nixpkgs";
+    };
   };
 
   outputs = {

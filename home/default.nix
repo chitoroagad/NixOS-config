@@ -103,7 +103,10 @@
         obsidian
         gimp
       ]
-      ++ [inputs.vigiland.packages.${pkgs.system}.vigiland];
+      ++ [
+        inputs.vigiland.packages.${pkgs.system}.vigiland
+        inputs.ghostty.packages.${pkgs.system}.ghostty
+      ];
   };
   news.display = "show";
 
