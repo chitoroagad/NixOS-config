@@ -11,6 +11,7 @@
     ./fzf.nix
     ./git.nix
     ./nh.nix
+    ./nix-direnv.nix
     ./nvim
     ./tmux.nix
     ./yazi.nix
