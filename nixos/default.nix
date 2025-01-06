@@ -47,6 +47,7 @@
     ./ollama.nix
     ./opengl.nix
     ./polkit.nix
+    ./printing.nix
     ./root.nix
     ./seat.nix
     ./sound.nix
