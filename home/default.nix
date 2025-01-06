@@ -98,7 +98,7 @@
         discord
         vlc
         pavucontrol
-        zoom-us
+        stable.zoom-us
         obs-studio
         obsidian
         gimp
