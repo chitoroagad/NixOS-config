@@ -36,7 +36,15 @@
 
     # Ags
     ags.url = "github:Aylur/ags/67b0e31ded361934d78bddcfc01f8c3fcf781aad";
-    # ags.inputs.nixpkgs.follows = "nixpkgs";
+    ags.inputs.nixpkgs.follows = "nixpkgs";
+
+    agsv2.url = "github:Aylur/ags";
+    agsv2.inputs.nixpkgs.follows = "nixpkgs";
+
+    # astal
+    astal.url = "github:aylur/astal";
+    astal.inputs.nixpkgs.follows = "nixpkgs";
+
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
 
     # idle inhibitor
