@@ -66,6 +66,7 @@
     nixpkgs,
     home-manager,
     catppuccin,
+    astal,
     ...
   } @ inputs: let
     inherit (self) outputs;

@@ -4,7 +4,13 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  way-shell = pkgs.callPackage ./astal {
+    inherit pkgs;
+    astal = inputs.astal;
+    agsv2 = inputs.agsv2;
+  };
+in {
   imports = [
     ./ags.nix
     ./cursor.nix
@@ -33,6 +39,7 @@
     xdg-utils
     brightnessctl
     qbittorrent
+    way-shell.packages.${pkgs.system}.default
   ];
 
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
