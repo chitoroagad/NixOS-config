@@ -50,9 +50,6 @@
     # idle inhibitor
     vigiland.url = "github:jappie3/vigiland";
 
-    # Flox
-    # flox.url = "github:flox/flox";
-
     # Ghostty
     ghostty = {
       url = "github:ghostty-org/ghostty";
