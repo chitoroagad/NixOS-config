@@ -56,6 +56,10 @@
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
+
+    # NVF
+    nvf.url = "github:notashelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -64,6 +68,7 @@
     home-manager,
     catppuccin,
     astal,
+    nvf,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -121,6 +126,7 @@
         modules = [
           ./home
           catppuccin.homeManagerModules.catppuccin
+          nvf.homeManagerModules.default
         ];
       };
     };
