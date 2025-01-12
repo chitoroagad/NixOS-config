@@ -9,6 +9,7 @@
     ./btop.nix
     ./eza.nix
     ./fzf.nix
+    ./ghostty.nix
     ./git.nix
     ./nh.nix
     ./nix-direnv.nix

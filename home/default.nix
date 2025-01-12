@@ -108,10 +108,11 @@
             hash = "sha256-k8T/lmfgAFxW1nwEyh61lagrlHP5geT2tA7e5j61+qw=";
           };
         })
+        # ghostty
       ]
       ++ [
         inputs.vigiland.packages.${pkgs.system}.vigiland
-        inputs.ghostty.packages.${pkgs.system}.ghostty
+        # inputs.ghostty.packages.${pkgs.system}.ghostty
       ];
   };
   news.display = "show";
