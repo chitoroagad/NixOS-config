@@ -42,6 +42,7 @@ in {
     way-shell.packages.${pkgs.system}.default
   ];
 
+  dconf.enable = true;
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
   xdg = {
