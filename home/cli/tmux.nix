@@ -23,20 +23,24 @@
       {
         plugin = vim-tmux-navigator;
       }
-      # {
-      #   plugin = resurrect;
-      #   extraConfig = ''
-      #     set -g @resurrect-capture-pane-contents 'on' # allow tmux-ressurect to capture pane contents
-      #     set -g @resurrect-strategy-nvim 'session'
-      #   '';
-      # }
-      # {
-      #   plugin = continuum;
-      #   extraConfig = ''
-      #     set -g @continuum-restore 'on' # enable tmux-continuum functionality
-      #     set -g @continuum-boot 'on'  # starts tmux server on boot
-      #   '';
-      # }
+      {
+        plugin = resurrect;
+        extraConfig = ''
+          resurrect_dir="$HOME/.tmux/resurrect"
+          set -g @resurrect-dir $resurrect_dir
+          set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/home/$USER/.nix-profile/bin/||g" $target | sponge $target'
+
+          set -g @resurrect-capture-pane-contents 'on' # allow tmux-resurrect to capture pane contents
+          set -g @resurrect-strategy-nvim 'session'
+        '';
+      }
+      {
+        plugin = continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on' # enable tmux-continuum functionality
+          set -g @continuum-boot 'on'  # starts tmux server on boot
+        '';
+      }
       {
         plugin = catppuccin;
         extraConfig = ''
