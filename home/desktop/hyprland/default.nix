@@ -26,6 +26,7 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
+
     configPackages = [hyprland];
   };
 
@@ -37,7 +38,10 @@
     easyeffects = lib.getExe pkgs.easyeffects;
   in {
     enable = true;
+
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
     systemd = {
       enable = true;
