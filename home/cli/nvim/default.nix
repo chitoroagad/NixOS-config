@@ -31,7 +31,7 @@
     unzip
     wget
     curl
-    tree-sitter
+    # tree-sitter
     ripgrep
     fd
     fzf
