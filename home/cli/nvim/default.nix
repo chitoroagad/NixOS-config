@@ -33,6 +33,7 @@
     curl
     # tree-sitter
     ripgrep
+    sshfs
     fd
     fzf
     cargo
