@@ -14,6 +14,7 @@
       credential.helper = "store";
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
+      safe.directory = ["/home/darius/.sshfs/*"];
     };
   };
 }
