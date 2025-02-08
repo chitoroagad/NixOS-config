@@ -13,6 +13,7 @@
     ./git.nix
     ./nh.nix
     ./nix-direnv.nix
+    ./nix-index.nix
     ./nvim
     ./tmux.nix
     ./yazi.nix

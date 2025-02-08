@@ -113,7 +113,7 @@
       ++ [
         inputs.vigiland.packages.${pkgs.system}.vigiland
         # inputs.ghostty.packages.${pkgs.system}.ghostty
-        inputs.nix-alien.packages.${system}.nix-alien
+        # inputs.nix-alien.packages.${system}.nix-alien
       ];
   };
   news.display = "show";
