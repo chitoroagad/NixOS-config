@@ -53,6 +53,7 @@
     ./sound.nix
     ./tlp.nix
     ./upower.nix
+    ./via.nix
     # ./virt.nix
   ];
 
