@@ -101,6 +101,7 @@
         obs-studio
         obsidian
         gimp
+        figma-linux
         (pkgs.zoom-us.overrideAttrs {
           version = "6.2.11.5069";
           src = pkgs.fetchurl {
