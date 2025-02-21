@@ -9,7 +9,7 @@
     newSession = true;
     prefix = "C-a";
     sensibleOnTop = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     disableConfirmationPrompt = true;
     plugins = with pkgs.tmuxPlugins; [
       {
