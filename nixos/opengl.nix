@@ -13,6 +13,7 @@
         vaapiVdpau
         libvdpau-va-gl
       ];
+      enable32Bit = true;
     };
 
     amdgpu = {
