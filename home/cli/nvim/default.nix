@@ -47,7 +47,7 @@
     # formatters
     alejandra
     stylua
-    biome
+    stable.biome
     prettierd
     nodePackages.prettier
     shfmt
