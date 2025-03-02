@@ -181,7 +181,7 @@
 
     extraConfig = ''
       exec-once = [workspace 1] ${browser}
-      exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u"
+      exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u attach"
       # exec-once = [workspace 3 silent] ${proton-vpn}
       exec-once = ${nm-applet}
       exec-once = ${easyeffects} --gapplication-service  # audio fix https://community.frame.work/t/nixos-on-the-framework-laptop-16/46743/197
