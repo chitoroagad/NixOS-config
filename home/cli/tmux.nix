@@ -1,69 +1,100 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  resurrect_dir_path = "${config.xdg.dataHome}/tmux/resurrect";
+in {
+  catppuccin.tmux.enable = false; # let me do my own config
+  systemd.user.services.tmux = {
+    Unit = {
+      Description = "tmux default session (detached)";
+      Documentation = "man:tmux(1)";
+    };
+    Service = {
+      Type = "forking";
+      Environment = "DISPLAY=:0";
+      Restart = "always";
+      ExecStart = "${pkgs.tmux}/bin/tmux start";
+      ExecStop = "${pkgs.tmux}/bin/tmux kill-server";
+      RestartSec = 2;
+      KillMode = "none";
+    };
+    # creates the [Service] section
+    # based on the emacs systemd service
+    # does not source uses a login shell so does not load ~/.zshrc in case this is needed
+    # just add -l(E.g bash -cl "...").
+    Install = {
+      WantedBy = ["default.target"];
+    };
+  };
+
   programs.tmux = {
     enable = true;
     baseIndex = 1;
-    historyLimit = 5000;
+    historyLimit = 50000;
     keyMode = "vi";
     mouse = true;
     clock24 = true;
-    newSession = true;
     prefix = "C-a";
     sensibleOnTop = true;
     terminal = "tmux-256color";
     disableConfirmationPrompt = true;
+    secureSocket = false;
+    newSession = true;
+    focusEvents = true;
+    escapeTime = 0;
+    shell = "${pkgs.zsh}/bin/zsh";
     plugins = with pkgs.tmuxPlugins; [
+      {
+        plugin = catppuccin;
+        extraConfig = ''
+          set -g @catppuccin_flavour '${config.catppuccin.flavor}'
+          set -g @catppuccin_window_status_style "rounded"
+          set -g @catppuccin_status_fill "icon"
+          # set -g @catppuccin_status_background "none"
+        '';
+      }
+      cpu
+      {
+        plugin = resurrect;
+        extraConfig = ''
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-strategy-vim 'session'
+          set -g @resurrect-capture-pane-contents 'on'
+
+          set -g @resurrect-dir ${resurrect_dir_path}
+          set -g @resurrect-hook-post-save-all 'sed -i -E "s|(pane.*nvim\s*:)[^;]+;.*\s([^ ]+)$|\1nvim \2|" ${resurrect_dir_path}/last'
+        '';
+      }
+      vim-tmux-navigator
       {
         plugin = yank;
         extraConfig = ''
           bind-key -T copy-mode-vi v send-keys -X begin-selection
           bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
           bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-        '';
-      }
-      {
-        plugin = vim-tmux-navigator;
-      }
-      {
-        plugin = resurrect;
-        extraConfig = ''
-          set -g @resurrect-processes 'ssh psql mysql sqlite3'
-          set -g @resurrect-strategy-nvim 'session'
-          resurrect_dir=~/.local/share/tmux/resurrect
-          set -g @resurrect-dir $resurrect_dir
-          set -g @resurrect-hook-post-save-all "sed -i 's| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/nix/store/.*/bin/||g' $(readlink -f $resurrect_dir/last)"
+          unbind -T copy-mode-vi MouseDragEnd1Pane # don't exit copy mode after dragging with mouse
         '';
       }
       {
         plugin = continuum;
         extraConfig = ''
           set -g @continuum-restore 'on' # enable tmux-continuum functionality
-          set -g @continuum-boot 'on'  # starts tmux server on boot
-        '';
-      }
-      {
-        plugin = catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_window_left_separator ""
-          set -g @catppuccin_window_right_separator " "
-          set -g @catppuccin_window_middle_separator " █"
-          set -g @catppuccin_window_number_position "right"
-          set -g @catppuccin_window_default_fill "number"
-          set -g @catppuccin_window_default_text "#W"
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,(),}"
-          set -g @catppuccin_status_modules_right "directory date_time"
-          set -g @catppuccin_status_modules_left "session"
-          set -g @catppuccin_status_left_separator  " "
-          set -g @catppuccin_status_right_separator " "
-          set -g @catppuccin_status_right_separator_inverse "no"
-          set -g @catppuccin_status_fill "icon"
-          set -g @catppuccin_status_connect_separator "no"
-          set -g @catppuccin_directory_text "#{b:pane_current_path}"
-          set -g @catppuccin_date_time_text "%H:%M"
+          set -g @continuum-save-interval '10'
         '';
       }
     ];
     extraConfig = ''
+      # Extra display config
+      set -g status-right-length 200
+      set -g status-left-length 200
+      set -g status-left "#{E:@catppuccin_status_session}"
+      set -g status-right "#{E:@catppuccin_status_application}"
+      set -agF status-right "#{E:@catppuccin_status_cpu}"
+
+      set-option -g detach-on-destroy off
+
       # binding to max min pane
       bind -r m resize-pane -Z
 
@@ -83,7 +114,6 @@
       set-option -sa terminal-overrides ",xterm*:Tc"
 
       # misc
-      set -g escape-time 0
       set -g renumber-windows on
       set -g set-clipboard on
       set -g status-position top
