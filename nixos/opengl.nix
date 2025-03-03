@@ -8,7 +8,7 @@
     graphics = {
       enable = true;
       # use hyprland version of mesa
-      package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers;
+      # package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers;
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
