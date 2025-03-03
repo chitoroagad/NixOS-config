@@ -18,12 +18,8 @@ in {
       ExecStart = "${pkgs.tmux}/bin/tmux start";
       ExecStop = "${pkgs.tmux}/bin/tmux kill-server";
       RestartSec = 2;
-      KillMode = "none";
+      KillMode = "mixed";
     };
-    # creates the [Service] section
-    # based on the emacs systemd service
-    # does not source uses a login shell so does not load ~/.zshrc in case this is needed
-    # just add -l(E.g bash -cl "...").
     Install = {
       WantedBy = ["default.target"];
     };
