@@ -15,10 +15,10 @@ in {
       Type = "forking";
       Environment = "DISPLAY=:0";
       Restart = "always";
-      ExecStart = "${pkgs.tmux}/bin/tmux start";
+      ExecStart = "${pkgs.tmux}/bin/tmux start-server";
       ExecStop = "${pkgs.tmux}/bin/tmux kill-server";
       RestartSec = 2;
-      KillMode = "mixed";
+      KillMode = "none";
     };
     Install = {
       WantedBy = ["default.target"];
