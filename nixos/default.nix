@@ -41,6 +41,7 @@
     ./gc.nix
     ./keyboard.nix
     # ./kwallet.nix
+    ./man.nix
     ./nix-ld.nix
     ./nix.nix
     ./nixpkgs.nix
