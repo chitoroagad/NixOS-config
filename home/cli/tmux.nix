@@ -18,7 +18,7 @@ in {
       ExecStart = "${pkgs.tmux}/bin/tmux start-server";
       ExecStop = "${pkgs.tmux}/bin/tmux kill-server";
       RestartSec = 2;
-      KillMode = "none";
+      KillMode = "mixed";
     };
     Install = {
       WantedBy = ["default.target"];
