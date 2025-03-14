@@ -52,17 +52,17 @@ in {
         '';
       }
       cpu
-      {
-        plugin = resurrect;
-        extraConfig = ''
-          set -g @resurrect-strategy-nvim 'session'
-          set -g @resurrect-strategy-vim 'session'
-          set -g @resurrect-capture-pane-contents 'on'
-
-          set -g @resurrect-dir ${resurrect_dir_path}
-          set -g @resurrect-hook-post-save-all 'sed -i -E "s|(pane.*nvim\s*:)[^;]+;.*\s([^ ]+)$|\1nvim \2|" ${resurrect_dir_path}/last'
-        '';
-      }
+      # {
+      #   plugin = resurrect;
+      #   extraConfig = ''
+      #     set -g @resurrect-strategy-nvim 'session'
+      #     set -g @resurrect-strategy-vim 'session'
+      #     set -g @resurrect-capture-pane-contents 'on'
+      #
+      #     set -g @resurrect-dir ${resurrect_dir_path}
+      #     set -g @resurrect-hook-post-save-all 'sed -i -E "s|(pane.*nvim\s*:)[^;]+;.*\s([^ ]+)$|\1nvim \2|" ${resurrect_dir_path}/last'
+      #   '';
+      # }
       vim-tmux-navigator
       {
         plugin = yank;
