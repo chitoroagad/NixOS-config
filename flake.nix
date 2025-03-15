@@ -19,6 +19,7 @@
 
     # Colorscheme
     catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     # Wallpaper
     swww.url = "github:LGFae/swww";
