@@ -83,8 +83,8 @@ in {
     ];
     extraConfig = ''
       # Extra display config
-      set -g status-right-length 200
-      set -g status-left-length 200
+      set -g status-right-length 100
+      set -g status-left-length 100
       set -g status-left "#{E:@catppuccin_status_session}"
       set -g status-right "#{E:@catppuccin_status_application}"
       set -agF status-right "#{E:@catppuccin_status_cpu}"
