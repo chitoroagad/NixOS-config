@@ -24,6 +24,7 @@
     # ./users.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
+    ./amdgpu.nix
     ./hardware-configuration.nix
     ./automount.nix
     ./boot.nix
