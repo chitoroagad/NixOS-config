@@ -449,11 +449,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1742584793,
-        "narHash": "sha256-BWmy2GraRtlED472VfWwdUIkOGNQLb7hvLd/IzVaL14=",
+        "lastModified": 1742664841,
+        "narHash": "sha256-+ENSZyoLdLIdHg/A49osnJq8tcsljCTDjGUXK9E7Eqo=",
         "ref": "refs/heads/main",
-        "rev": "ccbdba7ee2ccb835306de89a6023134fa6b8006f",
-        "revCount": 5915,
+        "rev": "6ab5a0befb45e90eb45b8d6582e68d13147297dc",
+        "revCount": 5919,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1123,11 +1123,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1742471089,
-        "narHash": "sha256-wiGkhJcDdg2/wy4QxaudNsU98y7CzzZpB6pnjUrNNDQ=",
+        "lastModified": 1742662641,
+        "narHash": "sha256-myuAL3bENz75qcOo/HhbulNODBzGF9YCPkPg27886mQ=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "3a28d05684f7f4e314eb4e56a5af624b648ab278",
+        "rev": "60c3a2ff1e2a30d1b245592da84f231098d4ec75",
         "type": "github"
       },
       "original": {

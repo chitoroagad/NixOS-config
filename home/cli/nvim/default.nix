@@ -31,7 +31,7 @@
     unzip
     wget
     curl
-    # tree-sitter
+    tree-sitter
     ripgrep
     sshfs
     fd
@@ -39,6 +39,7 @@
     cargo
     luajitPackages.luarocks
     lua5_1
+    nodejs_23
 
     nil
     lua-language-server
