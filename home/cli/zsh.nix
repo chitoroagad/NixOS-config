@@ -98,6 +98,11 @@
         src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
         file = "fzf-tab.zsh";
       }
+      # {
+      #   name = "fzf-zsh";
+      #   src = "${pkgs.fzf-zsh}/share/fzf-zsh";
+      #   file = "fzf.zsh";
+      # }
     ];
   };
 }
