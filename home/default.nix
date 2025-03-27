@@ -72,7 +72,7 @@
         # misc
         which
         tlrc
-        trashy
+        trash-cli
 
         # nix related
         nix-output-monitor
