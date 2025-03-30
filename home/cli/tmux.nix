@@ -6,24 +6,30 @@
   resurrect_dir_path = "${config.xdg.dataHome}/tmux/resurrect";
 in {
   catppuccin.tmux.enable = false; # let me do my own config
-  systemd.user.services.tmux = {
-    Unit = {
-      Description = "tmux default session (detached)";
-      Documentation = "man:tmux(1)";
-    };
-    Service = {
-      Type = "forking";
-      Environment = "DISPLAY=:0";
-      Restart = "always";
-      ExecStart = "${pkgs.tmux}/bin/tmux start-server";
-      ExecStop = "${pkgs.tmux}/bin/tmux kill-server";
-      RestartSec = 2;
-      KillMode = "mixed";
-    };
-    Install = {
-      WantedBy = ["default.target"];
-    };
-  };
+  # systemd.user.services.tmux = {
+  #   Unit = {
+  #     Description = "tmux default session (detached)";
+  #     Documentation = "man:tmux(1)";
+  #   };
+  #   Service = {
+  #     Type = "forking";
+  #     Environment = "DISPLAY=:0";
+  #     Restart = "always";
+  #     ExecStart = "${pkgs.writeShellScript "tmux-server" "
+  #           #!/run/current-system/sw/bin/bash
+  #           ${pkgs.tmux}/bin/tmux start-server
+  #     "}";
+  #     ExecStop = "${pkgs.writeShellScript "tmux-server-kill" "
+  #           #!/run/current-system/sw/bin/bash
+  #           ${pkgs.tmux}/bin/tmux kill-server
+  #           "}";
+  #     RestartSec = 1;
+  #     KillMode = "mixed";
+  #   };
+  #   Install = {
+  #     WantedBy = ["default.target"];
+  #   };
+  # };
 
   programs.tmux = {
     enable = true;
