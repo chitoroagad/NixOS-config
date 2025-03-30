@@ -13,7 +13,7 @@
     xwayland.enable = true;
     hyprlock = {
       enable = true;
-      package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+      # package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     };
     zsh.enable = true;
   };
