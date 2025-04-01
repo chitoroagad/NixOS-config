@@ -134,7 +134,7 @@
         };
         modules = [
           ./home
-          catppuccin.homeManagerModules.catppuccin
+          catppuccin.homeModules.catppuccin
           nvf.homeManagerModules.default
         ];
       };

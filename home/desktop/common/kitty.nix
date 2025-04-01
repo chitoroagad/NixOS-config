@@ -24,6 +24,7 @@
       confirm_os_window_close = 0;
       enable_audio_bell = "no";
       allow_remote_control = "yes";
+      clipboard_control = "write-primary write-clipboard no-append";
     };
   };
 }
