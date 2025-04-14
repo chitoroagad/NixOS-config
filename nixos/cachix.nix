@@ -1,4 +1,4 @@
-{...}: {
+{
   # Enabel cachix to not compile hyprland
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
