@@ -57,7 +57,6 @@
     # linters
     luajitPackages.luacheck
     ruff
-    ruff-lsp
     shellcheck
     cpplint
     hadolint
