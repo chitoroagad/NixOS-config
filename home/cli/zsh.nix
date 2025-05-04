@@ -25,35 +25,37 @@
     #       Hyprland
     #   fi
     # '';
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+        # Initialization code that may require console input (password prompts, [y/n]
+        # confirmations, etc.) must go above this block; everything else may go below.
+          if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+              source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+          fi
+      '')
+      ''
+        # autoSuggestions config
 
-    initContent = lib.mkBefore ''
-      # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-      # Initialization code that may require console input (password prompts, [y/n]
-      # confirmations, etc.) must go above this block; everything else may go below.
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
+        unsetopt correct # autocorrect commands
 
-      # autoSuggestions config
+        setopt inc_append_history # save history entries as soon as they are entered
 
-      unsetopt correct # autocorrect commands
+        # auto complete options
+        # setopt auto_list # automatically list choices on ambiguous completion
+        # setopt auto_menu # automatically use menu completion
+        zstyle ':completion:*' group-name "" # group results by category
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # completions not case sensitive
+        zstyle ':completion:*' list-colors "$\{(s.:.)LS_COLORS}"
+        zstyle ':completion:*' menu no
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-      setopt inc_append_history # save history entries as soon as they are entered
-
-      # auto complete options
-      # setopt auto_list # automatically list choices on ambiguous completion
-      # setopt auto_menu # automatically use menu completion
-      zstyle ':completion:*' group-name "" # group results by category
-      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # completions not case sensitive
-      zstyle ':completion:*' list-colors "$\{(s.:.)LS_COLORS}"
-      zstyle ':completion:*' menu no
-      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-
-      # Extra history options
-      setopt hist_find_no_dups
-      bindkey '^p' history-search-backwards
-      bindkey '^n' history-search-forwards
-    '';
+        # Extra history options
+        setopt hist_find_no_dups
+        bindkey '^p' history-search-backwards
+        bindkey '^n' history-search-forwards
+      ''
+    ];
 
     shellAliases = {
       cat = "bat";
