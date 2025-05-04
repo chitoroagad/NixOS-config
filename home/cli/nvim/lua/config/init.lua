@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("config.globals")
 require("config.options")
 require("config.keymaps")
--- require("config.autocmds")
+require("config.lsp")
 
 -- CONFIG LAZY
 local opts = {
@@ -29,7 +29,7 @@ local opts = {
 			"gzip",
 			"matchit",
 			"matchparen",
-			-- "netrwPlugin",
+			"netrwPlugin",
 			"tarPlugin",
 			"tohtml",
 			"tutor",
