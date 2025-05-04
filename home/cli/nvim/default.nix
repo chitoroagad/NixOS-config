@@ -3,8 +3,9 @@
   pkgs,
   ...
 }: {
-  xdg = {
-    configFile.nvim.source = ./.;
+  xdg.configFile.nvim = {
+    source = ./.;
+    recursive = true;
   };
 
   home.sessionVariables = {
