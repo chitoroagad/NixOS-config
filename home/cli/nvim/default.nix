@@ -42,10 +42,6 @@
     lua5_1
     nodejs_23
 
-    nil
-    lua-language-server
-    stylua
-
     # formatters
     alejandra
     stylua
@@ -81,5 +77,6 @@
     ghostscript
     tectonic
     mermaid-cli
+    vscode-extensions.vadimcn.vscode-lldb.adapter
   ];
 }
