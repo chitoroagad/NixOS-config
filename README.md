@@ -1,4 +1,4 @@
-# Personal NixOS config, including dotfiles using Home-Manager
+# Personal NixOS config, including Home-Manager
 
 ## Structure
 
@@ -14,6 +14,7 @@ Some notable inclusions:
 - Neovim
 - Tmux
 - Hyprland
+- Ags
 
 ### Extra
 
