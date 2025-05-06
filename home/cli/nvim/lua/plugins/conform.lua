@@ -43,31 +43,6 @@ return { -- Autoformat
 	},
 
 	config = function()
-		-- Create command to temporarily format on save
-		vim.api.nvim_create_user_command("FormatEnable", function(args)
-			if args.bang then
-				-- FormatEnable! will enable formatting for just this buffer
-				vim.b.disable_autoformat = false
-			else
-				vim.g.disable_autoformat = false
-			end
-		end, {
-			desc = "Enable autoformat",
-			bang = true,
-		})
-
-		vim.api.nvim_create_user_command("FormatDisable", function(args)
-			if args.bang then
-				-- FormatDisable! will disable formatting just for this buffer
-				vim.b.disable_autoformat = true
-			else
-				vim.g.disable_autoformat = true
-			end
-		end, {
-			desc = "Disable autoformat",
-			bang = true,
-		})
-
 		-- Toggle global autoformat
 		vim.keymap.set("n", "<leader>tf", function()
 			vim.g.disable_autoformat = not vim.g.disable_autoformat
