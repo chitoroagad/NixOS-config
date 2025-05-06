@@ -61,7 +61,7 @@
         # Misc
         "$mainMod, V, togglefloating,"
         "$mainMod SHIFT, J, togglesplit,"
-        "$mainMod, F11, fullscreen,"
+        "$mainMod, F11, fullscreen, 0"
       ];
     };
   };
