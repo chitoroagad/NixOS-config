@@ -78,5 +78,8 @@
 
     # misc
     luajitPackages.jsregexp
+    ghostscript
+    tectonic
+    mermaid-cli
   ];
 }

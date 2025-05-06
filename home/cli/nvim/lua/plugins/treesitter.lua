@@ -1,22 +1,31 @@
-local config = function()
-	require("nvim-treesitter.configs").setup({
-		indent = {
-			enable = true,
-		},
-		autotag = {
-			enable = true,
-		},
-		autoinstall = true,
-		highlight = {
-			enable = true,
-		},
-	})
-end
-
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-	lazy = false,
 	build = ":TSUpdate",
-	config = config,
+	main = "nvim-treesitter.configs", -- Sets main module to use for opts
+	opts = {
+		ensure_installed = {
+			"bash",
+			"c",
+			"diff",
+			"html",
+			"lua",
+			"luadoc",
+			"markdown",
+			"markdown_inline",
+			"query",
+			"vim",
+			"vimdoc",
+		},
+		autotag = { enable = true },
+		-- Autoinstall languages that are not installed
+		auto_install = true,
+		highlight = {
+			enable = true,
+			-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
+			--  If you are experiencing weird indenting issues, add the language to
+			--  the list of additional_vim_regex_highlighting and disabled languages for indent.
+			additional_vim_regex_highlighting = { "ruby" },
+		},
+		indent = { enable = true, disable = { "ruby" } },
+	},
 }
