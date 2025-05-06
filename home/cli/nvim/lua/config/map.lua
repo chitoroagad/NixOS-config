@@ -11,5 +11,5 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Misc
-vim.keymap.set("n", "<leader>dm", ":delm!<CR>", { desc = "[D]elete All [M]arks" })
+vim.keymap.set("n", "<leader>md", ":delm!<CR>", { desc = "[M]arks [D]elete" })
 vim.keymap.set("n", "<leader>C", function() vim.api.nvim_buf_get_name(0) end, { desc = "[C]urrent path" })

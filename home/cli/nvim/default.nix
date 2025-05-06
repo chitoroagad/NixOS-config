@@ -5,7 +5,7 @@
 }: {
   xdg.configFile.nvim = {
     source = ./.;
-    recursive = true;
+  #   # recursive = true;
   };
 
   home.sessionVariables = {
@@ -78,5 +78,6 @@
     tectonic
     mermaid-cli
     vscode-extensions.vadimcn.vscode-lldb.adapter
+    graphviz
   ];
 }
