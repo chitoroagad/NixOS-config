@@ -45,9 +45,6 @@ in {
   dconf.enable = true;
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
-  # temporary fix for Mako Bug https://github.com/nix-community/home-manager/issues/6971
-  catppuccin.mako.enable = false;
-
   xdg = {
     portal = {
       enable = true;

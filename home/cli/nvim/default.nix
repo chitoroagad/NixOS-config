@@ -40,7 +40,7 @@
     cargo
     luajitPackages.luarocks
     lua5_1
-    nodejs_23
+    nodejs_24
 
     # formatters
     alejandra
@@ -62,6 +62,7 @@
     lua-language-server
     vscode-langservers-extracted # jsonls
     pyright
+    basedpyright
     nodePackages_latest.bash-language-server
     dockerfile-language-server-nodejs
     clang-tools
