@@ -5,7 +5,7 @@
 }: {
   xdg.configFile.nvim = {
     source = ./.;
-  #   # recursive = true;
+    # recursive = true;
   };
 
   home.sessionVariables = {
