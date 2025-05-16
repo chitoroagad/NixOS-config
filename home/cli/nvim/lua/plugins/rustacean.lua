@@ -12,7 +12,7 @@ return
 
 			server = {
 				on_attach = function(client, bufnr)
-					vim.keymap.set("n", "gra",
+					vim.keymap.set({ "n", "v" }, "gra",
 						function()
 							vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
 						end,
@@ -21,6 +21,9 @@ return
 					-- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
 					vim.keymap.set("n", "K",
 						function()
+							if vim.api.nvim_get_mode().mode == "n" then
+								vim.api.nvim_feedkeys("V", "t", true)
+							end
 							vim.cmd.RustLsp({ 'hover', 'actions' })
 						end,
 						{ silent = true, buffer = bufnr }

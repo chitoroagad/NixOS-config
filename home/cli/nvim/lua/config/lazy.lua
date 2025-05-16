@@ -50,10 +50,8 @@ local opts = {
 }
 
 -- Setup lazy.nvim
-require("lazy").setup({
-	spec = {
+require("lazy").setup(
 		-- import your plugins
 		{ import = "plugins" },
-	},
 	opts
-})
+)
