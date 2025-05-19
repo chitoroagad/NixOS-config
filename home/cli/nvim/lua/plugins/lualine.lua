@@ -1,8 +1,9 @@
 return {
-	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	"nvim-lualine/lualine.nvim",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
 		options = {
+			theme = "catppuccin",
 			section_separators = { left = "", right = "" },
 			component_separators = "|",
 		},
@@ -25,7 +26,8 @@ return {
 			"lazy",
 			"man",
 			"neo-tree",
-			"quickfix"
-		}
-	}
+			"quickfix",
+			"nvim-dap-ui"
+		},
+	},
 }

@@ -12,13 +12,19 @@ return {
 		},
 		zen = {
 			enabled = true,
-			toggles = { dim = false, git_signs = true }
+			toggles = { dim = false, git_signs = true },
 		},
 
-		styles = { zen = { backdrop = { transparent = false } } }
+		styles = { zen = { backdrop = { transparent = false } } },
 	},
 
 	keys = {
-		{ "<leader>tz", function() Snacks.zen() end, desc = "[T]oggle [Z]en" },
-	}
+		{
+			"<leader>tz",
+			function()
+				Snacks.zen()
+			end,
+			desc = "[T]oggle [Z]en",
+		},
+	},
 }

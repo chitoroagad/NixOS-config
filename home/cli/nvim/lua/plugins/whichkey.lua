@@ -9,12 +9,12 @@ return {
 
 		-- Document existing key chains
 		spec = {
-			{ "<leader>s",  group = "[S]earch" },
-			{ "gr",         group = "LSP" },
-			{ "<leader>t",  group = "[T]oggle" },
-			{ "<leader>d",  group = "[D]ebug" },
+			{ "<leader>s", group = "[S]earch" },
+			{ "gr", group = "LSP" },
+			{ "<leader>t", group = "[T]oggle" },
+			{ "<leader>d", group = "[D]ebug" },
 			{ "<leader>ds", group = "[D]ebug: [S]tep" },
-			{ "<leader>h",  group = "Git [H]unk",     mode = { "n", "v" } },
+			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 		},
 	},
 }

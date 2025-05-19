@@ -1,5 +1,5 @@
 return {
-	{ "folke/which-key.nvim",    lazy = true },
+	{ "folke/which-key.nvim", lazy = true },
 	"tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
 	{
 		"folke/todo-comments.nvim",
@@ -8,7 +8,6 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	{ "j-hui/fidget.nvim",       opts = {} },
+	{ "j-hui/fidget.nvim", opts = { notification = { window = { winblend = 0 } } } },
 	{ "williamboman/mason.nvim", opts = {} },
-
 }
