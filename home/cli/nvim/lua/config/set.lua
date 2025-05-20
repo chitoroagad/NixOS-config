@@ -74,3 +74,9 @@ opt.errorbells = false
 opt.undodir = vim.fn.expand("~/.vim/undodir")
 opt.backspace = "indent,eol,start"
 opt.autochdir = false
+
+-- Fold
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldlevel = 99
+opt.foldlevelstart = 1

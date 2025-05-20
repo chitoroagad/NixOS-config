@@ -14,6 +14,9 @@ return { -- Autoformat
 			desc = "[F]ormat buffer",
 		},
 	},
+
+	---@module "conform"
+	---@type conform.setupOpts
 	opts = {
 		notify_on_error = false,
 		formatters_by_ft = {
@@ -31,6 +34,7 @@ return { -- Autoformat
 			markdown = { "prettierd", "prettier", stop_after_first = true },
 			yaml = { "prettierd", "prettier", stop_after_first = true },
 			nix = { "alejandra" },
+			toml = { "taplo" },
 		},
 
 		format_on_save = function(bufnr)
@@ -42,7 +46,9 @@ return { -- Autoformat
 		end,
 	},
 
-	config = function()
+	init = function()
+		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
 		-- Toggle global autoformat
 		vim.keymap.set("n", "<leader>tf", function()
 			vim.g.disable_autoformat = not vim.g.disable_autoformat

@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	desc = "runs when LSP attaches to any buffer",
+	desc = "Runs when LSP attaches to any buffer",
 	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
@@ -67,6 +67,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			map("<leader>th", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }))
 			end, "[T]oggle Inlay [H]ints")
+		end
+
+		-- Check for folding capabilities
+		if client:supports_method('textDocument/foldingRange') then
+			local win = vim.api.nvim_get_current_win()
+			vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+			vim.wo[win][0].foldtext = "v:lua.vim.lsp.foldtext()"
 		end
 	end,
 })

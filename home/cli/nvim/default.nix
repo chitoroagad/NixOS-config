@@ -50,6 +50,7 @@
     nodePackages.prettier
     shfmt
     rustfmt
+    taplo
 
     # linters
     luajitPackages.luacheck
