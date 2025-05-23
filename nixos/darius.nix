@@ -9,7 +9,7 @@ in {
   users.users.darius = {
     isNormalUser = true;
     description = "darius";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups =
       [
         "networkmanager"
@@ -29,4 +29,5 @@ in {
   };
   # Enable automatic login for the user.
   services.getty.autologinUser = "darius";
+  programs.fish.enable = true;
 }

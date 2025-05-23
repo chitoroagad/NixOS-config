@@ -10,6 +10,7 @@ vim.lsp.enable({
 	"clangd",
 	"dockerls",
 	"emmetls",
+	"fishls",
 	"jsonls",
 	"ltexls",
 	"luals",

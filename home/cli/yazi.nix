@@ -21,7 +21,6 @@
 
   programs.yazi = {
     enable = true;
-    enableZshIntegration = true;
     package = pkgs.yazi;
     settings = {
       opener = {

@@ -73,6 +73,7 @@
     nil
     glsl_analyzer
     rust-analyzer
+    fish-lsp
 
     # misc
     luajitPackages.jsregexp

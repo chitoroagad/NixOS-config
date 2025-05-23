@@ -8,6 +8,7 @@
     ./bat.nix
     ./btop.nix
     ./eza.nix
+    ./fish.nix
     ./fzf.nix
     ./ghostty.nix
     ./git.nix

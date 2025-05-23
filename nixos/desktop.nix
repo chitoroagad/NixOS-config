@@ -16,9 +16,19 @@
       package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     };
     zsh.enable = true;
+    fish = {
+      enable = true;
+      useBabelfish = true;
+    };
+    fish.vendor = {
+      completions.enable = true;
+      config.enable = true;
+      functions.enable = true;
+    };
   };
 
-  users.defaultUserShell = pkgs.zsh;
+  # users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.fish;
 
   # Colorscheme
   catppuccin.enable = true;

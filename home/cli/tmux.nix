@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }: let
@@ -22,7 +23,7 @@ in {
     newSession = true;
     focusEvents = true;
     escapeTime = 0;
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = lib.getExe pkgs.fish;  # TODO: make this dynamic
     plugins = with pkgs.tmuxPlugins; [
       {
         plugin = catppuccin;

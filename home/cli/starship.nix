@@ -5,6 +5,7 @@
 }: {
   programs.starship = {
     enable = true;
+    enableTransience = true;
     settings = {
       format = lib.concatStrings [
         "$directory"
@@ -27,11 +28,11 @@
         "$character"
       ];
 
+      add_newline = false;
+
       right_format = lib.concatStrings [
         "$cmd_duration"
       ];
-
-      add_newline = false;
 
       fill = {
         symbol = " ";
@@ -62,14 +63,14 @@
       git_status = {
         format = "([$all_status$ahead_behind]($style) )";
         conflicted = "=$count";
-        ahead = "[⇡$count](bold green)";
-        behind = "[⇣$count](bold green)";
-        diverged = "[⇣⇡$count](bold green)";
-        untracked = "[?$count](bold blue)";
-        stashed = "[*$count](bold green)";
-        modified = "[!$count](bold #f5a97f)";
-        staged = "[+$count](bold yellow)";
-        deleted = "$count";
+        ahead = "[⇡$count](bold green) ";
+        behind = "[⇣$count](bold green) ";
+        diverged = "[⇣⇡$count](bold green) ";
+        untracked = "[?$count](bold blue) ";
+        stashed = "[*$count](bold green) ";
+        modified = "[!$count](bold #f5a97f) ";
+        staged = "[+$count](bold yellow) ";
+        deleted = "$count ";
       };
 
       bun = {
