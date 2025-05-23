@@ -19,21 +19,7 @@
       share = true;
     };
 
-    # loginExtra = ''
-    #   sleep 1
-    #   if ! pgrep -f Hyprland >/dev/null; then
-    #       Hyprland
-    #   fi
-    # '';
     initContent = lib.mkMerge [
-      (lib.mkBefore ''
-        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-        # Initialization code that may require console input (password prompts, [y/n]
-        # confirmations, etc.) must go above this block; everything else may go below.
-          if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-              source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-          fi
-      '')
       ''
         # autoSuggestions config
 
@@ -82,16 +68,6 @@
       {
         name = "fast-syntax-highlighting";
         src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = ./p10k;
-        file = "p10k.zsh";
-      }
-      {
-        name = "zsh-powerlevel10k";
-        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
-        file = "powerlevel10k.zsh-theme";
       }
       {
         name = "zsh-fzf-tab";

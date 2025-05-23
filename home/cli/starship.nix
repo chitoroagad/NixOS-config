@@ -6,114 +6,118 @@
   programs.starship = {
     enable = true;
     settings = {
-      format = let
-        git = "$git_branch$git_commit$git_state$git_status";
-      in ''
+      format = lib.concatStrings [
+        "$directory"
+        "$git_branch"
+        "$git_commit"
+        "$git_state"
+        "$git_status"
 
-      '';
+        "$fill"
+
+        "$jobs"
+        "$bun"
+        "$c"
+        "$cpp"
+        "$python"
+        "$rust"
+        "$nix_shell"
+        "$direnv"
+        "$line_break"
+        "$character"
+      ];
+
+      right_format = lib.concatStrings [
+        "$cmd_duration"
+      ];
+
+      add_newline = false;
 
       fill = {
         symbol = " ";
-        disabled = false;
-      };
-
-      # Core
-      username = {
-        format = "[$user]($style)";
-        show_always = true;
-      };
-      hostname = {
-        format = "[@$hostname]($style) ";
-        ssh_only = false;
-        style = "bold green";
-      };
-      shlvl = {
-        format = "[$shlvl]($style) ";
-        style = "bold cyan";
-        threshold = 2;
-        repeat = true;
-        disabled = false;
-      };
-      cmd_duration = {
-        format = "took [$duration]($style) ";
       };
 
       directory = {
-        format = "[$path]($style)( [$read_only]($read_only_style)) ";
-      };
-      nix_shell = {
-        format = "[($name \\(develop\\) <- )$symbol]($style) ";
-        impure_msg = "";
-        symbol = " ";
-        style = "bold red";
-      };
-      custom = {
-        nix_inspect = let
-          excluded = [
-            "kitty"
-            "imagemagick"
-            "ncurses"
-            "user-environment"
-          ];
-        in {
-          disabled = false;
-          when = "test -z $IN_NIX_SHELL";
-          command = "${(lib.getExe pkgs.nix-inspect)} ${(lib.concatStringsSep " " excluded)}";
-          format = "[($output <- )$symbol]($style) ";
-          symbol = " ";
-          style = "bold blue";
-        };
+        style = "bold blue";
+        truncation_length = 4;
+        read_only = " ";
       };
 
-      character = {
-        error_symbol = "[~~>](bold red)";
-        success_symbol = "[->>](bold green)";
-        vimcmd_symbol = "[<<-](bold yellow)";
-        vimcmd_visual_symbol = "[<<-](bold cyan)";
-        vimcmd_replace_symbol = "[<<-](bold purple)";
-        vimcmd_replace_one_symbol = "[<<-](bold purple)";
+      git_branch = {
+        format = "[$symbol$branch(:$remote_branch)]($style) ";
+        style = "bold green";
       };
 
-      time = {
-        format = "\\\[[$time]($style)\\\]";
+      git_commit = {
+        format = "@[$hash]($style) ";
+        style = "purple";
+        commit_hash_length = 5;
+      };
+
+      git_state = {
+        format = "[$state( $progress_current/$progress_total)]($style) ";
+        style = "red";
+      };
+
+      git_status = {
+        format = "([$all_status$ahead_behind]($style) )";
+        conflicted = "=$count";
+        ahead = "[⇡$count](bold green)";
+        behind = "[⇣$count](bold green)";
+        diverged = "[⇣⇡$count](bold green)";
+        untracked = "[?$count](bold blue)";
+        stashed = "[*$count](bold green)";
+        modified = "[!$count](bold #f5a97f)";
+        staged = "[+$count](bold yellow)";
+        deleted = "$count";
+      };
+
+      bun = {
+        format = "[$symbol($version )]($style) ";
+        symbol = " ";
+      };
+
+      c = {
+        format = "[$symbol($version(-$name) )]($style) ";
+        symbol = " ";
+      };
+
+      cpp = {
+        format = "[$symbol($version(-$name) )]($style) ";
+        symbol = " ";
+      };
+
+      python = {
+        format = "[$symbol$pyenv_prefix($version )(\($virtualenv\) )]($style) ";
+        symbol = " ";
+      };
+
+      rust = {
+        format = "[$symbol($version )]($style) ";
+        symbol = " ";
+      };
+
+      cmd_duration = {
+        format = "[$duration]($style) ";
+        style = "dimmed white";
+      };
+
+      direnv = {
+        format = "[$symbol]($style) ";
+        symbol = " ";
         disabled = false;
       };
 
-      # Cloud
-      gcloud = {
-        format = "on [$symbol$active(/$project)(\\($region\\))]($style)";
-      };
-      aws = {
-        format = "on [$symbol$profile(\\($region\\))]($style)";
+      jobs = {
+        style = "bold green";
+        symbol = "";
       };
 
-      # Icon changes only \/
-      aws.symbol = " ";
-      conda.symbol = " ";
-      dart.symbol = " ";
-      directory.read_only = " ";
-      docker_context.symbol = " ";
-      elm.symbol = " ";
-      elixir.symbol = "";
-      gcloud.symbol = " ";
-      git_branch.symbol = " ";
-      golang.symbol = " ";
-      hg_branch.symbol = " ";
-      java.symbol = " ";
-      julia.symbol = " ";
-      memory_usage.symbol = "󰍛 ";
-      nim.symbol = "󰆥 ";
-      nodejs.symbol = " ";
-      package.symbol = "󰏗 ";
-      perl.symbol = " ";
-      php.symbol = " ";
-      python.symbol = " ";
-      ruby.symbol = " ";
-      rust.symbol = " ";
-      scala.symbol = " ";
-      shlvl.symbol = "";
-      swift.symbol = "󰛥 ";
-      terraform.symbol = "󱁢";
+      nix_shell = {
+        format = "[$symbol$state]($style) ";
+        symbol = "󱄅 ";
+        # heuristic = true;
+      };
     };
   };
 }

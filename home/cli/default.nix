@@ -19,7 +19,7 @@
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
-    # ./starship.nix
+    ./starship.nix
   ];
 
   home.packages = with pkgs; [
