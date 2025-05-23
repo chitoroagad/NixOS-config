@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.fish = {
     enable = true;
-    preferAbbrs = true;
+    # preferAbbrs = true;
     shellAbbrs = {
       cat = "bat";
       tp = "trash-put";
@@ -18,6 +18,11 @@
       fish_vi_key_bindings
 
       set -Ux fifc_editor nvim
+
+      set -Ux MANPAGER 'sh -c "col -bx | bat -l man -p"'
+      set -Ux MANROFFOPT "-c";
+
+      set -U fish_greeting
     '';
 
     interactiveShellInit = ''

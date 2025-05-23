@@ -12,7 +12,7 @@
     enable = true;
     font = {
       name = config.fontProfiles.monospace.family;
-      size = 12;
+      size = 20;
       package = config.fontProfiles.monospace.package;
     };
     settings = {
