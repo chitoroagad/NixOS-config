@@ -1,4 +1,4 @@
-#bThis is your home-manager configuration aile
+# This is your home-manager configuration aile
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
@@ -68,6 +68,7 @@
         jq
         eza
         fzf
+        file
 
         # misc
         which
