@@ -21,10 +21,6 @@
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Wallpaper
-    swww.url = "github:LGFae/swww";
-    swww.inputs.nixpkgs.follows = "nixpkgs";
-
     # Hyprland git
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
