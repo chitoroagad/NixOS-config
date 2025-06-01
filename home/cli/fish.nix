@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.fish = {
     enable = true;
-    # preferAbbrs = true;
+    preferAbbrs = true;
     shellAbbrs = {
       cat = "bat";
       tp = "trash-put";
@@ -12,6 +12,7 @@
       cd = "z";
       cdi = "zi";
       git-tree = "git log --graph --pretty=oneline --abbrev-commit";
+      clear = "command clear; commandline -f clear-screen"; 
     };
 
     shellInit = ''
@@ -27,7 +28,12 @@
 
     interactiveShellInit = ''
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-      # ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
+        # ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
+
+      # fix starship add_newline issue https://github.com/starship/starship/issues/560
+      function prompt_newline --on-event fish_postexec
+        echo
+      end
     '';
 
     functions = {
@@ -165,6 +171,12 @@
       pathclean = {
         description = "Clean up PATH variable";
         body = "set PATH (printf \"%s\" \"$PATH\" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')";
+      };
+
+      # Fix starship new line on empty terminal https://github.com/starship/starship/issues/560
+      prompt_newline = {
+        onEvent = "fish_postexec";
+        body = "echo";
       };
     };
 
