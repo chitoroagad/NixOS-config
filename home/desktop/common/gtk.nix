@@ -13,7 +13,7 @@
 
     iconTheme = lib.mkDefault {
       name = "Papirus";
-      package = pkgs.papirus-icon-theme;
+      package = pkgs.stable.papirus-icon-theme;
     };
   };
   catppuccin.gtk.icon.enable = false;
