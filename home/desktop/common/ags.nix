@@ -9,7 +9,7 @@
   programs.ags = {
     enable = true;
     configDir = ./ags;
-    extraPackages = with pkgs; [gtksourceview webkitgtk accountsservice];
+    extraPackages = with pkgs; [gtksourceview webkitgtk_6_0 accountsservice];
   };
 
   xdg.desktopEntries."org.gnome.Settings" = {

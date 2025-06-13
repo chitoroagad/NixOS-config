@@ -52,6 +52,7 @@
     ./printing.nix
     ./root.nix
     ./seat.nix
+    ./security.nix
     ./sound.nix
     ./tlp.nix
     ./tmux.nix
