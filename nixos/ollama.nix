@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   services.ollama = {
-    package = pkgs.ollama;
+    package = pkgs.stable.ollama;
     enable = true;
     acceleration = "rocm";
     rocmOverrideGfx = "11.0.2";

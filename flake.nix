@@ -34,7 +34,7 @@
     hypridle.inputs.nixpkgs.follows = "nixpkgs";
 
     # Ags
-    ags.url = "github:Aylur/ags/67b0e31ded361934d78bddcfc01f8c3fcf781aad";
+    ags.url = "github:Aylur/ags/237601999d65a4663bcbab934f4f6ce1f579d728";
     ags.inputs.nixpkgs.follows = "nixpkgs";
 
     agsv2.url = "github:Aylur/ags";

@@ -39,7 +39,7 @@ in {
     xdg-utils
     brightnessctl
     qbittorrent
-    way-shell.packages.${pkgs.system}.default
+    # way-shell.packages.${pkgs.system}.default
   ];
 
   dconf.enable = true;
