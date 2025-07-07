@@ -44,7 +44,7 @@
     # portalPackage = pkgs.xdg-desktop-portal-hyprland;
 
     systemd = {
-      enable = true;
+      enable = false;
       variables = ["--all"];
     };
 
@@ -112,6 +112,7 @@
         grimblast = lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
         brightnessctl = lib.getExe pkgs.brightnessctl;
         screenshot-script = ./screenshot-script.sh;
+        uwsm = lib.getExe pkgs.uwsm;
       in
         [
           # Lauch Terminal
@@ -137,7 +138,7 @@
 
           # Quit apps
           "SUPER, Q, killactive"
-          "SUPERALTSHIFT, Q, exit"
+          "SUPERALTSHIFT, Q, exec, ${uwsm} stop"
         ]
         ++ (
           let

@@ -34,6 +34,10 @@
       function prompt_newline --on-event fish_postexec
         echo
       end
+
+      if uwsm check may-start > /dev/null 2>&1
+        exec uwsm start hyprland-uwsm.desktop
+      end
     '';
 
     functions = {

@@ -9,7 +9,10 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       # portalPackage = pkgs.xdg-desktop-portal-hyprland;
+      withUWSM = true;
     };
+
+    uwsm.enable = true;
     xwayland.enable = true;
     hyprlock = {
       enable = true;
@@ -29,6 +32,9 @@
 
   # users.defaultUserShell = pkgs.zsh;
   users.defaultUserShell = pkgs.fish;
+
+  # For uwsm
+  services.dbus.implementation = "broker";
 
   # Colorscheme
   catppuccin.enable = true;
