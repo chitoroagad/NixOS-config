@@ -108,14 +108,14 @@
         "rounding 0, floating:0, onworkspace:f[1]"
       ];
       bind = let
-        uwsm-app = lib.concatStrings [(lib.getExe pkgs.uwsm) " app --"];
-        browser = lib.concatStrings [uwsm-app (lib.getExe pkgs.brave)];
-        notify-send = lib.concatStrings [(lib.getExe' pkgs.libnotify "nofity-send") uwsm-app];
-        wpctl = lib.concatStrings [(lib.getExe' pkgs.wireplumber "wpctl") uwsm-app];
-        grimblast = lib.concatStrings [(lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast) uwsm-app];
-        brightnessctl = lib.concatStrings [(lib.getExe pkgs.brightnessctl) uwsm-app];
-        screenshot-script = ./screenshot-script.sh;
         uwsm = lib.getExe pkgs.uwsm;
+        uwsm-app = lib.concatStrings [(uwsm) " app --"];
+        browser = lib.concatStrings [uwsm-app (lib.getExe pkgs.brave)];
+        notify-send = lib.getExe' pkgs.libnotify "nofity-send";
+        wpctl = lib.getExe' pkgs.wireplumber "wpctl";
+        grimblast = lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
+        brightnessctl = lib.getExe pkgs.brightnessctl;
+        screenshot-script = ./screenshot-script.sh;
         defaultApp = type: "${uwsm-app} ${lib.getExe pkgs.handlr-regex} launch ${type}";
       in
         [
