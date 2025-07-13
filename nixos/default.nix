@@ -61,6 +61,7 @@
 
   networking.hostName = "LeMachine";
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = with pkgs; [networkmanager-openvpn networkmanager-openconnect];
   # Set your time zone.
   time.timeZone = "Europe/London";
   # Select internationalisation properties.
