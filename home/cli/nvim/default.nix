@@ -74,6 +74,7 @@
     glsl_analyzer
     rust-analyzer
     fish-lsp
+    tinymist
 
     # misc
     luajitPackages.jsregexp
