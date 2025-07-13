@@ -11,14 +11,19 @@ in {
   systemd.user.services.swww = {
     Unit = {
       Description = "swww wallpaper daemon";
+      After = "graphical-session.target";
     };
     Install = {
-      WantedBy = ["hyprland-session.target"];
+      WantedBy = ["graphical-session.target"];
     };
     Service = {
+      Type = "exec";
+      ExecCondition = "/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\"";
       ExecStart = "${lib.getExe' swww "swww-daemon"}";
       ExecStop = "${lib.getExe swww} kill";
+      Restart = "on-failure";
       TimeoutStopSec = "5s";
+      Slice = "background-graphical.slice";
     };
   };
 }

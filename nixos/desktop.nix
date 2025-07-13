@@ -35,6 +35,7 @@
 
   # For uwsm
   services.dbus.implementation = "broker";
+    xdg.autostart.enable = true;
 
   # Colorscheme
   catppuccin.enable = true;
