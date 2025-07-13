@@ -17,5 +17,6 @@ vim.lsp.enable({
 	"nil",
 	"pyright",
 	"ruff",
+	"tinymist",
 	"tsls",
 })
