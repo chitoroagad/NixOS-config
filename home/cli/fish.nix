@@ -41,7 +41,7 @@
         echo
       end
 
-      if ${uwsm} check may-start > /dev/null 2>&1 && ${uwsm} select > /dev/null 2>&1
+      if ${uwsm} check may-start 2> /dev/null && ${uwsm} select
         exec ${uwsm} start default
       end
     '';

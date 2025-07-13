@@ -33,7 +33,7 @@
     };
     Service = {
       Type = "exec";
-      ExecCondition = "ExecCondition=/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\" ";
+      # ExecCondition = "ExecCondition=${pkgs.systemd}/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\" ";
       ExecStart = "${asztal}/bin/asztal -b hypr";
       ExecStop = "${asztal}/bin/asztal -q";
       Restart = "on-failure";

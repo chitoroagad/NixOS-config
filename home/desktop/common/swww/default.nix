@@ -18,7 +18,7 @@ in {
     };
     Service = {
       Type = "exec";
-      ExecCondition = "/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\"";
+      ExecCondition = "${pkgs.systemd}/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\"";
       ExecStart = "${lib.getExe' swww "swww-daemon"}";
       ExecStop = "${lib.getExe swww} kill";
       Restart = "on-failure";
