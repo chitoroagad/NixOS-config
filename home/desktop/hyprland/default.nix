@@ -106,20 +106,22 @@
         "rounding 0, floating:0, onworkspace:f[1]"
       ];
       bind = let
-        defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
-        notify-send = lib.getExe' pkgs.libnotify "nofity-send";
-        wpctl = lib.getExe' pkgs.wireplumber "wpctl";
-        grimblast = lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
-        brightnessctl = lib.getExe pkgs.brightnessctl;
+        uwsm-app = lib.concatStrings [(lib.getExe pkgs.uwsm) " app --"];
+        browser = lib.concatStrings [uwsm-app (lib.getExe pkgs.brave)];
+        notify-send = lib.concatStrings [(lib.getExe' pkgs.libnotify "nofity-send") uwsm-app];
+        wpctl = lib.concatStrings [(lib.getExe' pkgs.wireplumber "wpctl") uwsm-app];
+        grimblast = lib.concatStrings [(lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast) uwsm-app];
+        brightnessctl = lib.concatStrings [(lib.getExe pkgs.brightnessctl) uwsm-app];
         screenshot-script = ./screenshot-script.sh;
         uwsm = lib.getExe pkgs.uwsm;
+        defaultApp = type: "${uwsm-app} ${lib.getExe pkgs.handlr-regex} launch ${type}";
       in
         [
           # Lauch Terminal
           "SUPER, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
 
           # Launch Browser
-          "SUPER, B, exec, ${lib.getExe pkgs.brave}"
+          "SUPER, B, exec, ${browser}"
 
           # Brightness Control
           ", XF86MonBrightnessUp, exec, ${brightnessctl} set 5%+"

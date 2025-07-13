@@ -1,5 +1,11 @@
-{pkgs, ...}: {
-  programs.fish = {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  programs.fish = let
+    uwsm = lib.getExe pkgs.uwsm;
+  in {
     enable = true;
     preferAbbrs = true;
     shellAbbrs = {
@@ -12,7 +18,7 @@
       cd = "z";
       cdi = "zi";
       git-tree = "git log --graph --pretty=oneline --abbrev-commit";
-      clear = "command clear; commandline -f clear-screen"; 
+      clear = "command clear; commandline -f clear-screen";
     };
 
     shellInit = ''
@@ -35,8 +41,8 @@
         echo
       end
 
-      if uwsm check may-start > /dev/null 2>&1
-        exec uwsm start hyprland-uwsm.desktop
+      if ${uwsm} check may-start > /dev/null 2>&1 && ${uwsm} select > /dev/null 2>&1
+        exec ${uwsm} start default
       end
     '';
 
