@@ -16,9 +16,9 @@
       package = pkgs.stable.papirus-icon-theme;
     };
   };
-  catppuccin.gtk.icon.enable = false;
-  catppuccin.gtk.enable = true;
-  catppuccin.gtk.accent = "sapphire";
+  # catppuccin.gtk.icon.enable = false;
+  # catppuccin.gtk.enable = true;
+  # catppuccin.gtk.accent = "sapphire";
 
   # services.xsettingsd = {
   #   enable = true;

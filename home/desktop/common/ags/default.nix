@@ -25,7 +25,7 @@
   name = "asztal";
 
   ags = inputs.ags.packages.${system}.default.override {
-    extraPackages = [accountsservice];
+    extraPackages = [stable.accountsservice];
   };
 
   # requires nixpkgs-stable as in input in flake.nix
@@ -48,14 +48,15 @@
     pavucontrol
     networkmanager
     gtk3
+    system
   ];
 
-  addBins = list: builtins.concatStringsSep ":" (builtins.map (p: "${p}/bin") list);
+  pinnedPackages = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/dab3a6e781554f965bde3def0aa2fda4eb8f1708";
+    sha256 = "sha256-lFNVsu/mHLq3q11MuGkMhUUoSXEdQjCHvpReaGP1S2k=";
+  }) {inherit system;};
 
-  # greeter = writeShellScript "greeter" ''
-  #   export PATH=$PATH:${addBins dependencies}
-  #   ${cage}/bin/cage -ds -m last ${ags}/bin/ags -- -c ${config}/greeter.js
-  # '';
+  addBins = list: builtins.concatStringsSep ":" (builtins.map (p: "${p}/bin") list);
 
   desktop = writeShellScript name ''
     export PATH=$PATH:${addBins dependencies}
@@ -67,7 +68,7 @@
     src = ./.;
 
     buildPhase = ''
-      ${esbuild}/bin/esbuild \
+      ${stable.esbuild}/bin/esbuild \
         --bundle ./main.ts \
         --outfile=main.js \
         --format=esm \
