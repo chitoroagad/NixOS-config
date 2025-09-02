@@ -35,7 +35,6 @@
 
     # Ags
     ags.url = "github:Aylur/ags/v1";
-    ags.inputs.nixpkgs.follows = "nixpkgs";
 
     agsv2.url = "github:Aylur/ags";
     agsv2.inputs.nixpkgs.follows = "nixpkgs";

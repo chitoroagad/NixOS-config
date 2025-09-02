@@ -15,16 +15,19 @@
       name = "Papirus";
       package = pkgs.stable.papirus-icon-theme;
     };
-  };
-  # catppuccin.gtk.icon.enable = false;
-  # catppuccin.gtk.enable = true;
-  # catppuccin.gtk.accent = "sapphire";
 
-  # services.xsettingsd = {
-  #   enable = true;
-  #   settings = {
-  #     "Net/ThemeName" = "Catppuccin-mocha";
-  #     "Net/IconThemeName" = "${gtk.iconTheme.name}";
-  #   };
-  # };
+    theme = {
+      name = "Catppuccin-GTK-Dark";
+      package = pkgs.magnetic-catppuccin-gtk;
+    };
+  };
+
+services.xsettingsd = {
+  enable = true;
+  settings = {
+    "Net/ThemeName" = "Catppuccin-mocha";
+    "Net/IconThemeName" = "${config.gtk.iconTheme.name}";
+  };
+};
+
 }

@@ -79,7 +79,6 @@
     # misc
     luajitPackages.jsregexp
     ghostscript
-    tectonic
     mermaid-cli
     vscode-extensions.vadimcn.vscode-lldb.adapter
     graphviz

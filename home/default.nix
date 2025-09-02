@@ -91,7 +91,7 @@
         google-chrome
 
         # Other
-        spotify
+        stable.spotify
         libreoffice
         slack
         protonvpn-gui

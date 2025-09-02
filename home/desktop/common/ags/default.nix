@@ -3,7 +3,6 @@
   writeShellScript,
   system,
   stdenv,
-  cage,
   swww,
   esbuild,
   dart-sass,
@@ -68,7 +67,7 @@
     src = ./.;
 
     buildPhase = ''
-      ${stable.esbuild}/bin/esbuild \
+      ${pinnedPackages.esbuild}/bin/esbuild \
         --bundle ./main.ts \
         --outfile=main.js \
         --format=esm \
