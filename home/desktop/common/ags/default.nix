@@ -50,10 +50,6 @@
     system
   ];
 
-  pinnedPackages = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/dab3a6e781554f965bde3def0aa2fda4eb8f1708";
-    sha256 = "sha256-lFNVsu/mHLq3q11MuGkMhUUoSXEdQjCHvpReaGP1S2k=";
-  }) {inherit system;};
 
   addBins = list: builtins.concatStringsSep ":" (builtins.map (p: "${p}/bin") list);
 
@@ -67,7 +63,7 @@
     src = ./.;
 
     buildPhase = ''
-      ${pinnedPackages.esbuild}/bin/esbuild \
+      ${esbuild}/bin/esbuild \
         --bundle ./main.ts \
         --outfile=main.js \
         --format=esm \

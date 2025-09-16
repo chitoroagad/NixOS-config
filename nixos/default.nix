@@ -52,6 +52,7 @@
     ./seat.nix
     ./security.nix
     ./sound.nix
+    ./steam.nix
     ./tlp.nix
     ./tmux.nix
     ./upower.nix

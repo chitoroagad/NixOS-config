@@ -80,9 +80,9 @@
       dwindle = {
         preserve_split = "yes";
       };
-      gestures = {
-        workspace_swipe = "on";
-      };
+      gesture = [
+        "3, horizontal, workspace"
+      ];
       misc = {
         vfr = true;
         vrr = 1;

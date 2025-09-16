@@ -13,7 +13,7 @@
         vaapiVdpau
         libvdpau-va-gl
       ];
-      # enable32Bit = true;
+      enable32Bit = true;
     };
   };
 }
