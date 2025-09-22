@@ -8,7 +8,7 @@
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    dotDir = ".config/zsh";
+    dotDir = lib.strings.concatStrings [config.xdg.configHome "/zsh/"];
 
     history = {
       ignoreAllDups = true;
