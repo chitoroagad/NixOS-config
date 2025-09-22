@@ -65,7 +65,7 @@
     pyright
     basedpyright
     nodePackages_latest.bash-language-server
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     clang-tools
     nodePackages.typescript-language-server
     ltex-ls

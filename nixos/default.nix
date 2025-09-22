@@ -24,6 +24,7 @@
     ./hardware-configuration.nix
 
     ./amdgpu.nix
+    ./appimage.nix
     ./automount.nix
     ./boot.nix
     ./bluetooth.nix

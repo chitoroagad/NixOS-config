@@ -110,12 +110,10 @@
             hash = "sha256-k8T/lmfgAFxW1nwEyh61lagrlHP5geT2tA7e5j61+qw=";
           };
         })
-        # ghostty
+        steam
       ]
       ++ [
         inputs.vigiland.packages.${pkgs.system}.vigiland
-        # inputs.ghostty.packages.${pkgs.system}.ghostty
-        inputs.nix-alien.packages.${system}.nix-alien
       ];
   };
   news.display = "show";
