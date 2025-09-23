@@ -6,7 +6,7 @@
   catppuccin.hyprlock.enable = false;
   programs.hyprlock = {
     enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+    package = pkgs.hyprlock;
     settings = {
       general = {
         grace = 3;

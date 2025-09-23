@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }: {
   home.packages = [
@@ -10,7 +9,7 @@
 
   services.hypridle = {
     enable = true;
-    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
+    package = pkgs.hypridle;
     settings = let
       brightnessctl = lib.getExe pkgs.brightnessctl;
     in {

@@ -15,7 +15,7 @@
 
   hardware.graphics = {
     enable32Bit = true;
-    graphics.extraPackages32 = with pkgs; [
+    extraPackages32 = with pkgs; [
       driversi686Linux.amdvlk
     ];
   };

@@ -4,7 +4,6 @@
   lib,
   ...
 }: let
-  # swww = inputs.swww.packages.${pkgs.system}.swww;
   swww = pkgs.swww;
 in {
   home.packages = [swww];

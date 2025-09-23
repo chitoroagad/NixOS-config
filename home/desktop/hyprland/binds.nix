@@ -7,8 +7,7 @@
 }: {
   wayland.windowManager.hyprland = {
     settings = let
-      hyprlock = lib.getExe inputs.hyprlock.packages.${pkgs.system}.hyprlock;
-      # hyprlock = lib.getExe pkgs.hyprlock;
+      hyprlock = lib.getExe pkgs.hyprlock;
     in {
       "$mainMod" = "SUPER";
 

@@ -13,25 +13,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Hyprland tools
-    hyprland-contrib.url = "github:hyprwm/contrib";
-    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
-
     # Colorscheme
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Hyprland git
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Hyprlock git
-    hyprlock.url = "git+https://github.com/hyprwm/hyprlock";
-    hyprlock.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Hypridel git
-    hypridle.url = "git+https://github.com/hyprwm/hypridle";
-    hypridle.inputs.nixpkgs.follows = "nixpkgs";
 
     # Ags
     ags.url = "github:Aylur/ags/v1";
@@ -47,20 +31,6 @@
 
     # idle inhibitor
     vigiland.url = "github:jappie3/vigiland";
-
-    # Ghostty
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # NVF
-    nvf.url = "github:notashelf/nvf";
-    nvf.inputs.nixpkgs.follows = "nixpkgs";
-
-    # nix-alien
-    nix-alien.url = "github:thiagokokada/nix-alien";
-    nix-alien.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -69,7 +39,6 @@
     home-manager,
     catppuccin,
     astal,
-    nvf,
     nixos-hardware,
     ...
   } @ inputs: let
@@ -129,7 +98,6 @@
         modules = [
           ./home
           catppuccin.homeModules.catppuccin
-          nvf.homeManagerModules.default
         ];
       };
     };

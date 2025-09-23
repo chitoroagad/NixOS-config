@@ -53,11 +53,10 @@ in {
         common.default = ["gtk"];
         hyprland.default = ["hyprland" "gtk"];
       };
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-wlr
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-        # pkgs.xdg-desktop-portal-hyprland
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-hyprland
       ];
     };
 

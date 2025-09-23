@@ -23,7 +23,7 @@ in {
     newSession = true;
     focusEvents = true;
     escapeTime = 0;
-    shell = lib.getExe pkgs.fish;  # TODO: make this dynamic
+    shell = lib.getExe pkgs.fish; # TODO: make this dynamic
     plugins = with pkgs.tmuxPlugins; [
       {
         plugin = catppuccin;

@@ -50,7 +50,6 @@
     system
   ];
 
-
   addBins = list: builtins.concatStringsSep ":" (builtins.map (p: "${p}/bin") list);
 
   desktop = writeShellScript name ''

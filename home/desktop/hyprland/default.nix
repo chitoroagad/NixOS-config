@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
@@ -13,7 +12,7 @@
 
   home.packages = with pkgs; [
     hyprpicker
-    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+    grimblast
     swappy
   ];
 
@@ -41,9 +40,8 @@
   in {
     enable = true;
 
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-    # portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
 
     systemd = {
       enable = false;
@@ -109,11 +107,11 @@
       ];
       bind = let
         uwsm = lib.getExe pkgs.uwsm;
-        uwsm-app = lib.concatStrings [(uwsm) " app --"];
+        uwsm-app = lib.concatStrings [uwsm " app --"];
         browser = lib.concatStrings [uwsm-app (lib.getExe pkgs.brave)];
         notify-send = lib.getExe' pkgs.libnotify "nofity-send";
         wpctl = lib.getExe' pkgs.wireplumber "wpctl";
-        grimblast = lib.getExe inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
+        grimblast = lib.getExe pkgs.grimblast;
         brightnessctl = lib.getExe pkgs.brightnessctl;
         screenshot-script = ./screenshot-script.sh;
         defaultApp = type: "${uwsm-app} ${lib.getExe pkgs.handlr-regex} launch ${type}";

@@ -22,12 +22,11 @@
     };
   };
 
-services.xsettingsd = {
-  enable = true;
-  settings = {
-    "Net/ThemeName" = "Catppuccin-mocha";
-    "Net/IconThemeName" = "${config.gtk.iconTheme.name}";
+  services.xsettingsd = {
+    enable = true;
+    settings = {
+      "Net/ThemeName" = "Catppuccin-mocha";
+      "Net/IconThemeName" = "${config.gtk.iconTheme.name}";
+    };
   };
-};
-
 }
