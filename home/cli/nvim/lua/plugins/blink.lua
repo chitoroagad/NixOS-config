@@ -6,6 +6,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		"folke/lazydev.nvim",
 	},
+	version = "1.*",
 	build = "nix run .#build-plugin",
 
 	--- @module 'blink.cmp'

@@ -93,7 +93,7 @@
         kb_options = "caps:swapescape";
         follow_mouse = 1;
         touchpad.natural_scroll = "yes";
-        sensitivity = 0.2;
+        sensitivity = 0.15;
       };
 
       # smart gaps
