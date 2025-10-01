@@ -24,6 +24,7 @@ in {
         "docker"
         "libvirtd"
         "seat"
+        "render"
       ];
     # packages = with pkgs; [];
   };
