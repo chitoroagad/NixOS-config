@@ -61,8 +61,9 @@
     # LSPs
     lua-language-server
     vscode-langservers-extracted # jsonls
-    pyright
-    basedpyright
+    # pyright
+    # basedpyright
+    pyrefly
     nodePackages_latest.bash-language-server
     dockerfile-language-server
     clang-tools

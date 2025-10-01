@@ -15,7 +15,7 @@ vim.lsp.enable({
 	"ltexls",
 	"luals",
 	"nil",
-	"pyright",
+	"pyrefly",
 	"ruff",
 	"tinymist",
 	"tsls",
