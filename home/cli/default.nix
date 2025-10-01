@@ -7,6 +7,7 @@
   imports = [
     ./bat.nix
     ./btop.nix
+    ./distrobox.nix
     ./eza.nix
     ./fish.nix
     ./fzf.nix
