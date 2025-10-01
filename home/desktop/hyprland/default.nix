@@ -33,7 +33,7 @@
 
   wayland.windowManager.hyprland = let
     browser = lib.getExe pkgs.brave;
-    term = lib.getExe pkgs.kitty;
+    term = lib.getExe config.programs.kitty.package;
     proton-vpn = lib.getExe pkgs.protonvpn-gui;
     nm-applet = lib.getExe pkgs.networkmanagerapplet;
     easyeffects = lib.getExe pkgs.easyeffects;
