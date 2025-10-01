@@ -27,8 +27,6 @@
     astal.url = "github:aylur/astal";
     astal.inputs.nixpkgs.follows = "nixpkgs";
 
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";
-
     # idle inhibitor
     vigiland.url = "github:jappie3/vigiland";
   };
