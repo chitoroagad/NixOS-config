@@ -1,13 +1,11 @@
 {pkgs, ...}: {
   hardware = {
     graphics.extraPackages = with pkgs; [
-      amdvlk
       rocmPackages.clr.icd # opencl
     ];
     amdgpu = {
       opencl.enable = true;
       initrd.enable = true;
-      amdvlk.enable = true;
     };
   };
 

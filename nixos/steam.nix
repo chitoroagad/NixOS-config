@@ -15,9 +15,6 @@
 
   hardware.graphics = {
     enable32Bit = true;
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
   };
 
   environment.systemPackages = with pkgs; [gamemode love];
