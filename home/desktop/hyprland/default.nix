@@ -36,7 +36,6 @@
     term = lib.getExe config.programs.kitty.package;
     proton-vpn = lib.getExe pkgs.protonvpn-gui;
     nm-applet = lib.getExe pkgs.networkmanagerapplet;
-    easyeffects = lib.getExe pkgs.easyeffects;
   in {
     enable = true;
 
@@ -188,7 +187,6 @@
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u attach"
       # exec-once = [workspace 3 silent] ${proton-vpn}
       exec-once = ${nm-applet}
-      exec-once = ${easyeffects} --gapplication-service  # audio fix https://community.frame.work/t/nixos-on-the-framework-laptop-16/46743/197
     '';
   };
 }
