@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  services.easyeffects.enable = true; # require program.dconf.enable=true in nixos config
+  services.easyeffects.enable = true; # requires program.dconf.enable=true in nixos config
   home.packages = with pkgs; [
     calf
     lsp-plugins

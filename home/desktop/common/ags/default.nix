@@ -3,6 +3,7 @@
   writeShellScript,
   system,
   stdenv,
+  pkgs,
   swww,
   esbuild,
   dart-sass,
@@ -57,7 +58,7 @@
     ${ags}/bin/ags -b ${name} -c ${config}/config.js $@
   '';
 
-  config = stdenv.mkDerivation {
+  config = pkgs.stdenvNoCC.mkDerivation {
     inherit name;
     src = ./.;
 
@@ -79,7 +80,7 @@
     '';
   };
 in
-  stdenv.mkDerivation {
+  pkgs.stdenvNoCC.mkDerivation {
     inherit name;
     src = config;
 

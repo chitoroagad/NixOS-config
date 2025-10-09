@@ -1,6 +1,6 @@
 {pkgs,...}:{
   programs.distrobox = {
     enable = true;
-    package = pkgs.stable.distrobox;
+    package = pkgs.distrobox;
   };
 }

@@ -13,7 +13,7 @@
 
     iconTheme = lib.mkDefault {
       name = "Papirus";
-      package = pkgs.stable.papirus-icon-theme;
+      package = pkgs.papirus-icon-theme;
     };
 
     theme = {
