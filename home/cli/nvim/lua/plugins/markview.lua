@@ -29,15 +29,7 @@ return {
 				enable = is_latex(),
 			},
 			typst = {
-				code_blocks = {
-					style = "simple",
-				},
-				math_blocks = {
-					enable = false,
-				},
-				math_spans = {
-					enable = false,
-				},
+				enable = false,
 			},
 			markdown = {
 				list_items = {

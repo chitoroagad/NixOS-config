@@ -35,6 +35,7 @@ return { -- Autoformat
 			yaml = { "prettierd", "prettier", stop_after_first = true },
 			nix = { "alejandra" },
 			toml = { "taplo" },
+			typst = { "typstyle" },
 		},
 
 		format_on_save = function(bufnr)

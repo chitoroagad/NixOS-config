@@ -44,12 +44,13 @@
     # formatters
     alejandra
     stylua
-    stable.biome
+    biome
     prettierd
     nodePackages.prettier
     shfmt
     rustfmt
     taplo
+    typstyle
 
     # linters
     luajitPackages.luacheck
@@ -68,7 +69,7 @@
     dockerfile-language-server
     clang-tools
     nodePackages.typescript-language-server
-    ltex-ls
+    ltex-ls-plus
     emmet-ls
     nil
     glsl_analyzer
@@ -83,5 +84,6 @@
     vscode-extensions.vadimcn.vscode-lldb.adapter
     graphviz
     python312Packages.pylatexenc
+    tectonic
   ];
 }

@@ -1,8 +1,9 @@
 return {
-	cmd = { "ltex-ls" },
+	cmd = { "ltex-ls-plus" },
 	filetypes = {
 		"text",
 		"txt",
 		"markdown",
+		"typst",
 	},
 }
