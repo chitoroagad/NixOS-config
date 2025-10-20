@@ -14,11 +14,27 @@
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.unstable'
+  # be accessible through 'pkgs.stable'
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
       system = final.system;
-      config.allowUnfree = true;
+      config = final.config;
     };
   };
+
+  # Same as above for master packages
+  master-packages = final: _prev: {
+    master = import inputs.nixpkgs-master {
+      system = final.system;
+      config = final.config;
+    };
+  };
+
+  # rocm-stable = final: _prev: {
+  #   stable =
+  #     import inputs.nixpkgs-stable
+  #     {
+  #       system = final.system;
+  #     }.rocmPackages;
+  # };
 }

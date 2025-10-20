@@ -4,6 +4,7 @@
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.stable-packages
+      outputs.overlays.master-packages
       outputs.overlays.additions
       outputs.overlays.modifications
 

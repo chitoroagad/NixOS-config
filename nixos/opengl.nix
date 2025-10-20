@@ -3,7 +3,6 @@
   inputs,
   ...
 }: {
-  # Enable Opengl and Radeon Open Compute (ROCm)
   hardware = {
     graphics = {
       enable = true;
