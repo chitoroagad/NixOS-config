@@ -9,16 +9,16 @@
     enable = true;
     preferAbbrs = true;
     shellAbbrs = {
-      cat = "bat";
       tp = "trash-put";
-      open = "xdg-open";
-      l = "eza -alh";
     };
     shellAliases = {
       cd = "z";
       cdi = "zi";
       git-tree = "git log --graph --pretty=oneline --abbrev-commit";
       clear = "command clear; commandline -f clear-screen";
+      open = "xdg-open";
+      l = "eza -alh";
+      cat = "bat";
     };
 
     shellInit = ''

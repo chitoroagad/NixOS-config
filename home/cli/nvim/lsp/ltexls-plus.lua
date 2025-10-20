@@ -6,4 +6,9 @@ return {
 		"markdown",
 		"typst",
 	},
+	settings = {
+		ltex = {
+			language = "en-GB",
+		},
+	},
 }
