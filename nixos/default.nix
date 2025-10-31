@@ -37,6 +37,7 @@
     ./filesystem-index.nix
     # ./flox.nix
     ./fonts.nix
+    ./framwork.nix  # patch due to https://github.com/NixOS/nixos-hardware/issues/1581
     ./fwupd.nix
     ./gc.nix
     ./keyboard.nix
