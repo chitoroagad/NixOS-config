@@ -36,7 +36,7 @@
         inner_color = "rgba(0, 0, 0, 0.5)";
         font_color = "rgb(200, 200, 200)";
         fade_on_empty = false;
-        placeholder_text = ''
+        placeholder_text = /*html*/''
           <i><span foreground="##cdd6f4">󰌆 </span></i>
         '';
         hide_input = false;

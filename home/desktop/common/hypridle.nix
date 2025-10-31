@@ -33,12 +33,20 @@
 
         {
           timeout = 330;
-          on-timeout = ''
-            hyprctl dispatch dpms off; qmk_hid --vid 32ac --pid 0012 via --backlight-breathing true; qmk_hid --vid 32ac --pid 0014 via --backlight-breathing true;
-          ''; # screen off when timeout has passed
-          on-resume = ''
-            hyprctl dispatch dpms on; qmk_hid --vid 32ac --pid 0012 via --backlight-breathing false; qmk_hid --vid 32ac --pid 0014 via --backlight-breathing false;
-          ''; # screen on when activity is detected
+          on-timeout =
+            /*
+            sh
+            */
+            ''
+              hyprctl dispatch dpms off; qmk_hid --vid 32ac --pid 0012 via --backlight-breathing true; qmk_hid --vid 32ac --pid 0014 via --backlight-breathing true;
+            ''; # screen off when timeout has passed
+          on-resume =
+            /*
+            sh
+            */
+            ''
+              hyprctl dispatch dpms on; qmk_hid --vid 32ac --pid 0012 via --backlight-breathing false; qmk_hid --vid 32ac --pid 0014 via --backlight-breathing false;
+            ''; # screen on when activity is detected
         }
 
         {
