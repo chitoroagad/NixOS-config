@@ -26,7 +26,6 @@
     neovim
 
     git
-    gcc
     gnumake
     unzip
     wget
@@ -80,10 +79,11 @@
     # misc
     luajitPackages.jsregexp
     ghostscript
-    mermaid-cli
+    stable.mermaid-cli
     vscode-extensions.vadimcn.vscode-lldb.adapter
     graphviz
     python312Packages.pylatexenc
     tectonic
+    opencode
   ];
 }

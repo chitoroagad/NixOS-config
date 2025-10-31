@@ -8,7 +8,7 @@
       enable = true;
       # use hyprland version of mesa
       extraPackages = with pkgs; [
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };
