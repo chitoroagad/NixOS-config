@@ -110,9 +110,8 @@
         browser = lib.concatStrings [uwsm-app (lib.getExe pkgs.brave)];
         notify-send = lib.getExe' pkgs.libnotify "nofity-send";
         wpctl = lib.getExe' pkgs.wireplumber "wpctl";
-        grimblast = lib.getExe pkgs.grimblast;
         brightnessctl = lib.getExe pkgs.brightnessctl;
-        screenshot-script = ./screenshot-script.sh;
+        screenshot-script = import ./screenshot-script.nix {inherit pkgs lib;};
         defaultApp = type: "${uwsm-app} ${lib.getExe pkgs.handlr-regex} launch ${type}";
       in
         [
@@ -132,9 +131,9 @@
           ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
           # Screenshotting
-          "$mainMod,      P, exec, nix-shell ${screenshot-script} s # drag to snip an area / click on a window to print it"
-          "$mainMod Ctrl, P, exec, nix-shell ${screenshot-script} sf # frozen screen, drag to snip an area / click on a window to print it"
-          "$mainMod Alt,  P, exec, nix-shell ${screenshot-script} m # print focused monitor"
+          "$mainMod,      P, exec, ${screenshot-script} s # drag to snip an area / click on a window to print it"
+          "$mainMod Ctrl, P, exec, ${screenshot-script} sf # frozen screen, drag to snip an area / click on a window to print it"
+          "$mainMod Alt,  P, exec, ${screenshot-script} m # print focused monitor"
           ", Print, exec, nix-shell ${screenshot-script} p # print all monitor outputs"
 
           # Quit apps
