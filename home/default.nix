@@ -3,8 +3,6 @@
 {
   inputs,
   outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -103,7 +101,7 @@
         zoom-us
       ]
       ++ [
-        inputs.vigiland.packages.${pkgs.system}.vigiland
+        inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
       ];
   };
   news.display = "show";

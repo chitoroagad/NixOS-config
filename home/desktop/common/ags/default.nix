@@ -1,9 +1,9 @@
 {
   inputs,
   writeShellScript,
-  system,
   stdenv,
   pkgs,
+  system,
   swww,
   esbuild,
   dart-sass,
@@ -25,7 +25,7 @@
   name = "asztal";
 
   ags = inputs.ags.packages.${system}.default.override {
-    extraPackages = [stable.accountsservice];
+    extraPackages = [accountsservice];
   };
 
   # requires nixpkgs-stable as in input in flake.nix

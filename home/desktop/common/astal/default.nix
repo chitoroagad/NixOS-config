@@ -4,18 +4,19 @@
   agsv2,
 }: let
   ags = agsv2;
+  system = pkgs.hostPlatform.system;
 in {
-  packages.${pkgs.system}.default = pkgs.stdenvNoCC.mkDerivation rec {
+  packages.${system}.default = pkgs.stdenvNoCC.mkDerivation rec {
     name = "way-shell";
     src = ./.;
 
     nativeBuildInputs = [
-      ags.packages.${pkgs.system}.default
+      ags.packages.${system}.default
       pkgs.wrapGAppsHook
       pkgs.gobject-introspection
     ];
 
-    buildInputs = with astal.packages.${pkgs.system}; [
+    buildInputs = with astal.packages.${system}; [
       astal4
       io
       apps
