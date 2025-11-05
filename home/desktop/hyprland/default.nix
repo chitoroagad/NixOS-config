@@ -60,7 +60,7 @@
         layout = "dwindle";
       };
       decoration = {
-        rounding = 10;
+        rounding = 2;
         active_opacity = 0.99;
         inactive_opacity = 0.87;
         blur = {

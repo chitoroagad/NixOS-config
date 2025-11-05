@@ -72,6 +72,7 @@
         # misc
         which
         trash-cli
+        tldr
 
         # nix related
         nix-output-monitor
@@ -88,8 +89,8 @@
         google-chrome
 
         # Other
-        spotify
-        libreoffice
+        stable.spotify
+        stable.libreoffice
         slack
         protonvpn-gui
         stable.proton-pass
