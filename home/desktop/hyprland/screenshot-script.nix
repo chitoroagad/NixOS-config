@@ -5,13 +5,14 @@
 }: let
   grimblast = lib.getExe pkgs.grimblast;
   notify-send = lib.getExe' pkgs.libnotify "notify-send";
+  
 in
   pkgs.lib.getExe (pkgs.writeShellScriptBin "screenshot-util" ''
     if [ -z "$XDG_PICTURES_DIR" ]; then
       XDG_PICTURES_DIR="$HOME/Pictures"
     fi
 
-    swpy_dir="$\{HOME}/.config/swappy"
+    swpy_dir="$HOME/.config/swappy"
     save_dir="$XDG_PICTURES_DIR/Screenshots"
     save_file=$(date +'%y%m%d_%Hh%Mm%Ss_screenshot.png')
     temp_screenshot="/tmp/screenshot.png"
