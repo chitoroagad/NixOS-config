@@ -5,27 +5,50 @@
   ...
 }: {
   imports = [
-    ./bat.nix
-    ./btop.nix
-    ./distrobox.nix
-    ./eza.nix
     ./fish.nix
-    ./fzf.nix
     ./ghostty.nix
     ./git.nix
-    ./nh.nix
-    ./nix-direnv.nix
-    ./nix-index.nix
     ./nvim
     ./tmux.nix
     ./yazi.nix
-    ./zoxide.nix
     ./zsh.nix
     ./starship.nix
   ];
 
-  home.packages = with pkgs; [
-    gcc
-    fd
-  ];
+  programs.distrobox.enable = true;
+  programs.bat.enable = true;
+  programs.nh.enable = true;
+  programs.nix-index.enable = true;
+  programs.zoxide.enable = true;
+
+  programs.btop = {
+    enable = true;
+    package = pkgs.btop.override {rocmSupport = true;};
+  };
+
+  programs.eza = {
+    enable = true;
+    icons = "auto";
+    git = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    defaultOptions = [
+      "--height 40%"
+    ];
+  };
+
+  programs.ghostty = {
+    enable = true;
+    # package = inputs.ghostty.packages.${pkgs.system}.ghostty;
+    installBatSyntax = true;
+    installVimSyntax = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    silent = true;
+    nix-direnv.enable = true;
+  };
 }
