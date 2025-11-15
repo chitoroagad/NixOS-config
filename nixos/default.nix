@@ -58,7 +58,6 @@
     ./tlp.nix
     ./tmux.nix
     ./upower.nix
-    ./via.nix
     # ./virt.nix
   ];
 

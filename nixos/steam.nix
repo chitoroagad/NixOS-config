@@ -18,5 +18,5 @@
     enable32Bit = true;
   };
 
-  environment.systemPackages = with pkgs; [gamemode love];
+  environment.systemPackages = with pkgs; [gamemode];
 }
