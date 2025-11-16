@@ -1,7 +1,7 @@
 return {
 	"L3MON4D3/LuaSnip",
 	version = "2.*",
-	build = "nix develop; make install_jsregexp",
+	build = "nix-shell -p gcc --command \"make install_jsregexp\"",
 	dependencies = {
 		{
 			"rafamadriz/friendly-snippets",
