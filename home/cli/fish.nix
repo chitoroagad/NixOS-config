@@ -10,6 +10,7 @@
     preferAbbrs = true;
     shellAbbrs = {
       tp = "trash-put";
+      news = "home-manager --flake ~/nixos-config news";
     };
     shellAliases = {
       cd = "z";
