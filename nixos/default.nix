@@ -35,13 +35,10 @@
     ./docker.nix
     ./extra-udev.nix
     ./filesystem-index.nix
-    # ./flox.nix
     ./fonts.nix
-    ./framwork.nix  # patch due to https://github.com/NixOS/nixos-hardware/issues/1581
     ./fwupd.nix
     ./gc.nix
     ./keyboard.nix
-    # ./kwallet.nix
     ./man.nix
     ./nix-ld.nix
     ./nix.nix
@@ -58,7 +55,6 @@
     ./tlp.nix
     ./tmux.nix
     ./upower.nix
-    # ./virt.nix
   ];
 
   networking.hostName = "LeMachine";
@@ -79,16 +75,6 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

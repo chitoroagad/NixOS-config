@@ -20,7 +20,7 @@ in {
     # ./waybar.nix
     ./gtk.nix
     ./qt.nix
-    ./sound.nix
+    # ./sound.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./swww

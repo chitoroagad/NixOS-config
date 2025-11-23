@@ -37,6 +37,8 @@
   services.gnome.gnome-keyring.enable = true;
   services.gnome.glib-networking.enable = true;
 
+  programs.gnupg.agent.enable = true;
+
   # enable and configure polkit
   security.polkit = {
     enable = true;

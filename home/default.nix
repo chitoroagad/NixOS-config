@@ -74,12 +74,6 @@
         trash-cli
         tldr
 
-        # nix related
-        nix-output-monitor
-
-        # prod
-        glow
-
         # sys tools
         pciutils
         usbutils
@@ -93,12 +87,11 @@
         stable.libreoffice
         slack
         protonvpn-gui
-        stable.proton-pass
+        proton-pass
         discord
         vlc
         pavucontrol
         obs-studio
-        gimp
         zoom-us
       ]
       ++ [

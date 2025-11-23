@@ -54,8 +54,8 @@
         ", preferred, auto, 1, #mirror, eDP-2" # HDMI on FM
       ];
       general = {
-        gaps_in = 3;
-        gaps_out = 2;
+        gaps_in = 1;
+        gaps_out = 1;
         border_size = 2;
         layout = "dwindle";
       };
@@ -169,7 +169,6 @@
         # App launcher
         ++ (
           let
-            wofi = lib.getExe config.programs.wofi.package;
             ags-launcher = "${asztal}/bin/asztal -b hypr -t launcher";
           in
             # lib.optionals config.programs.wofi.enable [
@@ -184,7 +183,7 @@
     extraConfig = ''
       exec-once = [workspace 1] ${browser}
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u attach"
-      # exec-once = [workspace 3 silent] ${proton-vpn}
+      exec-once = [workspace 3 silent] ${proton-vpn}
       exec-once = ${nm-applet}
     '';
   };
