@@ -13,11 +13,6 @@ return {
 	priority = 49,
 	config = function()
 		require("markview").setup({
-			renderers = {
-				typst_math_block = nil,
-				typst_math_span = nil,
-				latex_block = nil,
-			},
 			preview = {
 				icons = "devicons",
 				modes = { "i", "n", "no", "c" },
@@ -29,7 +24,7 @@ return {
 				enable = is_latex(),
 			},
 			typst = {
-				enable = false,
+				enable = false
 			},
 			markdown = {
 				list_items = {

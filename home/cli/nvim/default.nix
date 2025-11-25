@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   xdg.configFile.nvim = {
     source = ./.;
   };
@@ -17,7 +14,6 @@
     vimAlias = true;
 
     withRuby = true;
-    withNodeJs = true;
     withPython3 = true;
   };
 
@@ -35,7 +31,7 @@
     cargo
     luajitPackages.luarocks
     lua5_1
-    nodejs_24
+    
 
     # formatters
     alejandra
@@ -81,6 +77,7 @@
     graphviz
     python312Packages.pylatexenc
     tectonic
+    websocat
     opencode
   ];
 }

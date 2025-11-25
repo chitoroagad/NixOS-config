@@ -2,7 +2,6 @@
   programs.steam = {
     enable = true;
     package = pkgs.steam;
-    extest.enable = true;
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];

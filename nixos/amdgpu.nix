@@ -17,6 +17,9 @@
     };
   };
 
+  # Dual-gpu stuff
+  services.switcherooControl.enable = true;
+
   # LACT (Linux AMDGPU Controller) GUI
   environment.systemPackages = with pkgs; [lact];
   systemd.packages = with pkgs; [lact];

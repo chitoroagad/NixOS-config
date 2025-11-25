@@ -21,7 +21,7 @@
     terminal = false;
   };
 
-  home.packages = with pkgs; [bun gnome-control-center];
+  home.packages = with pkgs; [gnome-control-center];
 
   systemd.user.services.asztal = {
     Unit = {

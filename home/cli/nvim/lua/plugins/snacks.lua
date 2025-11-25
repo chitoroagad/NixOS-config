@@ -9,6 +9,7 @@ return {
 		image = {
 			enabled = true,
 			force = true,
+			math = { enabled = false },
 		},
 		zen = {
 			enabled = true,
