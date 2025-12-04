@@ -38,7 +38,6 @@
   catppuccin.accent = "sapphire";
   catppuccin.tty.enable = true;
 
-  programs.nm-applet.enable = true;
 
   # fix mime list problem
   home-manager = {

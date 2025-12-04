@@ -54,9 +54,6 @@
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-        # Lock Screen
-        "$mainMod, L, exec, ${hyprlock}"
-
         # Misc
         "$mainMod, V, togglefloating,"
         "$mainMod SHIFT, J, togglesplit,"

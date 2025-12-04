@@ -10,22 +10,14 @@
   };
 in {
   imports = [
-    ./ags.nix
+    # ./ags.nix
     ./cursor.nix
+    ./dms.nix
     ./kitty.nix
     ./font.nix
-    ./playerctl.nix
-    # ./mako.nix
-    # ./wofi.nix
-    # ./waybar.nix
     ./gtk.nix
     ./qt.nix
-    # ./sound.nix
-    ./hypridle.nix
-    ./hyprlock.nix
     ./swww
-    ./wlsunset.nix
-    # ./wlogout.nix
 
     ./extraBluetooth.nix
   ];
@@ -43,6 +35,8 @@ in {
 
   dconf.enable = true;
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
+  services.cliphist.enable = true;
 
   xdg = {
     portal = {

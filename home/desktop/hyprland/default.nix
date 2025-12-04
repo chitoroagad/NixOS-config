@@ -3,6 +3,7 @@
   config,
   pkgs,
   asztal,
+  inputs,
   ...
 }: {
   imports = [
@@ -35,7 +36,10 @@
     browser = lib.getExe pkgs.brave;
     term = lib.getExe config.programs.kitty.package;
     proton-vpn = lib.getExe pkgs.protonvpn-gui;
-    nm-applet = lib.getExe pkgs.networkmanagerapplet;
+    dms = lib.getExe' inputs.dankMaterialShell.packages.${pkgs.system}.default "dms";
+    wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
+    bash = lib.getExe pkgs.bash;
+    cliphist = lib.getExe pkgs.cliphist;
   in {
     enable = true;
 
@@ -56,12 +60,12 @@
       general = {
         gaps_in = 1;
         gaps_out = 1;
-        border_size = 2;
+        border_size = 0;
         layout = "dwindle";
       };
       decoration = {
         rounding = 2;
-        active_opacity = 0.99;
+        active_opacity = 1.0;
         inactive_opacity = 0.87;
         blur = {
           enabled = true;
@@ -104,31 +108,36 @@
         "bordersize 0, floating:0, onworkspace:f[1]"
         "rounding 0, floating:0, onworkspace:f[1]"
       ];
+      bindel = [
+        # Audio controls
+        ", XF86AudioRaiseVolume, exec, ${dms} ipc call audio increment 3"
+        ", XF86AudioLowerVolume, exec, ${dms} ipc call audio decrement 3"
+        ", XF86AudioMute, exec, ${dms} ipc call audio mute"
+
+        # Brightness controls
+        ", XF86MonBrightnessUp, exec, dms ipc call brightness increment 5"
+        ", XF86MonBrightnessDown, exec, dms ipc call brightness decrement 5"
+      ];
       bind = let
         uwsm = lib.getExe pkgs.uwsm;
         uwsm-app = lib.concatStrings [uwsm " app --"];
         browser = lib.concatStrings [uwsm-app (lib.getExe pkgs.brave)];
-        notify-send = lib.getExe' pkgs.libnotify "nofity-send";
-        wpctl = lib.getExe' pkgs.wireplumber "wpctl";
-        brightnessctl = lib.getExe pkgs.brightnessctl;
         screenshot-script = import ./screenshot-script.nix {inherit pkgs lib;};
         defaultApp = type: "${uwsm-app} ${lib.getExe pkgs.handlr-regex} launch ${type}";
       in
         [
+          # Spotlight
+          "SUPER, space, exec, ${dms} ipc call spotlight toggle"
+          "SUPER, TAB, exec, ${dms} ipc call hypr toggleOverview"
+
+          # Lock Screen
+          "SUPER, L, exec, dms ipc call lock lock"
+
           # Lauch Terminal
           "SUPER, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
 
           # Launch Browser
           "SUPER, B, exec, ${browser}"
-
-          # Brightness Control
-          ", XF86MonBrightnessUp, exec, ${brightnessctl} set 5%+"
-          ", XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
-
-          # Volume Control
-          ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
           # Screenshotting
           "$mainMod,      P, exec, ${screenshot-script} s # drag to snip an area / click on a window to print it"
@@ -139,52 +148,22 @@
           # Quit apps
           "SUPER, Q, killactive"
           "SUPERALTSHIFT, Q, exec, ${uwsm} stop"
-        ]
-        ++ (
-          let
-            playerctl = lib.getExe' config.services.playerctld.package "playerctl";
-            playerctld = lib.getExe' config.services.playerctld.package "playerctld";
-          in
-            lib.optionals config.services.playerctld.enable [
-              # Media control
-              ",XF86AudioNext,exec,${playerctl} next"
-              ",XF86AudioPrev,exec,${playerctl} previous"
-              ",XF86AudioPlay,exec,${playerctl} play-pause"
-              ",XF86AudioStop,exec,${playerctl} stop"
-              "ALT,XF86AudioNext,exec,${playerctld} shift"
-              "ALT,XF86AudioPrev,exec,${playerctld} unshift"
-              "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
-            ]
-        )
-        ++
-        # Notification manager
-        (
-          let
-            makoctl = lib.getExe' config.services.mako.package "makoctl";
-          in
-            lib.optionals config.services.mako.enable [
-              "SUPERSHIFT,w,exec,${makoctl} restore"
-            ]
-        )
-        # App launcher
-        ++ (
-          let
-            ags-launcher = "${asztal}/bin/asztal -b hypr -t launcher";
-          in
-            # lib.optionals config.programs.wofi.enable [
-            #   "SUPER,A,exec,${wofi} -S drun -W 25% -H 60%"
-            # ]
-            lib.optionals config.programs.ags.enable [
-              "SUPER, A, exec, ${ags-launcher}"
-            ]
-        );
+
+          # mpris controls
+          ",XF86AudioNext,exec,${dms} ipc call mpris next"
+          ",XF86AudioPrev,exec,${dms} ipc call mpris previous"
+          ",XF86AudioPlay,exec,${dms} ipc call mpris playPause"
+          ",XF86AudioStop,exec,${dms} ipc call mpris stop"
+        ];
     };
 
     extraConfig = ''
+      exec-once = ${bash} -c "${wl-paste} --watch ${cliphist} store &"
       exec-once = [workspace 1] ${browser}
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u attach"
       exec-once = [workspace 3 silent] ${proton-vpn}
-      exec-once = ${nm-applet}
+      layerrule = noanim, ^(dms)$
+      windowrulev2 = float, class:^(org.quickshell)$
     '';
   };
 }

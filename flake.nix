@@ -3,8 +3,8 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # remember to revert this
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-master.url = "github:nixos/nixpkgs";
 
     # NixOS-Hardware
@@ -30,6 +30,18 @@
 
     # idle inhibitor
     vigiland.url = "github:jappie3/vigiland";
+
+    # shell
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
+    };
   };
 
   outputs = {
@@ -39,6 +51,7 @@
     catppuccin,
     astal,
     nixos-hardware,
+    dankMaterialShell,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -97,6 +110,7 @@
         modules = [
           ./home
           catppuccin.homeModules.catppuccin
+          dankMaterialShell.homeModules.dankMaterialShell.default
         ];
       };
     };
