@@ -30,7 +30,7 @@
     configPackages = [hyprland];
   };
 
-  services.network-manager-applet.enable = true;
+  services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland = let
     browser = lib.getExe pkgs.brave;

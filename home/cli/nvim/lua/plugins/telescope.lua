@@ -1,3 +1,12 @@
+local telescope = require("telescope")
+local telescopeConfig = require("telescope.config")
+local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+table.insert(vimgrep_arguments, "--hidden")
+-- I don't want to search in the `.git` directory.
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
@@ -16,9 +25,15 @@ return {
 	},
 
 	config = function()
-		require("telescope").setup({
+		telescope.setup({
 			defaults = {
 				path_display = { "truncate", "smart" },
+				vimgrep_arguments = vimgrep_arguments,
+			},
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				},
 			},
 
 			extensions = {

@@ -1,7 +1,4 @@
-{pkgs, ...}: {
-  # auth-agent
-  services.hyprpolkitagent.enable = true;
-
+{
   # enable keyring
   services.gnome.gnome-keyring.enable = true;
   services.gnome.glib-networking.enable = true;

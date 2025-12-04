@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   services.ollama = {
-    package = pkgs.ollama;
+    package = pkgs.ollama-vulkan;
     enable = true;
-    acceleration = "rocm";
     rocmOverrideGfx = "11.0.2";
     environmentVariables = {
       OLLAMA_KEEP_ALIVE = "30s";

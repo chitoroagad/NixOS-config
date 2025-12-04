@@ -6,7 +6,6 @@
     curl
     git
     neovim
-    networkmanagerapplet
     nvtopPackages.amd
   ];
 

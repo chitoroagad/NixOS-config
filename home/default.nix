@@ -77,6 +77,7 @@
         # sys tools
         pciutils
         usbutils
+        nmap
 
         # Browser
         brave
@@ -93,6 +94,7 @@
         pavucontrol
         obs-studio
         zoom-us
+        gimp
       ]
       ++ [
         inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
