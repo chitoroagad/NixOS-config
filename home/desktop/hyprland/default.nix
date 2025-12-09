@@ -33,13 +33,20 @@
   services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland = let
-    browser = lib.getExe pkgs.brave;
-    term = lib.getExe config.programs.kitty.package;
-    proton-vpn = lib.getExe pkgs.protonvpn-gui;
-    dms = lib.getExe' inputs.dankMaterialShell.packages.${pkgs.system}.default "dms";
-    wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
-    bash = lib.getExe pkgs.bash;
-    cliphist = lib.getExe pkgs.cliphist;
+    exe = lib.getExe;
+    exe' = lib.getExe';
+    uwsm = exe pkgs.uwsm;
+    uwsmWrap = exe: "${uwsm} app -- ${exe}";
+    defaultApp = type: uwsmWrap "${exe pkgs.handlr-regex} launch ${type}";
+    screenshot-script = import ./screenshot-script.nix {inherit pkgs lib;};
+    browser = uwsmWrap (exe pkgs.brave);
+    hyprlock = uwsmWrap (exe pkgs.hyprlock);
+    term = uwsmWrap (exe config.programs.kitty.package);
+    proton-vpn = uwsmWrap (exe pkgs.protonvpn-gui);
+    dms = exe' inputs.dankMaterialShell.packages.${pkgs.system}.default "dms";
+    wl-paste = uwsmWrap (exe' pkgs.wl-clipboard "wl-paste");
+    bash = uwsmWrap (exe pkgs.bash);
+    cliphist = uwsmWrap (exe pkgs.cliphist);
   in {
     enable = true;
 
@@ -114,47 +121,40 @@
         ", XF86AudioLowerVolume, exec, ${dms} ipc call audio decrement 3"
         ", XF86AudioMute, exec, ${dms} ipc call audio mute"
 
-        # Brightness controls
-        ", XF86MonBrightnessUp, exec, dms ipc call brightness increment 5"
-        ", XF86MonBrightnessDown, exec, dms ipc call brightness decrement 5"
+        # Brightness controls  (probs a better way to find the device)
+        ", XF86MonBrightnessUp, exec, ${dms} ipc call brightness increment 5 backlight:amdgpu_bl2"
+        ", XF86MonBrightnessDown, exec, ${dms} ipc call brightness decrement 5 backlight:amdgpu_bl2"
       ];
-      bind = let
-        uwsm = lib.getExe pkgs.uwsm;
-        uwsm-app = lib.concatStrings [uwsm " app --"];
-        browser = lib.concatStrings [uwsm-app (lib.getExe pkgs.brave)];
-        screenshot-script = import ./screenshot-script.nix {inherit pkgs lib;};
-        defaultApp = type: "${uwsm-app} ${lib.getExe pkgs.handlr-regex} launch ${type}";
-      in
-        [
-          # Spotlight
-          "SUPER, space, exec, ${dms} ipc call spotlight toggle"
-          "SUPER, TAB, exec, ${dms} ipc call hypr toggleOverview"
+      bind = [
+        # Spotlight
+        "SUPER, space, exec, ${dms} ipc call spotlight toggle"
+        "SUPER, TAB, exec, ${dms} ipc call hypr toggleOverview"
 
-          # Lock Screen
-          "SUPER, L, exec, dms ipc call lock lock"
+        # Lock Screen
+        "SUPER, L, exec, ${hyprlock}"
 
-          # Lauch Terminal
-          "SUPER, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
+        # Lauch Terminal
+        "SUPER, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
 
-          # Launch Browser
-          "SUPER, B, exec, ${browser}"
+        # Launch Browser
+        "SUPER, B, exec, ${browser}"
 
-          # Screenshotting
-          "$mainMod,      P, exec, ${screenshot-script} s # drag to snip an area / click on a window to print it"
-          "$mainMod Ctrl, P, exec, ${screenshot-script} sf # frozen screen, drag to snip an area / click on a window to print it"
-          "$mainMod Alt,  P, exec, ${screenshot-script} m # print focused monitor"
-          ", Print, exec, nix-shell ${screenshot-script} p # print all monitor outputs"
+        # Screenshotting
+        "$mainMod,      P, exec, ${screenshot-script} s # drag to snip an area / click on a window to print it"
+        "$mainMod Ctrl, P, exec, ${screenshot-script} sf # frozen screen, drag to snip an area / click on a window to print it"
+        "$mainMod Alt,  P, exec, ${screenshot-script} m # print focused monitor"
+        ", Print, exec, nix-shell ${screenshot-script} p # print all monitor outputs"
 
-          # Quit apps
-          "SUPER, Q, killactive"
-          "SUPERALTSHIFT, Q, exec, ${uwsm} stop"
+        # Quit apps
+        "SUPER, Q, killactive"
+        "SUPERALTSHIFT, Q, exec, ${uwsm} stop"
 
-          # mpris controls
-          ",XF86AudioNext,exec,${dms} ipc call mpris next"
-          ",XF86AudioPrev,exec,${dms} ipc call mpris previous"
-          ",XF86AudioPlay,exec,${dms} ipc call mpris playPause"
-          ",XF86AudioStop,exec,${dms} ipc call mpris stop"
-        ];
+        # mpris controls
+        ",XF86AudioNext,exec,${dms} ipc call mpris next"
+        ",XF86AudioPrev,exec,${dms} ipc call mpris previous"
+        ",XF86AudioPlay,exec,${dms} ipc call mpris playPause"
+        ",XF86AudioStop,exec,${dms} ipc call mpris stop"
+      ];
     };
 
     extraConfig = ''

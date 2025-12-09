@@ -16,6 +16,8 @@ in {
     ./kitty.nix
     ./font.nix
     ./gtk.nix
+    ./hypridle.nix
+    ./hyprlock.nix
     ./qt.nix
     ./swww
 

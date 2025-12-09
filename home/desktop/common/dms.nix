@@ -13,6 +13,6 @@
     enableDynamicTheming = false;
     enableAudioWavelength = true;
     enableCalendarEvents = true;
-    enableSystemSound = true;
+    enableSystemSound = false;
   };
 }
