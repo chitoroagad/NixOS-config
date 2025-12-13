@@ -17,8 +17,10 @@ in {
     ./font.nix
     ./gtk.nix
     ./hypridle.nix
+    ./hyprlauncher.nix
     ./hyprlock.nix
     ./qt.nix
+    ./sound.nix
     ./swww
 
     ./extraBluetooth.nix

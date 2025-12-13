@@ -41,6 +41,7 @@
     screenshot-script = import ./screenshot-script.nix {inherit pkgs lib;};
     browser = uwsmWrap (exe pkgs.brave);
     hyprlock = uwsmWrap (exe pkgs.hyprlock);
+    hyprlauncher = uwsmWrap (exe pkgs.hyprlauncher);
     term = uwsmWrap (exe config.programs.kitty.package);
     proton-vpn = uwsmWrap (exe pkgs.protonvpn-gui);
     dms = exe' inputs.dankMaterialShell.packages.${pkgs.system}.default "dms";
@@ -127,7 +128,7 @@
       ];
       bind = [
         # Spotlight
-        "SUPER, space, exec, ${dms} ipc call spotlight toggle"
+        "SUPER, space, exec, ${hyprlauncher}"
         "SUPER, TAB, exec, ${dms} ipc call hypr toggleOverview"
 
         # Lock Screen
