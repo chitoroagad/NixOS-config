@@ -1,5 +1,5 @@
 {
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
     systemd = {
       enable = true;
@@ -8,7 +8,7 @@
     enableSystemMonitoring = true;
     enableVPN = true;
     enableDynamicTheming = false;
-    enableAudioWavelength = true;
+    enableAudioWavelength = false;
     enableCalendarEvents = true;
   };
 }

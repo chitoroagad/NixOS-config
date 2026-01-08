@@ -32,15 +32,9 @@
     vigiland.url = "github:jappie3/vigiland";
 
     # shell
-    dgop = {
-      url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
     };
   };
 
@@ -110,7 +104,7 @@
         modules = [
           ./home
           catppuccin.homeModules.catppuccin
-          dankMaterialShell.homeModules.dankMaterialShell.default
+          dankMaterialShell.homeModules.dank-material-shell
         ];
       };
     };

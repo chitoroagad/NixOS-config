@@ -1,15 +1,4 @@
 {pkgs, ...}: {
-
-  services.spotifyd = {
-    enable = true;
-    settings = {
-      global = {
-        backend = "pipe";
-        bitrate = 320;
-      };
-    };
-  };
-
   # services.easyeffects.enable = true; # requires program.dconf.enable=true in nixos config
   # home.packages = with pkgs; [
   #   calf
