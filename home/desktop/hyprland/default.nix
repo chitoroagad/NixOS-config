@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  asztal,
   inputs,
   ...
 }: {
@@ -15,6 +14,7 @@
     hyprpicker
     grimblast
     swappy
+    hyprpwcenter
   ];
 
   xdg.portal = let
@@ -44,7 +44,7 @@
     hyprlauncher = uwsmWrap (exe pkgs.hyprlauncher);
     term = uwsmWrap (exe config.programs.kitty.package);
     proton-vpn = uwsmWrap (exe pkgs.protonvpn-gui);
-    dms = exe' inputs.dankMaterialShell.packages.${pkgs.system}.default "dms";
+    dms = exe' inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default "dms";
     wl-paste = uwsmWrap (exe' pkgs.wl-clipboard "wl-paste");
     bash = uwsmWrap (exe pkgs.bash);
     cliphist = uwsmWrap (exe pkgs.cliphist);
@@ -110,12 +110,6 @@
         "w[tv1], gapsout:0, gapsin:0"
         "f[1], gapsout:0, gapsin:0"
       ];
-      windowrule = [
-        "bordersize 0, floating:0, onworkspace:w[tv1]"
-        "rounding 0, floating:0, onworkspace:w[tv1]"
-        "bordersize 0, floating:0, onworkspace:f[1]"
-        "rounding 0, floating:0, onworkspace:f[1]"
-      ];
       bindel = [
         # Audio controls
         ", XF86AudioRaiseVolume, exec, ${dms} ipc call audio increment 3"
@@ -163,8 +157,32 @@
       exec-once = [workspace 1] ${browser}
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u attach"
       exec-once = [workspace 3 silent] ${proton-vpn}
-      layerrule = noanim, ^(dms)$
-      windowrulev2 = float, class:^(org.quickshell)$
+
+      # New windowrule syntax (idk how to do it in nix)
+      windowrule {
+        name = windowrule-1
+        border_size = 0
+        rounding = 0
+        match:float = 0
+        match:workspace = w[tv1]
+      }
+      windowrule {
+        name = windowrule-2
+        border_size = 0
+        rounding = 0
+        match:float = 0
+        match:workspace = f[1]
+      }
+      windowrule {
+        name = windowrule-3
+        float = on
+        match:class = ^(org.quickshell)$
+      }
+      layerrule {
+        name = layerrule-1
+        no_anim = on
+        match:namespace = ^(dms)$
+      }
     '';
   };
 }
