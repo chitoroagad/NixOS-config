@@ -21,7 +21,7 @@ in {
     ./hyprlock.nix
     ./qt.nix
     ./sound.nix
-    ./swww
+    ./wallpaper
 
     ./extraBluetooth.nix
   ];
