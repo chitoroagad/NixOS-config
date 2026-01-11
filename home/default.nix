@@ -82,6 +82,7 @@
         # Browser
         brave
         google-chrome
+        inputs.helium.packages.${pkgs.stdenv.system}.default
 
         # Other
         stable.spotify

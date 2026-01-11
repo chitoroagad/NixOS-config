@@ -1,4 +1,18 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" {};
+  cachy-kernel-lto-bmq-zen4 = helpers.kernelModuleLLVMOverride (
+    pkgs.linuxPackagesFor (
+      pkgs.cachyosKernels.linux-cachyos-latest-lto-zen4.override {
+        pname = "cachy-kernel-lto-bmq-zen4";
+        cpusched = "bmq";
+      }
+    )
+  );
+in {
   boot = {
     # Bootloader.
     # loader.systemd-boot.enable = true;
@@ -16,7 +30,8 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = cachy-kernel-lto-bmq-zen4;
     kernelParams = [
       "quiet"
     ];
