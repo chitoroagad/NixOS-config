@@ -31,7 +31,6 @@
     cargo
     luajitPackages.luarocks
     lua5_1
-    
 
     # formatters
     alejandra
@@ -55,7 +54,6 @@
     lua-language-server
     vscode-langservers-extracted # jsonls
     # pyright
-    # basedpyright
     pyrefly
     nodePackages_latest.bash-language-server
     dockerfile-language-server
@@ -72,7 +70,7 @@
     # misc
     luajitPackages.jsregexp
     ghostscript
-    stable.mermaid-cli
+    mermaid-cli
     vscode-extensions.vadimcn.vscode-lldb.adapter
     graphviz
     python312Packages.pylatexenc
