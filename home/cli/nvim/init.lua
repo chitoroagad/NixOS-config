@@ -13,7 +13,7 @@ vim.lsp.enable({
 	"fishls",
 	"jsonls",
 	"ltexls-plus",
-	"luals",
+	"lua-ls",
 	"nil",
 	"pyrefly",
 	"ruff",
