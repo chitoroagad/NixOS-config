@@ -13,6 +13,7 @@
     ./yazi.nix
     ./zsh.nix
     ./starship.nix
+    ./torrent-script.nix
   ];
 
   programs.distrobox.enable = true;
