@@ -19,6 +19,7 @@ require("config.set")
 require("config.map")
 require("config.auto")
 require("config.diagnostic")
+require("config.commands")
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.

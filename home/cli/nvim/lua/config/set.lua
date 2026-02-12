@@ -79,5 +79,3 @@ opt.autochdir = false
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
-opt.foldlevelstart = 3
-opt.foldtext = ""

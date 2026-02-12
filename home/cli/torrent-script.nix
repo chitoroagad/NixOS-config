@@ -15,22 +15,22 @@
           if not entry.lower().endswith(".torrent"):
             continue
 
-            torrent_path = os.path.join(directory, entry)
-            base_name = os.path.splitext(entry)[0]
-            matching_path = os.path.join(directory, base_name)
+          torrent_path = os.path.join(directory, entry)
+          base_name = os.path.splitext(entry)[0]
+          matching_path = os.path.join(directory, base_name)
 
-            if not os.path.exists(matching_path):
-              if delete:
-                print(f"Removing orphaned torrent: {entry}")
-                os.remove(torrent_path)
-                removed += 1
-              else:
-                print(f"[DRY RUN] Would remove: {entry}")
+          if not os.path.exists(matching_path):
+            if delete:
+              print(f"Removing orphaned torrent: {entry}")
+              os.remove(torrent_path)
+              removed += 1
+            else:
+              print(f"[DRY RUN] Would remove: {entry}")
 
-          if delete:
-            print(f"\nDone. Removed {removed} torrent(s).")
-          else:
-            print("\nDry run complete. No files were removed.")
+        if delete:
+          print(f"\nDone. Removed {removed} torrent(s).")
+        else:
+          print("\nDry run complete. No files were removed.")
 
 
       if __name__ == "__main__":
