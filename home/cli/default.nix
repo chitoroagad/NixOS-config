@@ -21,6 +21,7 @@
   programs.nh.enable = true;
   programs.nix-index.enable = true;
   programs.zoxide.enable = true;
+  programs.opencode.enable = true;
 
   programs.btop = {
     enable = true;

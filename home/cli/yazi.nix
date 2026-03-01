@@ -22,6 +22,7 @@
   programs.yazi = {
     enable = true;
     package = pkgs.yazi;
+    shellWrapperName = "yy";
     settings = {
       opener = {
         edit = [

@@ -1,16 +1,5 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
-  way-shell = pkgs.callPackage ./astal {
-    inherit pkgs;
-    astal = inputs.astal;
-    agsv2 = inputs.agsv2;
-  };
-in {
+{pkgs, ...}: {
   imports = [
-    # ./ags.nix
     ./cursor.nix
     ./dms.nix
     ./kitty.nix

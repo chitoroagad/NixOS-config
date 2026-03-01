@@ -76,6 +76,5 @@
     python312Packages.pylatexenc
     tectonic
     websocat
-    opencode
   ];
 }

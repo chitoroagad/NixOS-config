@@ -38,14 +38,14 @@
           print("Usage:\n\tclean_torrents <directory> [--delete]")
           sys.exit(1)
 
-          target_dir = sys.argv[1]
-          delete_mode = "--delete" in sys.argv
+        target_dir = sys.argv[1]
+        delete_mode = "--delete" in sys.argv
 
-          if not os.path.isdir(target_dir):
-            print("Error: Provided path is not a directory")
-            sys.exit(1)
+        if not os.path.isdir(target_dir):
+          print("Error: Provided path is not a directory")
+          sys.exit(1)
 
-          clean_torrents(target_dir, delete=delete_mode)
+        clean_torrents(target_dir, delete=delete_mode)
     '';
 in {
   home.packages = [script];

@@ -73,6 +73,7 @@
         which
         trash-cli
         tldr
+        cachix
 
         # sys tools
         pciutils
@@ -82,7 +83,7 @@
         # Browser
         brave
         google-chrome
-        inputs.helium.packages.${pkgs.stdenv.system}.default
+        firefox
 
         # Other
         stable.spotify
