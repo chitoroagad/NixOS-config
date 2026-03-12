@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./fish.nix
     ./ghostty.nix
@@ -22,6 +17,7 @@
   programs.nix-index.enable = true;
   programs.zoxide.enable = true;
   programs.opencode.enable = true;
+  programs.claude-code.enable = true;
 
   programs.btop = {
     enable = true;
