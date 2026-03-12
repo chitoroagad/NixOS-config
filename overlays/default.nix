@@ -3,7 +3,7 @@
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
-  cachyos-kernel = inputs.nix-cachyos-kernel.overlays.pinned;
+  cachyos-kernel = inputs.nix-cachyos-kernel.overlays.default;
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
