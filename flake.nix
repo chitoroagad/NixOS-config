@@ -18,16 +18,6 @@
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Ags
-    ags.url = "github:Aylur/ags/v1";
-
-    agsv2.url = "github:Aylur/ags";
-    agsv2.inputs.nixpkgs.follows = "nixpkgs";
-
-    # astal
-    astal.url = "github:aylur/astal";
-    astal.inputs.nixpkgs.follows = "nixpkgs";
-
     # idle inhibitor
     vigiland.url = "github:jappie3/vigiland";
 
@@ -37,10 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     helium = {
       url = "github:amaanq/helium-flake";
@@ -53,7 +40,6 @@
     nixpkgs,
     home-manager,
     catppuccin,
-    astal,
     nixos-hardware,
     dankMaterialShell,
     ...
