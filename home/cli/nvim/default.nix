@@ -20,6 +20,8 @@
   home.packages = with pkgs; [
     neovim
 
+
+    gcc
     git
     gnumake
     wget

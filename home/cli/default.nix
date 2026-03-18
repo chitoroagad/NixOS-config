@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./fish.nix
-    ./ghostty.nix
     ./git.nix
     ./nvim
     ./tmux.nix

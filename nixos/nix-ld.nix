@@ -1,7 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  options,
+  ...
+}: {
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs; [
-    ];
+    libraries =
+      options.programs.nix-ld.libraries.default
+      ++ [
+        pkgs.glib
+        pkgs.mesa
+      ];
   };
 }
