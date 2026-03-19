@@ -53,54 +53,50 @@
   home = {
     username = "darius";
     homeDirectory = "/home/darius";
-    packages = with pkgs;
-      [
-        fastfetch
+    packages = with pkgs; [
+      fastfetch
 
-        # archives
-        zip
-        unzip
-        xz
+      # archives
+      zip
+      unzip
+      xz
 
-        # utils
-        ripgrep
-        jq
-        eza
-        fzf
-        file
+      # utils
+      ripgrep
+      jq
+      eza
+      fzf
+      file
 
-        # misc
-        which
-        trash-cli
-        tldr
-        cachix
+      # misc
+      which
+      trash-cli
+      tldr
+      cachix
 
-        # sys tools
-        pciutils
-        usbutils
-        nmap
+      # sys tools
+      pciutils
+      usbutils
+      nmap
 
-        # Browser
-        brave
-        google-chrome
-        firefox
+      # Browser
+      brave
+      google-chrome
+      firefox
 
-        # Other
-        stable.spotify
-        stable.libreoffice
-        slack
-        protonvpn-gui
-        proton-pass
-        discord
-        vlc
-        pavucontrol
-        obs-studio
-        zoom-us
-        gimp
-      ]
-      ++ [
-        inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
-      ];
+      # Other
+      stable.spotify
+      stable.libreoffice
+      slack
+      protonvpn-gui
+      proton-pass
+      discord
+      vlc
+      pavucontrol
+      obs-studio
+      zoom-us
+      gimp
+    ];
   };
   news.display = "show";
 

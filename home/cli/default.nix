@@ -36,13 +36,6 @@
     ];
   };
 
-  programs.ghostty = {
-    enable = true;
-    # package = inputs.ghostty.packages.${pkgs.system}.ghostty;
-    installBatSyntax = true;
-    installVimSyntax = true;
-  };
-
   programs.direnv = {
     enable = true;
     silent = true;

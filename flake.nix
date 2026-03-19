@@ -18,9 +18,6 @@
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # idle inhibitor
-    vigiland.url = "github:jappie3/vigiland";
-
     # shell
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
@@ -28,11 +25,6 @@
     };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
-    helium = {
-      url = "github:amaanq/helium-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
