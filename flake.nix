@@ -19,10 +19,8 @@
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     # shell
-    dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    dankMaterialShell.url = "github:AvengeMedia/DankMaterialShell/stable";
+    dankMaterialShell.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };

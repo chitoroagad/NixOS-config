@@ -88,7 +88,7 @@
       stable.spotify
       stable.libreoffice
       slack
-      protonvpn-gui
+      proton-vpn
       proton-pass
       discord
       vlc

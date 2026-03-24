@@ -43,7 +43,7 @@
     hyprlock = uwsmWrap (exe pkgs.hyprlock);
     hyprlauncher = uwsmWrap (exe pkgs.hyprlauncher);
     term = uwsmWrap (exe config.programs.kitty.package);
-    proton-vpn = uwsmWrap (exe pkgs.protonvpn-gui);
+    proton-vpn = uwsmWrap (exe pkgs.proton-vpn);
     dms = exe' inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default "dms";
     wl-paste = uwsmWrap (exe' pkgs.wl-clipboard "wl-paste");
     bash = uwsmWrap (exe pkgs.bash);

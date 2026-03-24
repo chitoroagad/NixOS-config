@@ -20,6 +20,8 @@
       name = "Catppuccin-GTK-Dark";
       package = pkgs.magnetic-catppuccin-gtk;
     };
+
+    gtk4.theme = config.gtk.theme;
   };
 
   services.xsettingsd = {

@@ -1,10 +1,11 @@
-{...}: {
+{config, ...}: {
   programs.git = {
     enable = true;
     lfs.enable = true;
     signing = {
       key = "D3DB98147AF40F5ECCE75E54FEAC7C9776796F2C";
       signByDefault = true;
+      format = "openpgp";
     };
     settings = {
       user.name = "chitoroagad";
@@ -14,7 +15,7 @@
       credential.helper = "store";
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
-      safe.directory = ["/home/darius/.sshfs/*"];
+      safe.directory = ["/home/${config.home.username}/.sshfs/*"];
     };
   };
 }
