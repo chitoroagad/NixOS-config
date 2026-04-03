@@ -20,7 +20,6 @@
   home.packages = with pkgs; [
     neovim
 
-
     gcc
     git
     gnumake
@@ -39,7 +38,7 @@
     stylua
     biome
     prettierd
-    nodePackages.prettier
+    prettier
     shfmt
     rustfmt
     taplo
@@ -57,10 +56,10 @@
     vscode-langservers-extracted # jsonls
     # pyright
     pyrefly
-    nodePackages_latest.bash-language-server
+    bash-language-server
     dockerfile-language-server
     clang-tools
-    nodePackages.typescript-language-server
+    typescript-language-server
     ltex-ls-plus
     emmet-ls
     nil

@@ -27,7 +27,7 @@ require("config.commands")
 
 local opts = {
 	install = {
-		colorscheme = { "catppuccin" },
+		colorscheme = { "catppuccin-nvim" },
 	},
 	rtp = {
 		disabled_plugins = {
