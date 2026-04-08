@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./claude.nix
     ./fish.nix
     ./git.nix
     ./nvim
@@ -16,7 +17,6 @@
   programs.nix-index.enable = true;
   programs.zoxide.enable = true;
   programs.opencode.enable = true;
-  programs.claude-code.enable = true;
 
   programs.btop = {
     enable = true;
