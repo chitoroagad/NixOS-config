@@ -1,9 +1,23 @@
 # This file defines overlays
-{inputs, ...}: {
+{inputs, ...}: let
+  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+in {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
   cachyos-kernel = inputs.nix-cachyos-kernel.overlays.default;
+  # cachyos-kernel = inputs.nix-cachyos-kernel.overlays.pinned;
+
+  # Use Lix
+  nix_lix = final: prev: {
+    inherit
+      (prev.lixPackageSets.latest)
+      nixpkgs-review
+      nix-eval-jobs
+      nix-fast-build
+      colmena
+      ;
+  };
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
@@ -33,12 +47,4 @@
       config = final.config;
     };
   };
-
-  # rocm-stable = final: _prev: {
-  #   stable =
-  #     import inputs.nixpkgs-stable
-  #     {
-  #       system = final.system;
-  #     }.rocmPackages;
-  # };
 }
