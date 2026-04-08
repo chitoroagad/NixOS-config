@@ -1,6 +1,7 @@
 {
   # enable keyring
   services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
   services.gnome.glib-networking.enable = true;
 
   programs.gnupg.agent.enable = true;
