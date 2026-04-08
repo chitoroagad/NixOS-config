@@ -4,15 +4,14 @@
   ...
 }: let
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" {};
-  custom-kernel = helpers.kernelModuleLLVMOverride (pkgs.linuxPackagesFor (pkgs.cachyosKernels.linux-cachyos-latest-lto-zen4.override {
-    pname = "linux-cachy-custom";
-    lto = "thin";
-    processorOpt = "zen4";
-    audofdo = true;
-    cpusched = "bmq";
-    bbr3 = true;
-    acpiCall = true;
-  }));
+  # custom-kernel = helpers.kernelModuleLLVMOverride (pkgs.linuxPackagesFor (pkgs.cachyosKernels.linux-cachyos-latest-lto-zen4.override {
+  #   pname = "linux-cachy-custom";
+  #   audofdo = true;
+  #   cpusched = "bmq";
+  #   bbr3 = true;
+  #   acpiCall = true;
+  # }));
+  custom-kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
 in {
   boot = {
     # Bootloader.
