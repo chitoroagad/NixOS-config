@@ -36,6 +36,7 @@ return { -- Autoformat
 			nix = { "alejandra" },
 			toml = { "taplo" },
 			typst = { "typstyle" },
+			tex = { "tex-fmt" },
 		},
 
 		format_on_save = function(bufnr)

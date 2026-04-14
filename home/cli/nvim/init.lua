@@ -17,6 +17,7 @@ vim.lsp.enable({
 	"nil",
 	"pyrefly",
 	"ruff",
+	"texlab",
 	"tinymist",
 	"tsls",
 })

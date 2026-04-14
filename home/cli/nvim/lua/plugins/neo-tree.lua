@@ -51,7 +51,7 @@ return {
 			source_selector = {
 				statusline = true,
 				content_layout = "center",
-				tabs_layout = "focus",
+				tabs_layout = "active",
 			},
 			filesystem = {
 				filtered_items = {

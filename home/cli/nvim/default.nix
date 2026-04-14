@@ -43,6 +43,7 @@
     rustfmt
     taplo
     typstyle
+    tex-fmt
 
     # linters
     luajitPackages.luacheck
@@ -67,6 +68,7 @@
     rust-analyzer
     fish-lsp
     tinymist
+    texlab
 
     # misc
     luajitPackages.jsregexp

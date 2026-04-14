@@ -41,7 +41,7 @@
 
   # fix mime list problem
   home-manager = {
-    backupFileExtension = "home-manager-backup";
+    backupFileExtension = "hm-backup";
     useGlobalPkgs = true;
     useUserPackages = true;
   };
