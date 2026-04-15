@@ -32,6 +32,7 @@
     cargo
     luajitPackages.luarocks
     lua5_1
+    nodejs-slim
 
     # formatters
     alejandra

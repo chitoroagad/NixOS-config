@@ -1,12 +1,10 @@
 # This file defines overlays
-{inputs, ...}: let
-  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-in {
+{inputs, ...}: 
+{
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
   cachyos-kernel = inputs.nix-cachyos-kernel.overlays.default;
-  # cachyos-kernel = inputs.nix-cachyos-kernel.overlays.pinned;
 
   # Use Lix
   nix_lix = final: prev: {

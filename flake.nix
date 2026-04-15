@@ -22,7 +22,7 @@
     dankMaterialShell.url = "github:AvengeMedia/DankMaterialShell/stable";
     dankMaterialShell.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/";
   };
 
   outputs = {
