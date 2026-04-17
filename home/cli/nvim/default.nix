@@ -26,6 +26,7 @@
     wget
     curl
     tree-sitter
+    luajitPackages.tree-sitter-cli
     ripgrep
     fd
     fzf

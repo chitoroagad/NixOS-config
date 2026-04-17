@@ -1,7 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	opts = {
 		ensure_installed = {
 			"bash",
@@ -18,7 +17,6 @@ return {
 			"vimdoc",
 		},
 		autotag = { enable = true },
-		-- Autoinstall languages that are not installed
 		auto_install = true,
 		highlight = {
 			enable = true,
@@ -27,6 +25,9 @@ return {
 			--  the list of additional_vim_regex_highlighting and disabled languages for indent.
 			additional_vim_regex_highlighting = { "ruby" },
 		},
-		indent = { enable = true, disable = { "ruby" } },
+		indent = {
+			enable = true,
+			disable = { "ruby" },
+		},
 	},
 }
