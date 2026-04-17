@@ -25,6 +25,22 @@
     # ...
     # });
     utillinux = final.util-linux;
+
+
+    # Fix proton-vpn dependencies until https://github.com/NixOS/nixpkgs/pull/509227 gets merged
+    pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+      (_: python-prev: {
+        proton-vpn-api-core = python-prev.proton-vpn-api-core.overridePythonAttrs (_: rec {
+          version = "4.19.1";
+          src = prev.fetchFromGitHub {
+            owner = "ProtonVPN";
+            repo = "python-proton-vpn-api-core";
+            rev = "v${version}";
+            hash = "sha256-PD/UQ+BoDO6firhlBJDRNrtiHgnp+4uIb8j+egXqxPA=";
+          };
+        });
+      })
+    ];
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
