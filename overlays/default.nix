@@ -47,7 +47,7 @@
   # be accessible through 'pkgs.stable'
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config = {
         allowUnfree = final.config.allowUnfree or false;
       };
@@ -57,7 +57,7 @@
   # Same as above for master packages
   master-packages = final: _prev: {
     master = import inputs.nixpkgs-master {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config = final.config;
     };
   };
