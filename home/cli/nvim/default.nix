@@ -37,6 +37,7 @@
 
     # formatters
     alejandra
+    bibtex-tidy
     stylua
     biome
     prettierd

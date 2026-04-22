@@ -37,6 +37,7 @@ return { -- Autoformat
 			toml = { "taplo" },
 			typst = { "typstyle" },
 			tex = { "tex-fmt" },
+			bib = { "bibtex-tidy" },
 		},
 
 		format_on_save = function(bufnr)

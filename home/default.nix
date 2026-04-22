@@ -93,6 +93,7 @@
       proton-vpn
       proton-pass
       discord
+      webcord
       vlc
       pavucontrol
       obs-studio
