@@ -3,6 +3,6 @@
   outputs,
   ...
 }: {
-  nixpkgs.overlays = [outputs.overlays.nix_lix];
+  # nixpkgs.overlays = [outputs.overlays.nix_lix];
   nix.package = pkgs.lixPackageSets.latest.lix;
 }

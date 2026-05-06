@@ -31,7 +31,6 @@
       outputs.overlays.master-packages
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.nix_lix
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -50,7 +49,7 @@
     };
   };
 
-  nix.package = pkgs.lixPackageSets.latest.lix;
+  # nix.package = pkgs.lixPackageSets.latest.lix;
 
   home = {
     username = "darius";
