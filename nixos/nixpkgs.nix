@@ -9,6 +9,14 @@
       outputs.overlays.modifications
       outputs.overlays.cachyos-kernel
 
+      # Skipping tests while upstream sorts it out, revert once
+      # Hydra consistently builds openldap green.
+      (final: prev: {
+        openldap = prev.openldap.overrideAttrs (_: {
+          doCheck = false;
+        });
+      })
+
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
