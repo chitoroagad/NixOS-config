@@ -93,7 +93,6 @@
         "3, horizontal, workspace"
       ];
       misc = {
-        vfr = true;
         vrr = 1;
         force_default_wallpaper = 0;
       };
