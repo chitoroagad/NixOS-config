@@ -2,8 +2,6 @@
   programs = {
     hyprland = {
       enable = true;
-      package = pkgs.hyprland;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
       withUWSM = true;
     };
 
@@ -37,7 +35,6 @@
   catppuccin.flavor = "mocha";
   catppuccin.accent = "sapphire";
   catppuccin.tty.enable = true;
-
 
   # fix mime list problem
   home-manager = {

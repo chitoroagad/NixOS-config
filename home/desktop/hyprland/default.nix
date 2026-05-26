@@ -17,6 +17,10 @@
     hyprpwcenter
   ];
 
+  home.file.".config/brave-flags.conf".text = ''
+    --enable-features=WebRTCPipeWireCapturer
+  '';
+
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
   in {
@@ -24,8 +28,16 @@
     extraPortals = [
       # Extra portals for desktop sharing
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-hyprland
     ];
+    config = {
+      hyprland = {
+        default = ["hyprland" "gtk"];
+      };
+      common = {
+        default = ["gtk"];
+      };
+    };
 
     configPackages = [hyprland];
   };
@@ -45,14 +57,10 @@
     term = uwsmWrap (exe config.programs.kitty.package);
     proton-vpn = uwsmWrap (exe pkgs.proton-vpn);
     dms = exe' inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default "dms";
-    wl-paste = uwsmWrap (exe' pkgs.wl-clipboard "wl-paste");
-    bash = uwsmWrap (exe pkgs.bash);
-    cliphist = uwsmWrap (exe pkgs.cliphist);
   in {
     enable = true;
 
     package = pkgs.hyprland;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
 
     systemd = {
       enable = false;
@@ -152,7 +160,6 @@
     };
 
     extraConfig = ''
-      exec-once = ${bash} -c "${wl-paste} --watch ${cliphist} store &"
       exec-once = [workspace 1] ${browser}
       exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u attach"
       exec-once = [workspace 3 silent] ${proton-vpn}
@@ -176,6 +183,16 @@
         name = windowrule-3
         float = on
         match:class = ^(org.quickshell)$
+      }
+      windowrule {
+        name = windowrule-portal-float
+        float = on
+        match:class = ^(xdg-desktop-portal)(.*)$
+      }
+      windowrule {
+        name = windowrule-portal-gtk-float
+        float = on
+        match:title = ^(Open File|Open Folder|Save File|Select File)(.*)$
       }
       layerrule {
         name = layerrule-1

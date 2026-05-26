@@ -40,6 +40,12 @@
         set -U fish_greeting
       '';
 
+    loginShellInit = ''
+      if ${uwsm} check may-start > /dev/null 2>&1 && ${uwsm} select
+        exec ${uwsm} start default
+      end
+    '';
+
     interactiveShellInit = /* fish */''
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
         # ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
@@ -47,10 +53,6 @@
       # fix starship add_newline issue https://github.com/starship/starship/issues/560
       function prompt_newline --on-event fish_postexec
         echo
-      end
-
-      if ${uwsm} check may-start > /dev/null 2>&1 && ${uwsm} select
-        exec ${uwsm} start default
       end
     '';
 
