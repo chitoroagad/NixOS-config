@@ -57,10 +57,28 @@
     term = uwsmWrap (exe config.programs.kitty.package);
     proton-vpn = uwsmWrap (exe pkgs.proton-vpn);
     dms = exe' inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default "dms";
+
+    # Lua config helpers: each `settings.<name>` renders to `hl.<name>(...)`.
+    inherit (lib.generators) mkLuaInline;
+    exec = cmd: mkLuaInline ''hl.dsp.exec_cmd("${cmd}")'';
+    bindExec = keys: cmd: {_args = [keys (exec cmd)];};
+    bindelExec = keys: cmd: {
+      _args = [
+        keys
+        (exec cmd)
+        {
+          repeating = true;
+          locked = true;
+        }
+      ];
+    };
   in {
     enable = true;
 
     package = pkgs.hyprland;
+
+    # New Hyprland Lua config format (hl.* API).
+    configType = "lua";
 
     systemd = {
       enable = false;
@@ -68,137 +86,180 @@
     };
 
     settings = {
+      # hl.monitor({...}) per entry
       monitor = [
-        "eDP-2, 2560x1600@165, 0x0, 1, vrr, 1"
-        "eDP-1, 2560x1600@165, 0x0, 1, vrr, 1"
-        ", preferred, auto, 1, #mirror, eDP-2" # HDMI on FM
+        {
+          output = "eDP-2";
+          mode = "2560x1600@165";
+          position = "0x0";
+          scale = 1;
+          vrr = 1;
+        }
+        {
+          output = "eDP-1";
+          mode = "2560x1600@165";
+          position = "0x0";
+          scale = 1;
+          vrr = 1;
+        }
+        # HDMI on Framework. Mirror of eDP-2 left disabled (as before).
+        {
+          output = "";
+          mode = "preferred";
+          position = "auto";
+          scale = 1;
+        }
       ];
-      general = {
-        gaps_in = 1;
-        gaps_out = 1;
-        border_size = 0;
-        layout = "dwindle";
-      };
-      decoration = {
-        rounding = 2;
-        active_opacity = 1.0;
-        inactive_opacity = 0.87;
-        blur = {
-          enabled = true;
-          size = 5;
-          passes = 4;
-          new_optimizations = true;
-          ignore_opacity = true;
+
+      # hl.config({...}) — single grouped call
+      config = {
+        general = {
+          gaps_in = 1;
+          gaps_out = 1;
+          border_size = 0;
+          layout = "dwindle";
+        };
+        decoration = {
+          rounding = 2;
+          active_opacity = 1.0;
+          inactive_opacity = 0.87;
+          blur = {
+            enabled = true;
+            size = 5;
+            passes = 4;
+            new_optimizations = true;
+            ignore_opacity = true;
+          };
+        };
+        animations.enabled = true;
+        dwindle.preserve_split = true;
+        misc = {
+          vrr = 1;
+          force_default_wallpaper = 0;
+        };
+        input = {
+          kb_layout = "us";
+          kb_options = "caps:swapescape";
+          follow_mouse = 1;
+          touchpad.natural_scroll = true;
+          sensitivity = 0.15;
         };
       };
-      animations = {
-        enabled = "yes";
-      };
-      dwindle = {
-        preserve_split = "yes";
-      };
-      gesture = [
-        "3, horizontal, workspace"
-      ];
-      misc = {
-        vrr = 1;
-        force_default_wallpaper = 0;
-      };
-      input = {
-        kb_layout = "us";
-        kb_options = "caps:swapescape";
-        follow_mouse = 1;
-        touchpad.natural_scroll = "yes";
-        sensitivity = 0.15;
+
+      gesture = {
+        fingers = 3;
+        direction = "horizontal";
+        action = "workspace";
       };
 
       # smart gaps
-      workspace = [
-        "w[tv1], gapsout:0, gapsin:0"
-        "f[1], gapsout:0, gapsin:0"
+      workspace_rule = [
+        {
+          workspace = "w[tv1]";
+          gaps_out = 0;
+          gaps_in = 0;
+        }
+        {
+          workspace = "f[1]";
+          gaps_out = 0;
+          gaps_in = 0;
+        }
       ];
-      bindel = [
-        # Audio controls
-        ", XF86AudioRaiseVolume, exec, ${dms} ipc call audio increment 3"
-        ", XF86AudioLowerVolume, exec, ${dms} ipc call audio decrement 3"
-        ", XF86AudioMute, exec, ${dms} ipc call audio mute"
 
-        # Brightness controls  (probs a better way to find the device)
-        ", XF86MonBrightnessUp, exec, ${dms} ipc call brightness increment 5 backlight:amdgpu_bl2"
-        ", XF86MonBrightnessDown, exec, ${dms} ipc call brightness decrement 5 backlight:amdgpu_bl2"
-      ];
       bind = [
+        # Audio controls (repeating + locked, formerly bindel)
+        (bindelExec "XF86AudioRaiseVolume" "${dms} ipc call audio increment 3")
+        (bindelExec "XF86AudioLowerVolume" "${dms} ipc call audio decrement 3")
+        (bindelExec "XF86AudioMute" "${dms} ipc call audio mute")
+
+        # Brightness controls (probs a better way to find the device)
+        (bindelExec "XF86MonBrightnessUp" "${dms} ipc call brightness increment 5 backlight:amdgpu_bl2")
+        (bindelExec "XF86MonBrightnessDown" "${dms} ipc call brightness decrement 5 backlight:amdgpu_bl2")
+
         # Spotlight
-        "SUPER, space, exec, ${hyprlauncher}"
-        "SUPER, TAB, exec, ${dms} ipc call hypr toggleOverview"
+        (bindExec "SUPER + space" hyprlauncher)
+        (bindExec "SUPER + TAB" "${dms} ipc call hypr toggleOverview")
 
         # Lock Screen
-        "SUPER, L, exec, ${hyprlock}"
+        (bindExec "SUPER + L" hyprlock)
 
-        # Lauch Terminal
-        "SUPER, T, exec, ${defaultApp "x-scheme-handler/terminal"}"
+        # Launch Terminal
+        (bindExec "SUPER + T" (defaultApp "x-scheme-handler/terminal"))
 
         # Launch Browser
-        "SUPER, B, exec, ${browser}"
+        (bindExec "SUPER + B" browser)
 
-        # Screenshotting
-        "$mainMod,      P, exec, ${screenshot-script} s # drag to snip an area / click on a window to print it"
-        "$mainMod Ctrl, P, exec, ${screenshot-script} sf # frozen screen, drag to snip an area / click on a window to print it"
-        "$mainMod Alt,  P, exec, ${screenshot-script} m # print focused monitor"
-        ", Print, exec, nix-shell ${screenshot-script} p # print all monitor outputs"
+        # Screenshotting (drag to snip / click a window / monitor / all outputs)
+        (bindExec "SUPER + P" "${screenshot-script} s")
+        (bindExec "SUPER + CTRL + P" "${screenshot-script} sf")
+        (bindExec "SUPER + ALT + P" "${screenshot-script} m")
+        (bindExec "Print" "nix-shell ${screenshot-script} p")
 
         # Quit apps
-        "SUPER, Q, killactive"
-        "SUPERALTSHIFT, Q, exec, ${uwsm} stop"
+        {_args = ["SUPER + Q" (mkLuaInline "hl.dsp.window.close()")];}
+        (bindExec "SUPER + ALT + SHIFT + Q" "${uwsm} stop")
 
         # mpris controls
-        ",XF86AudioNext,exec,${dms} ipc call mpris next"
-        ",XF86AudioPrev,exec,${dms} ipc call mpris previous"
-        ",XF86AudioPlay,exec,${dms} ipc call mpris playPause"
-        ",XF86AudioStop,exec,${dms} ipc call mpris stop"
+        (bindExec "XF86AudioNext" "${dms} ipc call mpris next")
+        (bindExec "XF86AudioPrev" "${dms} ipc call mpris previous")
+        (bindExec "XF86AudioPlay" "${dms} ipc call mpris playPause")
+        (bindExec "XF86AudioStop" "${dms} ipc call mpris stop")
+      ];
+
+      # hl.window_rule({...}) per entry
+      window_rule = [
+        {
+          name = "windowrule-1";
+          match = {
+            float = false;
+            workspace = "w[tv1]";
+          };
+          border_size = 0;
+          rounding = 0;
+        }
+        {
+          name = "windowrule-2";
+          match = {
+            float = false;
+            workspace = "f[1]";
+          };
+          border_size = 0;
+          rounding = 0;
+        }
+        {
+          name = "windowrule-3";
+          match.class = "^(org.quickshell)$";
+          float = true;
+        }
+        {
+          name = "windowrule-portal-float";
+          match.class = "^(xdg-desktop-portal)(.*)$";
+          float = true;
+        }
+        {
+          name = "windowrule-portal-gtk-float";
+          match.title = "^(Open File|Open Folder|Save File|Select File)(.*)$";
+          float = true;
+        }
+      ];
+
+      layer_rule = {
+        name = "layerrule-1";
+        match.namespace = "^(dms)$";
+        no_anim = true;
+      };
+
+      # Autostart: hl.on("hyprland.start", function() ... end)
+      # exec_cmd keeps the [workspace ...] execution-rule prefix.
+      on._args = [
+        "hyprland.start"
+        (mkLuaInline ''
+          function()
+            hl.exec_cmd([[[workspace 1] ${browser}]])
+            hl.exec_cmd([[[workspace 2 silent] ${term} --hold sh -c "tmux -u attach"]])
+            hl.exec_cmd([[[workspace 3 silent] ${proton-vpn}]])
+          end'')
       ];
     };
-
-    extraConfig = ''
-      exec-once = [workspace 1] ${browser}
-      exec-once = [workspace 2 silent] ${term} --hold sh -c "tmux -u attach"
-      exec-once = [workspace 3 silent] ${proton-vpn}
-
-      # New windowrule syntax (idk how to do it in nix)
-      windowrule {
-        name = windowrule-1
-        border_size = 0
-        rounding = 0
-        match:float = 0
-        match:workspace = w[tv1]
-      }
-      windowrule {
-        name = windowrule-2
-        border_size = 0
-        rounding = 0
-        match:float = 0
-        match:workspace = f[1]
-      }
-      windowrule {
-        name = windowrule-3
-        float = on
-        match:class = ^(org.quickshell)$
-      }
-      windowrule {
-        name = windowrule-portal-float
-        float = on
-        match:class = ^(xdg-desktop-portal)(.*)$
-      }
-      windowrule {
-        name = windowrule-portal-gtk-float
-        float = on
-        match:title = ^(Open File|Open Folder|Save File|Select File)(.*)$
-      }
-      layerrule {
-        name = layerrule-1
-        no_anim = on
-        match:namespace = ^(dms)$
-      }
-    '';
   };
 }

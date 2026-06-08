@@ -1,63 +1,50 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   wayland.windowManager.hyprland = {
     settings = let
-      hyprlock = lib.getExe pkgs.hyprlock;
+      inherit (lib.generators) mkLuaInline;
+      dsp = expr: mkLuaInline "hl.dsp.${expr}";
+
+      # mainMod + key -> dispatcher
+      bind = keys: dispatcher: {_args = [keys dispatcher];};
+      # mouse bind (formerly bindm): hl.bind(keys, dispatcher, { mouse = true })
+      mouseBind = keys: dispatcher: {
+        _args = [keys dispatcher {mouse = true;}];
+      };
+
+      # Switch / move-to workspace 1..10 (key 0 == workspace 10)
+      workspaceBinds = lib.concatMap (i: let
+        key =
+          if i == 10
+          then "0"
+          else toString i;
+      in [
+        (bind "SUPER + ${key}" (dsp "focus({ workspace = ${toString i} })"))
+        (bind "SUPER + SHIFT + ${key}" (dsp "window.move({ workspace = ${toString i} })"))
+      ]) (lib.range 1 10);
     in {
-      "$mainMod" = "SUPER";
+      bind =
+        [
+          # Workspace movement (relative)
+          (bind "SUPER + J" (dsp ''focus({ workspace = "-1" })''))
+          (bind "SUPER + K" (dsp ''focus({ workspace = "+1" })''))
 
-      bindm = [
-        # Move/Resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod,mouse:272,movewindow"
-        "$mainMod,mouse:273,resizewindow"
-        "$mainMod, Z, movewindow"
-      ];
+          # Move focus with mainMod + arrow keys
+          (bind "SUPER + N" (dsp ''focus({ direction = "left" })''))
+          (bind "SUPER + left" (dsp ''focus({ direction = "left" })''))
+          (bind "SUPER + right" (dsp ''focus({ direction = "right" })''))
+          (bind "SUPER + up" (dsp ''focus({ direction = "up" })''))
+          (bind "SUPER + down" (dsp ''focus({ direction = "down" })''))
 
-      bind = [
-        # Workspace movement
-        "$mainMod, J, workspace, -1"
-        "$mainMod, K, workspace, +1"
+          # Misc
+          (bind "SUPER + V" (dsp ''window.float({ action = "toggle" })''))
+          (bind "SUPER + F11" (dsp "window.fullscreen()"))
 
-        # Move focus with mainMod + arrow keys
-        "$mainMod, N, movefocus, l"
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-
-        # Switch workspaces with mainMod + [0-9]
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-
-        # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-        # Misc
-        "$mainMod, V, togglefloating,"
-        "$mainMod, F11, fullscreen, 0"
-      ];
+          # Move/Resize windows with mainMod + LMB/RMB and dragging
+          (mouseBind "SUPER + mouse:272" (dsp "window.drag()"))
+          (mouseBind "SUPER + mouse:273" (dsp "window.resize()"))
+          (mouseBind "SUPER + Z" (dsp "window.drag()"))
+        ]
+        ++ workspaceBinds;
     };
   };
 }
