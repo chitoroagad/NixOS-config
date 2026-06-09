@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    ./binds.nix
     ./env.nix
   ];
 
@@ -26,19 +25,13 @@
   in {
     enable = true;
     extraPortals = [
-      # Extra portals for desktop sharing
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
     ];
     config = {
-      hyprland = {
-        default = ["hyprland" "gtk"];
-      };
-      common = {
-        default = ["gtk"];
-      };
+      hyprland.default = ["hyprland" "gtk"];
+      common.default = ["gtk"];
     };
-
     configPackages = [hyprland];
   };
 
@@ -48,218 +41,125 @@
     exe = lib.getExe;
     exe' = lib.getExe';
     uwsm = exe pkgs.uwsm;
-    uwsmWrap = exe: "${uwsm} app -- ${exe}";
+    uwsmWrap = app: "${uwsm} app -- ${app}";
     defaultApp = type: uwsmWrap "${exe pkgs.handlr-regex} launch ${type}";
-    screenshot-script = import ./screenshot-script.nix {inherit pkgs lib;};
+    screenshot = import ./screenshot-script.nix {inherit pkgs lib;};
     browser = uwsmWrap (exe pkgs.brave);
     hyprlock = uwsmWrap (exe pkgs.hyprlock);
     hyprlauncher = uwsmWrap (exe pkgs.hyprlauncher);
     term = uwsmWrap (exe config.programs.kitty.package);
-    proton-vpn = uwsmWrap (exe pkgs.proton-vpn);
+    vpn = uwsmWrap (exe pkgs.proton-vpn);
     dms = exe' inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default "dms";
-
-    # Lua config helpers: each `settings.<name>` renders to `hl.<name>(...)`.
-    inherit (lib.generators) mkLuaInline;
-    exec = cmd: mkLuaInline ''hl.dsp.exec_cmd("${cmd}")'';
-    bindExec = keys: cmd: {_args = [keys (exec cmd)];};
-    bindelExec = keys: cmd: {
-      _args = [
-        keys
-        (exec cmd)
-        {
-          repeating = true;
-          locked = true;
-        }
-      ];
-    };
   in {
     enable = true;
-
-    package = pkgs.hyprland;
-
-    # New Hyprland Lua config format (hl.* API).
     configType = "lua";
+    systemd. enable = false;
+    extraConfig = ''
+      hl.monitor({ output = "eDP-2", mode = "2560x1600@165", position = "0x0", scale = 1, vrr = 1 })
+      hl.monitor({ output = "eDP-1", mode = "2560x1600@165", position = "0x0", scale = 1, vrr = 1 })
+      hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
-    systemd = {
-      enable = false;
-      variables = ["--all"];
-    };
-
-    settings = {
-      # hl.monitor({...}) per entry
-      monitor = [
-        {
-          output = "eDP-2";
-          mode = "2560x1600@165";
-          position = "0x0";
-          scale = 1;
-          vrr = 1;
-        }
-        {
-          output = "eDP-1";
-          mode = "2560x1600@165";
-          position = "0x0";
-          scale = 1;
-          vrr = 1;
-        }
-        # HDMI on Framework. Mirror of eDP-2 left disabled (as before).
-        {
-          output = "";
-          mode = "preferred";
-          position = "auto";
-          scale = 1;
-        }
-      ];
-
-      # hl.config({...}) — single grouped call
-      config = {
-        general = {
-          gaps_in = 1;
-          gaps_out = 1;
-          border_size = 0;
-          layout = "dwindle";
-        };
+      hl.config({
+        general = { gaps_in = 1, gaps_out = 1, border_size = 0, layout = "dwindle" },
         decoration = {
-          rounding = 2;
-          active_opacity = 1.0;
-          inactive_opacity = 0.87;
-          blur = {
-            enabled = true;
-            size = 5;
-            passes = 4;
-            new_optimizations = true;
-            ignore_opacity = true;
-          };
-        };
-        animations.enabled = true;
-        dwindle.preserve_split = true;
-        misc = {
-          vrr = 1;
-          force_default_wallpaper = 0;
-        };
+          rounding = 2,
+          active_opacity = 1.0,
+          inactive_opacity = 0.87,
+          blur = { enabled = true, size = 5, passes = 4, new_optimizations = true, ignore_opacity = true },
+        },
+        animations = { enabled = true },
+        dwindle = { preserve_split = true },
+        misc = { vrr = 1, force_default_wallpaper = 0 },
         input = {
-          kb_layout = "us";
-          kb_options = "caps:swapescape";
-          follow_mouse = 1;
-          touchpad.natural_scroll = true;
-          sensitivity = 0.15;
-        };
-      };
+          kb_layout = "us",
+          kb_options = "caps:swapescape",
+          follow_mouse = 1,
+          touchpad = { natural_scroll = true },
+          sensitivity = 0.15,
+        },
+      })
 
-      gesture = {
-        fingers = 3;
-        direction = "horizontal";
-        action = "workspace";
-      };
+      hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
-      # smart gaps
-      workspace_rule = [
-        {
-          workspace = "w[tv1]";
-          gaps_out = 0;
-          gaps_in = 0;
-        }
-        {
-          workspace = "f[1]";
-          gaps_out = 0;
-          gaps_in = 0;
-        }
-      ];
+      hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
+      hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
 
-      bind = [
-        # Audio controls (repeating + locked, formerly bindel)
-        (bindelExec "XF86AudioRaiseVolume" "${dms} ipc call audio increment 3")
-        (bindelExec "XF86AudioLowerVolume" "${dms} ipc call audio decrement 3")
-        (bindelExec "XF86AudioMute" "${dms} ipc call audio mute")
+      hl.window_rule({ name = "windowrule-1", match = { float = false, workspace = "w[tv1]" }, border_size = 0, rounding = 0 })
+      hl.window_rule({ name = "windowrule-2", match = { float = false, workspace = "f[1]" }, border_size = 0, rounding = 0 })
+      hl.window_rule({ name = "windowrule-3", match = { class = "^(org.quickshell)$" }, float = true })
+      hl.window_rule({ name = "windowrule-portal-float", match = { class = "^(xdg-desktop-portal)(.*)$" }, float = true })
+      hl.window_rule({ name = "windowrule-portal-gtk-float", match = { title = "^(Open File|Open Folder|Save File|Select File)(.*)$" }, float = true })
 
-        # Brightness controls (probs a better way to find the device)
-        (bindelExec "XF86MonBrightnessUp" "${dms} ipc call brightness increment 5 backlight:amdgpu_bl2")
-        (bindelExec "XF86MonBrightnessDown" "${dms} ipc call brightness decrement 5 backlight:amdgpu_bl2")
+      hl.layer_rule({ name = "layerrule-1", match = { namespace = "^(dms)$" }, no_anim = true })
 
-        # Spotlight
-        (bindExec "SUPER + space" hyprlauncher)
-        (bindExec "SUPER + TAB" "${dms} ipc call hypr toggleOverview")
+      -- Audio
+      hl.bind("XF86AudioRaiseVolume",   hl.dsp.exec_cmd("${dms} ipc call audio increment 3"), { repeating = true, locked = true })
+      hl.bind("XF86AudioLowerVolume",   hl.dsp.exec_cmd("${dms} ipc call audio decrement 3"), { repeating = true, locked = true })
+      hl.bind("XF86AudioMute",          hl.dsp.exec_cmd("${dms} ipc call audio mute"),        { repeating = true, locked = true })
 
-        # Lock Screen
-        (bindExec "SUPER + L" hyprlock)
+      -- Brightness
+      hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("${dms} ipc call brightness increment 5 backlight:amdgpu_bl2"), { repeating = true, locked = true })
+      hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("${dms} ipc call brightness decrement 5 backlight:amdgpu_bl2"), { repeating = true, locked = true })
 
-        # Launch Terminal
-        (bindExec "SUPER + T" (defaultApp "x-scheme-handler/terminal"))
+      -- Apps
+      hl.bind("SUPER + space", hl.dsp.exec_cmd("${hyprlauncher}"))
+      hl.bind("SUPER + TAB",   hl.dsp.exec_cmd("${dms} ipc call hypr toggleOverview"))
+      hl.bind("SUPER + L",     hl.dsp.exec_cmd("${hyprlock}"))
+      hl.bind("SUPER + T",     hl.dsp.exec_cmd("${defaultApp "x-scheme-handler/terminal"}"))
+      hl.bind("SUPER + B",     hl.dsp.exec_cmd("${browser}"))
 
-        # Launch Browser
-        (bindExec "SUPER + B" browser)
+      -- Screenshots
+      hl.bind("SUPER + P",         hl.dsp.exec_cmd("${screenshot} s"))
+      hl.bind("SUPER + CTRL + P",  hl.dsp.exec_cmd("${screenshot} sf"))
+      hl.bind("SUPER + ALT + P",   hl.dsp.exec_cmd("${screenshot} m"))
+      hl.bind("Print",             hl.dsp.exec_cmd("${screenshot} p"))
 
-        # Screenshotting (drag to snip / click a window / monitor / all outputs)
-        (bindExec "SUPER + P" "${screenshot-script} s")
-        (bindExec "SUPER + CTRL + P" "${screenshot-script} sf")
-        (bindExec "SUPER + ALT + P" "${screenshot-script} m")
-        (bindExec "Print" "nix-shell ${screenshot-script} p")
+      -- Window management
+      hl.bind("SUPER + Q",               hl.dsp.window.close())
+      hl.bind("SUPER + ALT + SHIFT + Q", hl.dsp.exec_cmd("${uwsm} stop"))
+      hl.bind("SUPER + ALT + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
+      hl.bind("SUPER + V",               hl.dsp.window.float({ action = "toggle" }))
+      hl.bind("SUPER + F11",             hl.dsp.window.fullscreen())
 
-        # Quit apps
-        {_args = ["SUPER + Q" (mkLuaInline "hl.dsp.window.close()")];}
-        (bindExec "SUPER + ALT + SHIFT + Q" "${uwsm} stop")
+      -- Focus (direction)
+      hl.bind("SUPER + N",     hl.dsp.focus({ direction = "left" }))
+      hl.bind("SUPER + left",  hl.dsp.focus({ direction = "left" }))
+      hl.bind("SUPER + right", hl.dsp.focus({ direction = "right" }))
+      hl.bind("SUPER + up",    hl.dsp.focus({ direction = "up" }))
+      hl.bind("SUPER + down",  hl.dsp.focus({ direction = "down" }))
 
-        # mpris controls
-        (bindExec "XF86AudioNext" "${dms} ipc call mpris next")
-        (bindExec "XF86AudioPrev" "${dms} ipc call mpris previous")
-        (bindExec "XF86AudioPlay" "${dms} ipc call mpris playPause")
-        (bindExec "XF86AudioStop" "${dms} ipc call mpris stop")
-      ];
+      -- Focus (workspace relative)
+      hl.bind("SUPER + J", hl.dsp.focus({ workspace = "-1" }))
+      hl.bind("SUPER + K", hl.dsp.focus({ workspace = "+1" }))
 
-      # hl.window_rule({...}) per entry
-      window_rule = [
-        {
-          name = "windowrule-1";
-          match = {
-            float = false;
-            workspace = "w[tv1]";
-          };
-          border_size = 0;
-          rounding = 0;
-        }
-        {
-          name = "windowrule-2";
-          match = {
-            float = false;
-            workspace = "f[1]";
-          };
-          border_size = 0;
-          rounding = 0;
-        }
-        {
-          name = "windowrule-3";
-          match.class = "^(org.quickshell)$";
-          float = true;
-        }
-        {
-          name = "windowrule-portal-float";
-          match.class = "^(xdg-desktop-portal)(.*)$";
-          float = true;
-        }
-        {
-          name = "windowrule-portal-gtk-float";
-          match.title = "^(Open File|Open Folder|Save File|Select File)(.*)$";
-          float = true;
-        }
-      ];
+      -- Workspaces 1-10
+      ${lib.concatMapStrings (i: let
+        key =
+          if i == 10
+          then "0"
+          else toString i;
+      in ''
+        hl.bind("SUPER + ${key}",         hl.dsp.focus({ workspace = ${toString i} }))
+        hl.bind("SUPER + SHIFT + ${key}", hl.dsp.window.move({ workspace = ${toString i} }))
+      '') (lib.range 1 10)}
 
-      layer_rule = {
-        name = "layerrule-1";
-        match.namespace = "^(dms)$";
-        no_anim = true;
-      };
+      -- Mouse / drag
+      hl.bind("SUPER + Z",         hl.dsp.window.drag(),   { mouse = true })
+      hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+      hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-      # Autostart: hl.on("hyprland.start", function() ... end)
-      # exec_cmd keeps the [workspace ...] execution-rule prefix.
-      on._args = [
-        "hyprland.start"
-        (mkLuaInline ''
-          function()
-            hl.exec_cmd([[[workspace 1] ${browser}]])
-            hl.exec_cmd([[[workspace 2 silent] ${term} --hold sh -c "tmux -u attach"]])
-            hl.exec_cmd([[[workspace 3 silent] ${proton-vpn}]])
-          end'')
-      ];
-    };
+      -- Media
+      hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("${dms} ipc call mpris next"))
+      hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("${dms} ipc call mpris previous"))
+      hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("${dms} ipc call mpris playPause"))
+      hl.bind("XF86AudioStop",  hl.dsp.exec_cmd("${dms} ipc call mpris stop"))
+
+      -- Autostart
+      hl.on("hyprland.start", function()
+        hl.exec_cmd("${browser}")
+        hl.exec_cmd("${term} --hold sh -c 'tmux -u attach'", {workspace = "2", silent = true})
+        hl.exec_cmd("${vpn}")
+      end)
+    '';
   };
 }
