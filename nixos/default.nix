@@ -36,7 +36,7 @@
     ./fwupd.nix
     ./gc.nix
     ./keyboard.nix
-    ./lix.nix
+    # ./lix.nix
     ./man.nix
     ./nix-ld.nix
     ./nix.nix

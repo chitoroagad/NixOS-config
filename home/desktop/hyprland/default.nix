@@ -157,7 +157,7 @@
       -- Autostart
       hl.on("hyprland.start", function()
         hl.exec_cmd("${browser}")
-        hl.exec_cmd("${term} --hold sh -c 'tmux -u attach'", {workspace = "2", silent = true})
+        hl.exec_cmd("${term} --hold sh -c 'tmux -u attach'", {workspace = "2"})
         hl.exec_cmd("${vpn}")
       end)
     '';
