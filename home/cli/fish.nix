@@ -30,6 +30,7 @@
       fish
       */
       ''
+        fish_add_path ~/.local/bin
         fish_vi_key_bindings
 
         set -Ux fifc_editor nvim
@@ -41,7 +42,7 @@
       '';
 
     loginShellInit = ''
-      if ${uwsm} check may-start > /dev/null 2>&1 && ${uwsm} select
+      if ${uwsm} check may-start > /dev/null 2>&1
         exec ${uwsm} start default
       end
     '';

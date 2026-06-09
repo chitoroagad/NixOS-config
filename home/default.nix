@@ -54,6 +54,7 @@
   home = {
     username = "darius";
     homeDirectory = "/home/darius";
+    sessionPath = [ "$HOME/.local/bin" ];
     packages = with pkgs; [
       fastfetch
 
