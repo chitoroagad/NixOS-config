@@ -30,6 +30,12 @@
   services.dbus.implementation = "broker";
   xdg.autostart.enable = true;
 
+  # correct permissions for xdg-open
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+  };
+
   # Colorscheme
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
