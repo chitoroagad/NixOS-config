@@ -16,13 +16,13 @@
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'"; # to avoid having to press a key twice to turn on the display.
       };
 
       listener = [
         {
           timeout = 150;
-          on-timeout = "${brightnessctl} -s set 5"; # Set monitor backlight to min
+          on-timeout = "${brightnessctl} -s set 5"; # Set monitor backlight to min, avoid 0 on OLED
           on-resume = "${brightnessctl} -r"; # restore backlight
         }
 
@@ -33,12 +33,8 @@
 
         {
           timeout = 330;
-          on-timeout = ''
-            hyprctl dispatch dpms off; qmk_hid --vid 32ac --pid 0012 via --backlight-breathing true; qmk_hid --vid 32ac --pid 0014 via --backlight-breathing true;
-          ''; # screen off when timeout has passed
-          on-resume = ''
-            hyprctl dispatch dpms on; qmk_hid --vid 32ac --pid 0012 via --backlight-breathing false; qmk_hid --vid 32ac --pid 0014 via --backlight-breathing false;
-          ''; # screen on when activity is detected
+          on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'"; # screen off when timeout has passed
+          on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })' && brightnessctl -r"; # screen on when activity is detected after timeout has fired.
         }
 
         {
