@@ -30,8 +30,8 @@ in {
       };
     };
 
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = custom-kernel;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = custom-kernel;
     kernelParams = [
       "quiet"
     ];
