@@ -37,10 +37,13 @@
   };
 
   # Colorscheme
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
-  catppuccin.accent = "sapphire";
-  catppuccin.tty.enable = true;
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+    flavor = "mocha";
+    accent = "sapphire";
+    tty.enable = true;
+  };
 
   # fix mime list problem
   home-manager = {

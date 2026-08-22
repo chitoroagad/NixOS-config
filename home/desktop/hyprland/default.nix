@@ -37,6 +37,8 @@
 
   services.hyprpolkitagent.enable = true;
 
+  catppuccin.hyprtoolkit.enable = true;
+
   wayland.windowManager.hyprland = let
     exe = lib.getExe;
     exe' = lib.getExe';

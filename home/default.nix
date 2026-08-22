@@ -54,7 +54,7 @@
   home = {
     username = "darius";
     homeDirectory = "/home/darius";
-    sessionPath = [ "$HOME/.local/bin" ];
+    sessionPath = ["$HOME/.local/bin"];
     packages = with pkgs; [
       fastfetch
 
@@ -105,9 +105,12 @@
   news.display = "show";
 
   # Colorscheme
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
-  catppuccin.accent = "sapphire";
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+    flavor = "mocha";
+    accent = "sapphire";
+  };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
