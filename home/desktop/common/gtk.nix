@@ -17,8 +17,13 @@
     };
 
     theme = {
-      name = "Catppuccin-GTK-Dark";
-      package = pkgs.magnetic-catppuccin-gtk;
+      name = "catppuccin-mocha-blue-compact-black";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["blue"];
+        size = "compact";
+        tweaks = ["black"];
+        variant = "mocha";
+      };
     };
 
     gtk4.theme = config.gtk.theme;
