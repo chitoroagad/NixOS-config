@@ -16,10 +16,7 @@
 
     uwsm.enable = true;
     xwayland.enable = true;
-    hyprlock = {
-      enable = true;
-      package = pkgs.hyprlock;
-    };
+    hyprlock.enable = true;
     zsh.enable = true;
     fish = {
       enable = true;
