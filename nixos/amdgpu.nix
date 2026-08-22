@@ -21,9 +21,9 @@
   services.switcherooControl.enable = true;
 
   # LACT (Linux AMDGPU Controller) GUI
-  environment.systemPackages = with pkgs; [lact];
-  systemd.packages = with pkgs; [lact];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
+  # environment.systemPackages = with pkgs; [lact];
+  # systemd.packages = with pkgs; [lact];
+  # systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   # HIP libs https://wiki.nixos.org/wiki/AMD_GPU#HIP
   systemd.tmpfiles.rules = let
