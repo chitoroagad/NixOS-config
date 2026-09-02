@@ -47,7 +47,7 @@
     defaultApp = type: uwsmWrap "${exe pkgs.handlr-regex} launch ${type}";
     screenshot = import ./screenshot-script.nix {inherit pkgs lib;};
     browser = uwsmWrap (exe pkgs.brave);
-    hyprlock = uwsmWrap (exe pkgs.hyprlock);
+    hyprlock = uwsmWrap ((exe pkgs.hyprlock) + " --grace 3");
     hyprlauncher = uwsmWrap (exe pkgs.hyprlauncher);
     term = uwsmWrap (exe config.programs.kitty.package);
     vpn = uwsmWrap (exe pkgs.proton-vpn);
