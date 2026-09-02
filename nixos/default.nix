@@ -31,6 +31,7 @@
     ./docker.nix
     ./extra-udev.nix
     ./filesystem-index.nix
+    ./fingerprint.nix
     ./fonts.nix
     ./fwupd.nix
     ./gc.nix
