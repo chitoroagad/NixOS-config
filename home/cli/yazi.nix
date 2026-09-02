@@ -27,7 +27,7 @@
       opener = {
         edit = [
           {
-            run = "${lib.getExe pkgs.neovim} \"$@\"";
+            run = lib.getExe pkgs.neovim + " %s";
             block = true;
             for = "unix";
             desc = "Edit file";
@@ -35,7 +35,7 @@
         ];
         play = [
           {
-            run = "${lib.getExe' pkgs.vlc "vlc"} \"$@\"";
+            run = lib.getExe pkgs.vlc + " %s";
             orphan = true;
             for = "unix";
             desc = "Play file";
@@ -43,7 +43,7 @@
         ];
         open = [
           {
-            run = "${lib.getExe' pkgs.xdg-utils "xdg-open"} \"$@\"";
+            run = (lib.getExe' pkgs.xdg-utils "xdg-open") + " %s";
             orphan = true;
             for = "unix";
             desc = "Open";
