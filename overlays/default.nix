@@ -3,8 +3,6 @@
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
-  cachyos-kernel = inputs.nix-cachyos-kernel.overlays.default;
-
   # Use Lix
   nix_lix = final: prev: {
     inherit
