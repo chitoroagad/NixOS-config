@@ -11,6 +11,7 @@
     gamescopeSession.enable = true;
     gamescopeSession.args = ["adaptive-sync" "steam"];
   };
+  programs.gamemode.enable = true;
   hardware.xpadneo.enable = true;
 
   hardware.graphics = {
