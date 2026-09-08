@@ -10,7 +10,6 @@
     ./hyprlock.nix
     ./lutris.nix
     ./qt.nix
-    ./sound.nix
     ./wallpaper
 
     ./extraBluetooth.nix

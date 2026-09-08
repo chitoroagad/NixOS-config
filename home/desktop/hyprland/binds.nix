@@ -1,2 +1,0 @@
-# merged into default.nix
-{ ... }: {}
