@@ -7,6 +7,10 @@
 }: {
   imports = [
     ./env.nix
+    ./hypridle.nix
+    ./hyprlauncher.nix
+    ./hyprlock.nix
+    ./wallpaper
   ];
 
   home.packages = with pkgs; [

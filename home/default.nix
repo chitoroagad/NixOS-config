@@ -21,6 +21,8 @@
       ./desktop/common
       ./desktop/hyprland
 
+      ./theming
+
       ./cli
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);

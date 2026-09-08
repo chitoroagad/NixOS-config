@@ -1,17 +1,8 @@
 {pkgs, ...}: {
   imports = [
-    ./cursor.nix
     ./dms.nix
-    ./kitty.nix
-    ./font.nix
-    ./gtk.nix
-    ./hypridle.nix
-    ./hyprlauncher.nix
-    ./hyprlock.nix
-    ./qt.nix
-    ./wallpaper
-
     ./extraBluetooth.nix
+    ./kitty.nix
   ];
 
   home.packages = with pkgs; [

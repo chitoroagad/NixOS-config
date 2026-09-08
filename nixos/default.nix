@@ -3,47 +3,51 @@
 {
   imports = [
     ./hardware-configuration.nix
-
-    ./amdgpu.nix
-    ./appimage.nix
-    ./automount.nix
-    ./bluetooth.nix
-    ./boot.nix
-    ./cachix.nix
     ./darius.nix
-    ./docker.nix
-    ./extra-udev.nix
-    ./filesystem-index.nix
-    ./fingerprint.nix
-    ./fonts.nix
-    ./fwupd.nix
-    ./gc.nix
-    ./hyprland.nix
-    ./keyboard.nix
-    ./locale.nix
-    ./man.nix
-    ./networking.nix
-    ./nix-ld.nix
-    ./nix.nix
-    ./nixpkgs.nix
-    ./ollama.nix
-    ./opengl.nix
-    ./openssh.nix
-    ./polkit.nix
-    ./portals.nix
-    ./printing.nix
-    ./root.nix
-    ./seat.nix
-    ./security.nix
-    ./shells.nix
-    ./sound.nix
-    ./steam.nix
-    ./theme.nix
-    ./timesyncd.nix
-    ./tlp.nix
-    ./tmux.nix
-    ./upower.nix
-    ./virtualisation.nix
+
+    ./hardware/bluetooth.nix
+    ./hardware/fingerprint.nix
+    ./hardware/fwupd.nix
+    ./hardware/graphics.nix
+    ./hardware/keyboard.nix
+    ./hardware/power.nix
+    ./hardware/printing.nix
+    ./hardware/rocm.nix
+    ./hardware/udev.nix
+    ./hardware/upower.nix
+
+    ./system/boot.nix
+    ./system/cachix.nix
+    ./system/gc.nix
+    ./system/locale.nix
+    ./system/networking.nix
+    ./system/nix.nix
+    ./system/nixpkgs.nix
+    ./system/packages.nix
+    ./system/polkit.nix
+    ./system/seat.nix
+    ./system/security.nix
+
+    ./services/automount.nix
+    ./services/docker.nix
+    ./services/locate.nix
+    ./services/ollama.nix
+    ./services/openssh.nix
+    ./services/timesyncd.nix
+    ./services/tmux.nix
+
+    ./desktop/fonts.nix
+    ./desktop/hyprland.nix
+    ./desktop/portals.nix
+    ./desktop/sound.nix
+    ./desktop/theme.nix
+
+    ./programs/appimage.nix
+    ./programs/man.nix
+    ./programs/nix-ld.nix
+    ./programs/shells.nix
+    ./programs/steam.nix
+    ./programs/virtualisation.nix
   ];
 
   networking.hostName = "LeMachine";
