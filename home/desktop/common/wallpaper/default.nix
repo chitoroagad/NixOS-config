@@ -5,7 +5,7 @@
 }: let
   wallpaper = pkgs.wbg;
   exe = "${lib.getExe pkgs.wbg} --stretch";
-  image = ./aesthetic_deer.png;
+  image = ./mountain_sun_purple.jpg;
 in {
   home.packages = [wallpaper];
   systemd.user.services.wallpaper = {
