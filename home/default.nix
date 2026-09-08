@@ -16,6 +16,8 @@
       # You can also split up your configuration and import pieces of it here:
       # ./nvim.nix
 
+      ./apps
+
       ./desktop/common
       ./desktop/hyprland
 
@@ -55,52 +57,6 @@
     username = "darius";
     homeDirectory = "/home/darius";
     sessionPath = ["$HOME/.local/bin"];
-    packages = with pkgs; [
-      fastfetch
-
-      # archives
-      zip
-      unzip
-      rar
-      xz
-
-      # utils
-      ripgrep
-      jq
-      eza
-      fzf
-      file
-
-      # misc
-      which
-      trash-cli
-      tldr
-      cachix
-
-      # sys tools
-      pciutils
-      usbutils
-      nmap
-
-      # Browser
-      brave
-      google-chrome
-      firefox
-
-      # Other
-      stable.spotify
-      stable.libreoffice
-      slack
-      proton-vpn
-      proton-pass
-      discord
-      webcord
-      vlc
-      pavucontrol
-      obs-studio
-      zoom-us
-      gimp
-    ];
   };
   news.display = "show";
 

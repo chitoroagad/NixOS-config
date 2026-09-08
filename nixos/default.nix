@@ -1,26 +1,16 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{pkgs, ...}: {
-  # You can import other NixOS modules here
+{
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
 
     ./amdgpu.nix
     ./appimage.nix
     ./automount.nix
-    ./boot.nix
     ./bluetooth.nix
+    ./boot.nix
     ./cachix.nix
     ./darius.nix
-    ./desktop.nix
     ./docker.nix
     ./extra-udev.nix
     ./filesystem-index.nix
@@ -28,53 +18,35 @@
     ./fonts.nix
     ./fwupd.nix
     ./gc.nix
+    ./hyprland.nix
     ./keyboard.nix
+    ./locale.nix
     ./man.nix
+    ./networking.nix
     ./nix-ld.nix
     ./nix.nix
     ./nixpkgs.nix
     ./ollama.nix
     ./opengl.nix
+    ./openssh.nix
     ./polkit.nix
+    ./portals.nix
     ./printing.nix
     ./root.nix
     ./seat.nix
     ./security.nix
+    ./shells.nix
     ./sound.nix
     ./steam.nix
+    ./theme.nix
+    ./timesyncd.nix
     ./tlp.nix
     ./tmux.nix
     ./upower.nix
+    ./virtualisation.nix
   ];
 
   networking.hostName = "LeMachine";
-  networking.networkmanager.enable = true;
-  networking.networkmanager.plugins = with pkgs; [networkmanager-openvpn networkmanager-openconnect];
-  # Set your time zone.
-  time.timeZone = "Europe/London";
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.timesyncd.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

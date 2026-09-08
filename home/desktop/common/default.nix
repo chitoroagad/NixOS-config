@@ -8,7 +8,6 @@
     ./hypridle.nix
     ./hyprlauncher.nix
     ./hyprlock.nix
-    ./lutris.nix
     ./qt.nix
     ./wallpaper
 

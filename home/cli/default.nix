@@ -8,6 +8,7 @@
     ./yazi.nix
     ./zsh.nix
     ./starship.nix
+    ./tools.nix
     ./torrent-script.nix
   ];
 
