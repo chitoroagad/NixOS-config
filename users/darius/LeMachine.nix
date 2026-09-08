@@ -14,7 +14,6 @@
       ollama.enable = true;
       openssh.enable = true;
       timesyncd.enable = true;
-      tmux.enable = true;
     };
 
     mine.desktop = {

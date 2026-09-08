@@ -88,5 +88,22 @@
         set -g status-position top
       '';
     };
+
+    # tmux server as a user unit. Sources hm-session-vars.sh rather than using
+    # a login shell, so ~/.zshrc is not loaded; add -l to bash if that is ever
+    # needed. Sourcing it is also what puts TMUX_TMPDIR on the server, so it
+    # listens on the same socket an interactive shell looks for.
+    systemd.user.services.tmux = {
+      Unit.Description = "tmux server";
+
+      Service = {
+        Type = "forking";
+        Restart = "always";
+        ExecStart = "${lib.getExe pkgs.bash} -c 'source ${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh; exec ${lib.getExe config.programs.tmux.package} start-server'";
+        ExecStop = "${lib.getExe config.programs.tmux.package} kill-server";
+      };
+
+      Install.WantedBy = ["default.target"];
+    };
   };
 }

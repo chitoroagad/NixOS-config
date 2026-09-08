@@ -32,7 +32,6 @@
     ./services/ollama.nix
     ./services/openssh.nix
     ./services/timesyncd.nix
-    ./services/tmux.nix
 
     ./desktop/fonts.nix
     ./desktop/hyprland.nix
