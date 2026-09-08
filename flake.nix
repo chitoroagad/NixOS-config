@@ -20,7 +20,9 @@
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     # shell
-    dankMaterialShell.url = "github:AvengeMedia/DankMaterialShell/stable";
+    # Pinned: stable at aa4b99d ships a vendorHash that does not match its
+    # go.sum, so dms-shell fails to build. Back to /stable once upstream fixes it.
+    dankMaterialShell.url = "github:AvengeMedia/DankMaterialShell/0bbe83380c9406d262d567581d64477d261c9ee5";
     dankMaterialShell.inputs.nixpkgs.follows = "nixpkgs";
   };
 
