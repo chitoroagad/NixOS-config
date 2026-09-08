@@ -50,11 +50,4 @@
     accent = "sapphire";
     tty.enable = true;
   };
-
-  # fix mime list problem
-  home-manager = {
-    backupFileExtension = "hm-backup";
-    useGlobalPkgs = true;
-    useUserPackages = true;
-  };
 }

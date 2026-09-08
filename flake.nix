@@ -84,7 +84,6 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
-          asztal = nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/desktop/common/ags {inherit inputs;};
         };
         modules = [
           ./home
