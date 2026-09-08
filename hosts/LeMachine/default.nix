@@ -6,17 +6,15 @@
 
   networking.hostName = "LeMachine";
 
+  mine.profiles.laptop.enable = true;
+
+  # Machine specifics the laptop profile does not cover.
   mine.hardware = {
-    bluetooth.enable = true;
-    fingerprint.enable = true;
-    fwupd.enable = true;
     graphics.enable = true;
-    keyboard.enable = true;
-    power.enable = true;
+    keyboard.enable = true; # qmk
     printing.enable = true;
-    rocm.enable = true;
+    rocm.enable = true; # 7700S
     udev.enable = true;
-    upower.enable = true;
   };
 
   mine.system = {

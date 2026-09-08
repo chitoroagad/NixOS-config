@@ -2,6 +2,7 @@
 # hosts and users decide which are on.
 {
   imports = [
+    ../profiles/nixos
     ./hardware/bluetooth.nix
     ./hardware/fingerprint.nix
     ./hardware/fwupd.nix
