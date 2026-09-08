@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.desktop.theme.enable = lib.mkEnableOption "theme" // {default = true;};
+  options.mine.desktop.theme.enable = lib.mkEnableOption "theme";
 
   config = lib.mkIf config.mine.desktop.theme.enable {
     catppuccin = {

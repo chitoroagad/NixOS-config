@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.system.networking.enable = lib.mkEnableOption "networking" // {default = true;};
+  options.mine.system.networking.enable = lib.mkEnableOption "networking";
 
   config = lib.mkIf config.mine.system.networking.enable {
     networking.networkmanager.enable = true;

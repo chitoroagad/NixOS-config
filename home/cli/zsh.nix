@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.zsh.enable = lib.mkEnableOption "zsh" // {default = true;};
+  options.mine.cli.zsh.enable = lib.mkEnableOption "zsh";
 
   config = lib.mkIf config.mine.cli.zsh.enable {
     programs.zsh = {

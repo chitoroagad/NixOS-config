@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.desktop.kitty.enable = lib.mkEnableOption "kitty" // {default = true;};
+  options.mine.desktop.kitty.enable = lib.mkEnableOption "kitty";
 
   config = lib.mkIf config.mine.desktop.kitty.enable {
     xdg.mimeApps = {

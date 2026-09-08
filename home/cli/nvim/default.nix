@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.nvim.enable = lib.mkEnableOption "nvim" // {default = true;};
+  options.mine.cli.nvim.enable = lib.mkEnableOption "nvim";
 
   config = lib.mkIf config.mine.cli.nvim.enable {
     xdg.configFile.nvim = {

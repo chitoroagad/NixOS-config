@@ -8,7 +8,7 @@
   exe = "${lib.getExe pkgs.wbg} --stretch";
   image = ./mountain_sun_purple.jpg;
 in {
-  options.mine.desktop.wallpaper.enable = lib.mkEnableOption "wallpaper" // {default = true;};
+  options.mine.desktop.wallpaper.enable = lib.mkEnableOption "wallpaper";
 
   config = lib.mkIf config.mine.desktop.wallpaper.enable {
     home.packages = [wallpaper];

@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.theming.gtk.enable = lib.mkEnableOption "gtk" // {default = true;};
+  options.mine.theming.gtk.enable = lib.mkEnableOption "gtk";
 
   config = lib.mkIf config.mine.theming.gtk.enable {
     gtk = {

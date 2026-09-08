@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.desktop.hyprland.enable = lib.mkEnableOption "hyprland" // {default = true;};
+  options.mine.desktop.hyprland.enable = lib.mkEnableOption "hyprland";
 
   config = lib.mkIf config.mine.desktop.hyprland.enable {
     programs = {

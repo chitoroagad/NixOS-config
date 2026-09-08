@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.hardware.fingerprint.enable = lib.mkEnableOption "fingerprint" // {default = true;};
+  options.mine.hardware.fingerprint.enable = lib.mkEnableOption "fingerprint";
 
   config = lib.mkIf config.mine.hardware.fingerprint.enable {
     services.fprintd.enable = true;

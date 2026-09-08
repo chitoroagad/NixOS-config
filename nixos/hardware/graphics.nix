@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: {
-  options.mine.hardware.graphics.enable = lib.mkEnableOption "graphics" // {default = true;};
+  options.mine.hardware.graphics.enable = lib.mkEnableOption "graphics";
 
   config = lib.mkIf config.mine.hardware.graphics.enable {
     hardware = {

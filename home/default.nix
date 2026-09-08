@@ -55,11 +55,7 @@
 
   # nix.package = pkgs.lixPackageSets.latest.lix;
 
-  home = {
-    username = "darius";
-    homeDirectory = "/home/darius";
-    sessionPath = ["$HOME/.local/bin"];
-  };
+  home.sessionPath = ["$HOME/.local/bin"];
   news.display = "show";
 
   # Colorscheme
@@ -79,7 +75,4 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
 }

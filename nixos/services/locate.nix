@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.services.locate.enable = lib.mkEnableOption "locate" // {default = true;};
+  options.mine.services.locate.enable = lib.mkEnableOption "locate";
 
   config = lib.mkIf config.mine.services.locate.enable {
     services.locate = {

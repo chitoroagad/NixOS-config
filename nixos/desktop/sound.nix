@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.desktop.sound.enable = lib.mkEnableOption "sound" // {default = true;};
+  options.mine.desktop.sound.enable = lib.mkEnableOption "sound";
 
   config = lib.mkIf config.mine.desktop.sound.enable {
     # Enable sound

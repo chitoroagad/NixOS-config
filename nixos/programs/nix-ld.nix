@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: {
-  options.mine.programs.nix-ld.enable = lib.mkEnableOption "nix-ld" // {default = true;};
+  options.mine.programs.nix-ld.enable = lib.mkEnableOption "nix-ld";
 
   config = lib.mkIf config.mine.programs.nix-ld.enable {
     programs.nix-ld = {

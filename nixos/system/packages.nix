@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.system.packages.enable = lib.mkEnableOption "packages" // {default = true;};
+  options.mine.system.packages.enable = lib.mkEnableOption "packages";
 
   config = lib.mkIf config.mine.system.packages.enable {
     # List packages installed in system profile. To search, run:

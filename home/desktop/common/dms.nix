@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.desktop.dms.enable = lib.mkEnableOption "dms" // {default = true;};
+  options.mine.desktop.dms.enable = lib.mkEnableOption "dms";
 
   config = lib.mkIf config.mine.desktop.dms.enable {
     programs.dank-material-shell = {

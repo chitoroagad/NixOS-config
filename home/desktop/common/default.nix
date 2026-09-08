@@ -10,7 +10,7 @@
     ./kitty.nix
   ];
 
-  options.mine.desktop.base.enable = lib.mkEnableOption "desktop base" // {default = true;};
+  options.mine.desktop.base.enable = lib.mkEnableOption "desktop base";
 
   config = lib.mkIf config.mine.desktop.base.enable {
     home.packages = with pkgs; [

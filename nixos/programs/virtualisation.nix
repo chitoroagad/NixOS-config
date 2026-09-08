@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.programs.virtualisation.enable = lib.mkEnableOption "virtualisation" // {default = true;};
+  options.mine.programs.virtualisation.enable = lib.mkEnableOption "virtualisation";
 
   config = lib.mkIf config.mine.programs.virtualisation.enable {
     virtualisation.libvirtd = {

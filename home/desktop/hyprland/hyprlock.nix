@@ -45,7 +45,7 @@
     printf '%s  %s%%' "$icon" "$cap"
   '';
 in {
-  options.mine.desktop.hyprlock.enable = lib.mkEnableOption "hyprlock" // {default = true;};
+  options.mine.desktop.hyprlock.enable = lib.mkEnableOption "hyprlock";
 
   config = lib.mkIf config.mine.desktop.hyprlock.enable {
     catppuccin.hyprlock.enable = false;

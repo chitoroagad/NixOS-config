@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.yazi.enable = lib.mkEnableOption "yazi" // {default = true;};
+  options.mine.cli.yazi.enable = lib.mkEnableOption "yazi";
 
   config = lib.mkIf config.mine.cli.yazi.enable {
     # xdg.desktopEntries.yazi = {

@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.system.security.enable = lib.mkEnableOption "security" // {default = true;};
+  options.mine.system.security.enable = lib.mkEnableOption "security";
 
   config = lib.mkIf config.mine.system.security.enable {
     # security.sudo.enable = false;

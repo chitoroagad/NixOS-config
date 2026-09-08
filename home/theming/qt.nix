@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.theming.qt.enable = lib.mkEnableOption "qt" // {default = true;};
+  options.mine.theming.qt.enable = lib.mkEnableOption "qt";
 
   config = lib.mkIf config.mine.theming.qt.enable {
     qt = {

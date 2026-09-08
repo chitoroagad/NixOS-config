@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.tools.enable = lib.mkEnableOption "tools" // {default = true;};
+  options.mine.cli.tools.enable = lib.mkEnableOption "tools";
 
   config = lib.mkIf config.mine.cli.tools.enable {
     home.packages = with pkgs; [

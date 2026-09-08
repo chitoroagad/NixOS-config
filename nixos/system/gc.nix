@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.system.gc.enable = lib.mkEnableOption "gc" // {default = true;};
+  options.mine.system.gc.enable = lib.mkEnableOption "gc";
 
   config = lib.mkIf config.mine.system.gc.enable {
     nix.gc = {

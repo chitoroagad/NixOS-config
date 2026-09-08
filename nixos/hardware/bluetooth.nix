@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.hardware.bluetooth.enable = lib.mkEnableOption "bluetooth" // {default = true;};
+  options.mine.hardware.bluetooth.enable = lib.mkEnableOption "bluetooth";
 
   config = lib.mkIf config.mine.hardware.bluetooth.enable {
     # Enable bluetooth

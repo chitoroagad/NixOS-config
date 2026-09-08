@@ -4,7 +4,7 @@
   inputs,
   ...
 }: {
-  options.mine.system.nix.enable = lib.mkEnableOption "nix" // {default = true;};
+  options.mine.system.nix.enable = lib.mkEnableOption "nix";
 
   config = lib.mkIf config.mine.system.nix.enable {
     nix = let

@@ -17,7 +17,7 @@
     ./torrent-script.nix
   ];
 
-  options.mine.cli.base.enable = lib.mkEnableOption "cli base tools" // {default = true;};
+  options.mine.cli.base.enable = lib.mkEnableOption "cli base tools";
 
   config = lib.mkIf config.mine.cli.base.enable {
     programs.distrobox.enable = true;

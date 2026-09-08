@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.desktop.env.enable = lib.mkEnableOption "env" // {default = true;};
+  options.mine.desktop.env.enable = lib.mkEnableOption "env";
 
   config = lib.mkIf config.mine.desktop.env.enable {
     home.sessionVariables = {

@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.system.polkit.enable = lib.mkEnableOption "polkit" // {default = true;};
+  options.mine.system.polkit.enable = lib.mkEnableOption "polkit";
 
   config = lib.mkIf config.mine.system.polkit.enable {
     # enable keyring

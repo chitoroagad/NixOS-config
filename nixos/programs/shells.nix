@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.programs.shells.enable = lib.mkEnableOption "shells" // {default = true;};
+  options.mine.programs.shells.enable = lib.mkEnableOption "shells";
 
   config = lib.mkIf config.mine.programs.shells.enable {
     programs = {

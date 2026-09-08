@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.starship.enable = lib.mkEnableOption "starship" // {default = true;};
+  options.mine.cli.starship.enable = lib.mkEnableOption "starship";
 
   config = lib.mkIf config.mine.cli.starship.enable {
     programs.starship = {

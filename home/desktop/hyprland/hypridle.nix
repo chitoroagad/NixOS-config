@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.desktop.hypridle.enable = lib.mkEnableOption "hypridle" // {default = true;};
+  options.mine.desktop.hypridle.enable = lib.mkEnableOption "hypridle";
 
   config = lib.mkIf config.mine.desktop.hypridle.enable {
     home.packages = [

@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.hardware.udev.enable = lib.mkEnableOption "udev" // {default = true;};
+  options.mine.hardware.udev.enable = lib.mkEnableOption "udev";
 
   config = lib.mkIf config.mine.hardware.udev.enable {
     services.udev.extraRules = ''

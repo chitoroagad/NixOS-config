@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.theming.fonts.enable = lib.mkEnableOption "fonts" // {default = true;};
+  options.mine.theming.fonts.enable = lib.mkEnableOption "fonts";
 
   config = lib.mkIf config.mine.theming.fonts.enable {
     fontProfiles = {

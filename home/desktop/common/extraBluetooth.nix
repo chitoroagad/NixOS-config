@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.desktop.extraBluetooth.enable = lib.mkEnableOption "extraBluetooth" // {default = true;};
+  options.mine.desktop.extraBluetooth.enable = lib.mkEnableOption "extraBluetooth";
 
   config = lib.mkIf config.mine.desktop.extraBluetooth.enable {
     services = {

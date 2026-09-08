@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.desktop.fonts.enable = lib.mkEnableOption "fonts" // {default = true;};
+  options.mine.desktop.fonts.enable = lib.mkEnableOption "fonts";
 
   config = lib.mkIf config.mine.desktop.fonts.enable {
     fonts = {

@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.apps.proton.enable = lib.mkEnableOption "proton" // {default = true;};
+  options.mine.apps.proton.enable = lib.mkEnableOption "proton";
 
   config = lib.mkIf config.mine.apps.proton.enable {
     home.packages = with pkgs; [

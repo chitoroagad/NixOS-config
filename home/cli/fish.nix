@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.fish.enable = lib.mkEnableOption "fish" // {default = true;};
+  options.mine.cli.fish.enable = lib.mkEnableOption "fish";
 
   config = lib.mkIf config.mine.cli.fish.enable {
     programs.nix-your-shell.enable = true;

@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.services.automount.enable = lib.mkEnableOption "automount" // {default = true;};
+  options.mine.services.automount.enable = lib.mkEnableOption "automount";
 
   config = lib.mkIf config.mine.services.automount.enable {
     services = {

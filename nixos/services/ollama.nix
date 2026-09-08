@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.services.ollama.enable = lib.mkEnableOption "ollama" // {default = true;};
+  options.mine.services.ollama.enable = lib.mkEnableOption "ollama";
 
   config = lib.mkIf config.mine.services.ollama.enable {
     services.ollama = {

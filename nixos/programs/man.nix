@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.programs.man.enable = lib.mkEnableOption "man" // {default = true;};
+  options.mine.programs.man.enable = lib.mkEnableOption "man";
 
   config = lib.mkIf config.mine.programs.man.enable {
     documentation = {

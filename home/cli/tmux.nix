@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.tmux.enable = lib.mkEnableOption "tmux" // {default = true;};
+  options.mine.cli.tmux.enable = lib.mkEnableOption "tmux";
 
   config = lib.mkIf config.mine.cli.tmux.enable {
     catppuccin.tmux.enable = false; # let me do my own config

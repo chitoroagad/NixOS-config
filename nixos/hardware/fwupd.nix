@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.hardware.fwupd.enable = lib.mkEnableOption "fwupd" // {default = true;};
+  options.mine.hardware.fwupd.enable = lib.mkEnableOption "fwupd";
 
   config = lib.mkIf config.mine.hardware.fwupd.enable {
     services.fwupd = {

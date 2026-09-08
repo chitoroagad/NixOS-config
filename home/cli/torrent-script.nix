@@ -53,7 +53,7 @@
         clean_torrents(target_dir, delete=delete_mode)
     '';
 in {
-  options.mine.cli.torrent-script.enable = lib.mkEnableOption "torrent-script" // {default = true;};
+  options.mine.cli.torrent-script.enable = lib.mkEnableOption "torrent-script";
 
   config = lib.mkIf config.mine.cli.torrent-script.enable {
     home.packages = [script];

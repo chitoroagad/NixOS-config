@@ -4,7 +4,7 @@
   outputs,
   ...
 }: {
-  options.mine.system.nixpkgs.enable = lib.mkEnableOption "nixpkgs" // {default = true;};
+  options.mine.system.nixpkgs.enable = lib.mkEnableOption "nixpkgs";
 
   config = lib.mkIf config.mine.system.nixpkgs.enable {
     nixpkgs = {

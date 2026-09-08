@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.hardware.rocm.enable = lib.mkEnableOption "rocm" // {default = true;};
+  options.mine.hardware.rocm.enable = lib.mkEnableOption "rocm";
 
   config = lib.mkIf config.mine.hardware.rocm.enable {
     hardware = {

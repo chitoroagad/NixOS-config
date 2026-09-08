@@ -7,7 +7,7 @@
   uwsm = lib.getExe pkgs.uwsm;
   uwsmPrefix = "${uwsm} app -- ";
 in {
-  options.mine.desktop.hyprlauncher.enable = lib.mkEnableOption "hyprlauncher" // {default = true;};
+  options.mine.desktop.hyprlauncher.enable = lib.mkEnableOption "hyprlauncher";
 
   config = lib.mkIf config.mine.desktop.hyprlauncher.enable {
     services.hyprlauncher = {

@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.services.tmux.enable = lib.mkEnableOption "tmux" // {default = true;};
+  options.mine.services.tmux.enable = lib.mkEnableOption "tmux";
 
   config = lib.mkIf config.mine.services.tmux.enable {
     systemd.user.services.tmux = let

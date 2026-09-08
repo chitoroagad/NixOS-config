@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.hardware.printing.enable = lib.mkEnableOption "printing" // {default = true;};
+  options.mine.hardware.printing.enable = lib.mkEnableOption "printing";
 
   config = lib.mkIf config.mine.hardware.printing.enable {
     services.printing.enable = true;

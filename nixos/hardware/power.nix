@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  options.mine.hardware.power.enable = lib.mkEnableOption "power" // {default = true;};
+  options.mine.hardware.power.enable = lib.mkEnableOption "power";
 
   config = lib.mkIf config.mine.hardware.power.enable {
     services.power-profiles-daemon.enable = true;

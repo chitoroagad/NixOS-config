@@ -45,6 +45,16 @@
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
+
+    # Which users live on which host. The single source of truth for both
+    # nixosConfigurations and homeConfigurations, since home-manager is applied
+    # standalone rather than as a NixOS module.
+    hosts = {
+      LeMachine = {
+        system = "x86_64-linux";
+        users = ["darius"];
+      };
+    };
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
@@ -63,34 +73,51 @@
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager;
 
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      LeMachine = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
+    # Available through 'nixos-rebuild --flake .#<hostname>'
+    nixosConfigurations =
+      nixpkgs.lib.mapAttrs (
+        hostname: host:
+          nixpkgs.lib.nixosSystem {
+            specialArgs = {inherit inputs outputs;};
+            modules =
+              [
+                ./nixos
+                ./hosts/${hostname}
+                catppuccin.nixosModules.catppuccin
+                nixos-hardware.nixosModules.framework-16-7040-amd
+              ]
+              ++ builtins.concatMap (user: [
+                (import ./users/${user}/common.nix).system
+                (import ./users/${user}/${hostname}.nix).system
+              ])
+              host.users;
+          }
+      )
+      hosts;
 
-        modules = [
-          ./nixos
-          catppuccin.nixosModules.catppuccin
-          nixos-hardware.nixosModules.framework-16-7040-amd
-        ];
-      };
-    };
-
-    homeConfigurations = {
-      "darius@LeMachine" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-        };
-        modules = [
-          ./home
-          catppuccin.homeModules.catppuccin
-          dankMaterialShell.homeModules.dank-material-shell
-        ];
-      };
-    };
+    # Available through 'home-manager switch --flake .#<user>@<hostname>'
+    homeConfigurations = builtins.listToAttrs (
+      nixpkgs.lib.flatten (
+        nixpkgs.lib.mapAttrsToList (
+          hostname: host:
+            map (user: {
+              name = "${user}@${hostname}";
+              value = home-manager.lib.homeManagerConfiguration {
+                pkgs = nixpkgs.legacyPackages.${host.system};
+                extraSpecialArgs = {inherit inputs outputs;};
+                modules = [
+                  ./home
+                  (import ./users/${user}/common.nix).home
+                  (import ./users/${user}/${hostname}.nix).home
+                  catppuccin.homeModules.catppuccin
+                  dankMaterialShell.homeModules.dank-material-shell
+                ];
+              };
+            })
+            host.users
+        )
+        hosts
+      )
+    );
   };
 }

@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.system.locale.enable = lib.mkEnableOption "locale" // {default = true;};
+  options.mine.system.locale.enable = lib.mkEnableOption "locale";
 
   config = lib.mkIf config.mine.system.locale.enable {
     time.timeZone = "Europe/London";

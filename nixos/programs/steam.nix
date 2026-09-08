@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.programs.steam.enable = lib.mkEnableOption "steam" // {default = true;};
+  options.mine.programs.steam.enable = lib.mkEnableOption "steam";
 
   config = lib.mkIf config.mine.programs.steam.enable {
     programs.steam = {

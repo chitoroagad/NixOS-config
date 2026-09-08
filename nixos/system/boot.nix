@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.system.boot.enable = lib.mkEnableOption "boot" // {default = true;};
+  options.mine.system.boot.enable = lib.mkEnableOption "boot";
 
   config = lib.mkIf config.mine.system.boot.enable {
     boot = {

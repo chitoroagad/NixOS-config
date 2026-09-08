@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.mine.cli.git.enable = lib.mkEnableOption "git" // {default = true;};
+  options.mine.cli.git.enable = lib.mkEnableOption "git";
 
   config = lib.mkIf config.mine.cli.git.enable {
     programs.git = {

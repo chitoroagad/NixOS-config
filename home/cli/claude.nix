@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  options.mine.cli.claude.enable = lib.mkEnableOption "claude" // {default = true;};
+  options.mine.cli.claude.enable = lib.mkEnableOption "claude";
 
   config = lib.mkIf config.mine.cli.claude.enable {
     programs.claude-code = let
