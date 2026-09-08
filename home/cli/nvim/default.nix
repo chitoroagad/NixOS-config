@@ -1,86 +1,95 @@
-{pkgs, ...}: {
-  xdg.configFile.nvim = {
-    source = ./.;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  options.mine.cli.nvim.enable = lib.mkEnableOption "nvim" // {default = true;};
+
+  config = lib.mkIf config.mine.cli.nvim.enable {
+    xdg.configFile.nvim = {
+      source = ./.;
+    };
+
+    home.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+
+    programs.neovim = {
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+
+      withRuby = true;
+      withPython3 = true;
+    };
+
+    home.packages = with pkgs; [
+      neovim
+
+      gcc
+      git
+      gnumake
+      wget
+      curl
+      tree-sitter
+      luajitPackages.tree-sitter-cli
+      ripgrep
+      fd
+      fzf
+      cargo
+      luajitPackages.luarocks
+      lua5_1
+      nodejs-slim
+
+      # formatters
+      alejandra
+      bibtex-tidy
+      stylua
+      biome
+      prettierd
+      prettier
+      shfmt
+      rustfmt
+      taplo
+      typstyle
+      tex-fmt
+
+      # linters
+      luajitPackages.luacheck
+      ruff
+      shellcheck
+      cpplint
+      hadolint
+
+      # LSPs
+      lua-language-server
+      vscode-langservers-extracted # jsonls
+      # pyright
+      pyrefly
+      bash-language-server
+      dockerfile-language-server
+      clang-tools
+      typescript-language-server
+      ltex-ls-plus
+      emmet-ls
+      nil
+      glsl_analyzer
+      rust-analyzer
+      fish-lsp
+      tinymist
+      texlab
+
+      # misc
+      luajitPackages.jsregexp
+      ghostscript
+      mermaid-cli
+      vscode-extensions.vadimcn.vscode-lldb.adapter
+      graphviz
+      python312Packages.pylatexenc
+      tectonic
+      websocat
+    ];
   };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
-  programs.neovim = {
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-
-    withRuby = true;
-    withPython3 = true;
-  };
-
-  home.packages = with pkgs; [
-    neovim
-
-    gcc
-    git
-    gnumake
-    wget
-    curl
-    tree-sitter
-    luajitPackages.tree-sitter-cli
-    ripgrep
-    fd
-    fzf
-    cargo
-    luajitPackages.luarocks
-    lua5_1
-    nodejs-slim
-
-    # formatters
-    alejandra
-    bibtex-tidy
-    stylua
-    biome
-    prettierd
-    prettier
-    shfmt
-    rustfmt
-    taplo
-    typstyle
-    tex-fmt
-
-    # linters
-    luajitPackages.luacheck
-    ruff
-    shellcheck
-    cpplint
-    hadolint
-
-    # LSPs
-    lua-language-server
-    vscode-langservers-extracted # jsonls
-    # pyright
-    pyrefly
-    bash-language-server
-    dockerfile-language-server
-    clang-tools
-    typescript-language-server
-    ltex-ls-plus
-    emmet-ls
-    nil
-    glsl_analyzer
-    rust-analyzer
-    fish-lsp
-    tinymist
-    texlab
-
-    # misc
-    luajitPackages.jsregexp
-    ghostscript
-    mermaid-cli
-    vscode-extensions.vadimcn.vscode-lldb.adapter
-    graphviz
-    python312Packages.pylatexenc
-    tectonic
-    websocat
-  ];
 }

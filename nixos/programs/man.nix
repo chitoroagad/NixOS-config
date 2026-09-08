@@ -1,20 +1,29 @@
-{pkgs, ...}: {
-  documentation = {
-    enable = true;
-    dev.enable = true;
-    nixos.enable = true;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  options.mine.programs.man.enable = lib.mkEnableOption "man" // {default = true;};
 
-    man = {
+  config = lib.mkIf config.mine.programs.man.enable {
+    documentation = {
       enable = true;
-      man-db.enable = false;
-      mandoc.enable = true;
-      cache.enable = true;
-    };
-  };
+      dev.enable = true;
+      nixos.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    linux-manual
-    man-pages
-    man-pages-posix
-  ];
+      man = {
+        enable = true;
+        man-db.enable = false;
+        mandoc.enable = true;
+        cache.enable = true;
+      };
+    };
+
+    environment.systemPackages = with pkgs; [
+      linux-manual
+      man-pages
+      man-pages-posix
+    ];
+  };
 }

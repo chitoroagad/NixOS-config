@@ -1,43 +1,52 @@
-{pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./dms.nix
     ./extraBluetooth.nix
     ./kitty.nix
   ];
 
-  home.packages = with pkgs; [
-    libnotify
-    wl-clipboard
-    grim
-    slurp
-    xdg-utils
-    brightnessctl
-    qbittorrent
-    # way-shell.packages.${pkgs.system}.default
-  ];
+  options.mine.desktop.base.enable = lib.mkEnableOption "desktop base" // {default = true;};
 
-  dconf.enable = true;
-  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  config = lib.mkIf config.mine.desktop.base.enable {
+    home.packages = with pkgs; [
+      libnotify
+      wl-clipboard
+      grim
+      slurp
+      xdg-utils
+      brightnessctl
+      qbittorrent
+      # way-shell.packages.${pkgs.system}.default
+    ];
 
-  services.cliphist.enable = true;
+    dconf.enable = true;
+    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
-  xdg = {
-    portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
-      ];
-    };
+    services.cliphist.enable = true;
 
-    configFile."mimeapps.list".force = true;
-    mimeApps = {
-      enable = true;
-      associations.added = {
-        "video/mp4" = "vlc.desktop";
-        "video/mpeg" = "vlc.desktop";
-        "video/x-msvideo" = "vlc.desktop";
+    xdg = {
+      portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-hyprland
+        ];
+      };
+
+      configFile."mimeapps.list".force = true;
+      mimeApps = {
+        enable = true;
+        associations.added = {
+          "video/mp4" = "vlc.desktop";
+          "video/mpeg" = "vlc.desktop";
+          "video/x-msvideo" = "vlc.desktop";
+        };
       };
     };
   };

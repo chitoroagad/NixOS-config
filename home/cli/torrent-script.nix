@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   script =
     pkgs.writers.writePython3Bin "clean-torrents" {flakeIgnore = ["E111"];}
     ''
@@ -48,5 +53,9 @@
         clean_torrents(target_dir, delete=delete_mode)
     '';
 in {
-  home.packages = [script];
+  options.mine.cli.torrent-script.enable = lib.mkEnableOption "torrent-script" // {default = true;};
+
+  config = lib.mkIf config.mine.cli.torrent-script.enable {
+    home.packages = [script];
+  };
 }

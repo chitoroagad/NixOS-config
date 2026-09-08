@@ -1,29 +1,38 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    fastfetch
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  options.mine.cli.tools.enable = lib.mkEnableOption "tools" // {default = true;};
 
-    # archives
-    zip
-    unzip
-    rar
-    xz
+  config = lib.mkIf config.mine.cli.tools.enable {
+    home.packages = with pkgs; [
+      fastfetch
 
-    # utils
-    ripgrep
-    jq
-    eza
-    fzf
-    file
+      # archives
+      zip
+      unzip
+      rar
+      xz
 
-    # misc
-    which
-    trash-cli
-    tldr
-    cachix
+      # utils
+      ripgrep
+      jq
+      eza
+      fzf
+      file
 
-    # sys tools
-    pciutils
-    usbutils
-    nmap
-  ];
+      # misc
+      which
+      trash-cli
+      tldr
+      cachix
+
+      # sys tools
+      pciutils
+      usbutils
+      nmap
+    ];
+  };
 }

@@ -1,27 +1,36 @@
-{outputs, ...}: {
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.stable-packages
-      outputs.overlays.master-packages
-      outputs.overlays.additions
-      outputs.overlays.modifications
+{
+  config,
+  lib,
+  outputs,
+  ...
+}: {
+  options.mine.system.nixpkgs.enable = lib.mkEnableOption "nixpkgs" // {default = true;};
 
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
+  config = lib.mkIf config.mine.system.nixpkgs.enable {
+    nixpkgs = {
+      # You can add overlays here
+      overlays = [
+        # Add overlays your own flake exports (from overlays and pkgs dir):
+        outputs.overlays.stable-packages
+        outputs.overlays.master-packages
+        outputs.overlays.additions
+        outputs.overlays.modifications
 
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
+        # You can also add overlays exported from other flakes:
+        # neovim-nightly-overlay.overlays.default
+
+        # Or define it inline, for example:
+        # (final: prev: {
+        #   hi = final.hello.overrideAttrs (oldAttrs: {
+        #     patches = [ ./change-hello-to-hi.patch ];
+        #   });
+        # })
+      ];
+      # Configure your nixpkgs instance
+      config = {
+        # Disable if you don't want unfree packages
+        allowUnfree = true;
+      };
     };
   };
 }

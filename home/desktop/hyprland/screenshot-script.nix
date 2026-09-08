@@ -5,7 +5,6 @@
 }: let
   grimblast = lib.getExe pkgs.grimblast;
   notify-send = lib.getExe' pkgs.libnotify "notify-send";
-  
 in
   pkgs.lib.getExe (pkgs.writeShellScriptBin "screenshot-util" ''
     if [ -z "$XDG_PICTURES_DIR" ]; then

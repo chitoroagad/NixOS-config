@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./claude.nix
     ./fish.nix
@@ -12,34 +17,38 @@
     ./torrent-script.nix
   ];
 
-  programs.distrobox.enable = true;
-  programs.bat.enable = true;
-  programs.nh.enable = true;
-  programs.nix-index.enable = true;
-  programs.zoxide.enable = true;
-  programs.opencode.enable = true;
+  options.mine.cli.base.enable = lib.mkEnableOption "cli base tools" // {default = true;};
 
-  programs.btop = {
-    enable = true;
-    package = pkgs.btop.override {rocmSupport = true;};
-  };
+  config = lib.mkIf config.mine.cli.base.enable {
+    programs.distrobox.enable = true;
+    programs.bat.enable = true;
+    programs.nh.enable = true;
+    programs.nix-index.enable = true;
+    programs.zoxide.enable = true;
+    programs.opencode.enable = true;
 
-  programs.eza = {
-    enable = true;
-    icons = "auto";
-    git = true;
-  };
+    programs.btop = {
+      enable = true;
+      package = pkgs.btop.override {rocmSupport = true;};
+    };
 
-  programs.fzf = {
-    enable = true;
-    defaultOptions = [
-      "--height 40%"
-    ];
-  };
+    programs.eza = {
+      enable = true;
+      icons = "auto";
+      git = true;
+    };
 
-  programs.direnv = {
-    enable = true;
-    silent = true;
-    nix-direnv.enable = true;
+    programs.fzf = {
+      enable = true;
+      defaultOptions = [
+        "--height 40%"
+      ];
+    };
+
+    programs.direnv = {
+      enable = true;
+      silent = true;
+      nix-direnv.enable = true;
+    };
   };
 }

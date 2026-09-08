@@ -1,123 +1,128 @@
 {
-  pkgs,
+  config,
   lib,
+  pkgs,
   ...
 }: {
-  programs.starship = {
-    enable = true;
-    enableTransience = true;
-    settings = {
-      format = lib.concatStrings [
-        "$directory"
-        "$git_branch"
-        "$git_commit"
-        "$git_state"
-        "$git_status"
+  options.mine.cli.starship.enable = lib.mkEnableOption "starship" // {default = true;};
 
-        "$fill"
+  config = lib.mkIf config.mine.cli.starship.enable {
+    programs.starship = {
+      enable = true;
+      enableTransience = true;
+      settings = {
+        format = lib.concatStrings [
+          "$directory"
+          "$git_branch"
+          "$git_commit"
+          "$git_state"
+          "$git_status"
 
-        "$jobs"
-        "$bun"
-        "$c"
-        "$cpp"
-        "$python"
-        "$rust"
-        "$nix_shell"
-        "$direnv"
-        "$line_break"
-        "$character"
-      ];
+          "$fill"
 
-      add_newline = false;
+          "$jobs"
+          "$bun"
+          "$c"
+          "$cpp"
+          "$python"
+          "$rust"
+          "$nix_shell"
+          "$direnv"
+          "$line_break"
+          "$character"
+        ];
 
-      right_format = lib.concatStrings [
-        "$cmd_duration"
-      ];
+        add_newline = false;
 
-      fill = {
-        symbol = " ";
-      };
+        right_format = lib.concatStrings [
+          "$cmd_duration"
+        ];
 
-      directory = {
-        style = "bold blue";
-        truncation_length = 4;
-        read_only = " ";
-      };
+        fill = {
+          symbol = " ";
+        };
 
-      git_branch = {
-        format = "[$symbol$branch(:$remote_branch)]($style) ";
-        style = "bold green";
-      };
+        directory = {
+          style = "bold blue";
+          truncation_length = 4;
+          read_only = " ";
+        };
 
-      git_commit = {
-        format = "@[$hash]($style) ";
-        style = "purple";
-        commit_hash_length = 5;
-      };
+        git_branch = {
+          format = "[$symbol$branch(:$remote_branch)]($style) ";
+          style = "bold green";
+        };
 
-      git_state = {
-        format = "[$state( $progress_current/$progress_total)]($style) ";
-        style = "red";
-      };
+        git_commit = {
+          format = "@[$hash]($style) ";
+          style = "purple";
+          commit_hash_length = 5;
+        };
 
-      git_status = {
-        format = "([$all_status$ahead_behind]($style) )";
-        conflicted = "=$count";
-        ahead = "[⇡$count](bold green) ";
-        behind = "[⇣$count](bold green) ";
-        diverged = "[⇣⇡$count](bold green) ";
-        untracked = "[?$count](bold blue) ";
-        stashed = "[*$count](bold green) ";
-        modified = "[!$count](bold #f5a97f) ";
-        staged = "[+$count](bold yellow) ";
-        deleted = "$count ";
-      };
+        git_state = {
+          format = "[$state( $progress_current/$progress_total)]($style) ";
+          style = "red";
+        };
 
-      bun = {
-        format = "[$symbol($version )]($style) ";
-        symbol = " ";
-      };
+        git_status = {
+          format = "([$all_status$ahead_behind]($style) )";
+          conflicted = "=$count";
+          ahead = "[⇡$count](bold green) ";
+          behind = "[⇣$count](bold green) ";
+          diverged = "[⇣⇡$count](bold green) ";
+          untracked = "[?$count](bold blue) ";
+          stashed = "[*$count](bold green) ";
+          modified = "[!$count](bold #f5a97f) ";
+          staged = "[+$count](bold yellow) ";
+          deleted = "$count ";
+        };
 
-      c = {
-        format = "[$symbol($version(-$name) )]($style) ";
-        symbol = " ";
-      };
+        bun = {
+          format = "[$symbol($version )]($style) ";
+          symbol = " ";
+        };
 
-      cpp = {
-        format = "[$symbol($version(-$name) )]($style) ";
-        symbol = " ";
-      };
+        c = {
+          format = "[$symbol($version(-$name) )]($style) ";
+          symbol = " ";
+        };
 
-      python = {
-        format = "[$symbol$pyenv_prefix($version )(($virtualenv) )]($style) ";
-        symbol = " ";
-      };
+        cpp = {
+          format = "[$symbol($version(-$name) )]($style) ";
+          symbol = " ";
+        };
 
-      rust = {
-        format = "[$symbol($version )]($style) ";
-        symbol = " ";
-      };
+        python = {
+          format = "[$symbol$pyenv_prefix($version )(($virtualenv) )]($style) ";
+          symbol = " ";
+        };
 
-      cmd_duration = {
-        format = "[$duration]($style) ";
-        style = "dimmed white";
-      };
+        rust = {
+          format = "[$symbol($version )]($style) ";
+          symbol = " ";
+        };
 
-      direnv = {
-        format = "[$symbol]($style) ";
-        symbol = " ";
-        disabled = false;
-      };
+        cmd_duration = {
+          format = "[$duration]($style) ";
+          style = "dimmed white";
+        };
 
-      jobs = {
-        style = "bold green";
-        symbol = "";
-      };
+        direnv = {
+          format = "[$symbol]($style) ";
+          symbol = " ";
+          disabled = false;
+        };
 
-      nix_shell = {
-        format = "[$symbol$state]($style) ";
-        symbol = "󱄅 ";
-        # heuristic = true;
+        jobs = {
+          style = "bold green";
+          symbol = "";
+        };
+
+        nix_shell = {
+          format = "[$symbol$state]($style) ";
+          symbol = "󱄅 ";
+          # heuristic = true;
+        };
       };
     };
   };

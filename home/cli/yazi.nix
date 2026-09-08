@@ -1,54 +1,59 @@
 {
-  pkgs,
+  config,
   lib,
+  pkgs,
   ...
 }: {
-  # xdg.desktopEntries.yazi = {
-  #   name = "Yazi";
-  #   genericName = "File Manager";
-  #   icon = "yazi";
-  #   comment = "Blazing fast terminal file manager written in Rust, based on async I/O";
-  #   terminal = true;
-  #   exec = "kitty -e yazi";
-  #   type = "Application";
-  #   mimeType = ["inode/directory"];
-  #   categories = ["Utility" "Core" "System" "FileTools" "FileManager" "ConsoleOnly"];
-  #   settings = {
-  #     Keywords = "File;Manager;Explorer;Browser;Launcher";
-  #     TryExec = "yazi";
-  #   };
-  # };
+  options.mine.cli.yazi.enable = lib.mkEnableOption "yazi" // {default = true;};
 
-  programs.yazi = {
-    enable = true;
-    package = pkgs.yazi;
-    shellWrapperName = "yy";
-    settings = {
-      opener = {
-        edit = [
-          {
-            run = lib.getExe pkgs.neovim + " %s";
-            block = true;
-            for = "unix";
-            desc = "Edit file";
-          }
-        ];
-        play = [
-          {
-            run = lib.getExe pkgs.vlc + " %s";
-            orphan = true;
-            for = "unix";
-            desc = "Play file";
-          }
-        ];
-        open = [
-          {
-            run = (lib.getExe' pkgs.xdg-utils "xdg-open") + " %s";
-            orphan = true;
-            for = "unix";
-            desc = "Open";
-          }
-        ];
+  config = lib.mkIf config.mine.cli.yazi.enable {
+    # xdg.desktopEntries.yazi = {
+    #   name = "Yazi";
+    #   genericName = "File Manager";
+    #   icon = "yazi";
+    #   comment = "Blazing fast terminal file manager written in Rust, based on async I/O";
+    #   terminal = true;
+    #   exec = "kitty -e yazi";
+    #   type = "Application";
+    #   mimeType = ["inode/directory"];
+    #   categories = ["Utility" "Core" "System" "FileTools" "FileManager" "ConsoleOnly"];
+    #   settings = {
+    #     Keywords = "File;Manager;Explorer;Browser;Launcher";
+    #     TryExec = "yazi";
+    #   };
+    # };
+
+    programs.yazi = {
+      enable = true;
+      package = pkgs.yazi;
+      shellWrapperName = "yy";
+      settings = {
+        opener = {
+          edit = [
+            {
+              run = lib.getExe pkgs.neovim + " %s";
+              block = true;
+              for = "unix";
+              desc = "Edit file";
+            }
+          ];
+          play = [
+            {
+              run = lib.getExe pkgs.vlc + " %s";
+              orphan = true;
+              for = "unix";
+              desc = "Play file";
+            }
+          ];
+          open = [
+            {
+              run = (lib.getExe' pkgs.xdg-utils "xdg-open") + " %s";
+              orphan = true;
+              for = "unix";
+              desc = "Open";
+            }
+          ];
+        };
       };
     };
   };
