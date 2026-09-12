@@ -97,8 +97,10 @@
       Unit.Description = "tmux server";
 
       Service = {
-        Type = "forking";
-        Restart = "always";
+        # forking waits out the 90s start timeout because @continuum-restore
+        # repopulates panes into this cgroup.
+        Type = "oneshot";
+        RemainAfterExit = true;
         ExecStart = "${lib.getExe pkgs.bash} -c 'source ${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh; exec ${lib.getExe config.programs.tmux.package} start-server'";
         ExecStop = "${lib.getExe config.programs.tmux.package} kill-server";
       };
