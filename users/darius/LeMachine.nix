@@ -52,6 +52,9 @@
       zsh.enable = true;
     };
 
-    mine.desktop.extraBluetooth.enable = true;
+    mine.desktop = {
+      dms.island.enable = false;
+      extraBluetooth.enable = true;
+    };
   };
 }
