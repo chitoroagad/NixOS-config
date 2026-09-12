@@ -58,6 +58,10 @@
   # nix.package = pkgs.lixPackageSets.latest.lix;
 
   home.sessionPath = ["$HOME/.local/bin"];
+
+  # Standalone home-manager has no backupFileExtension option; this env var is read directly.
+  home.sessionVariables.HOME_MANAGER_BACKUP_EXT = "hmbak";
+
   news.display = "show";
 
   # Colorscheme
