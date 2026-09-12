@@ -17,6 +17,9 @@
 
         grub = {
           enable = true;
+
+          # Fits /boot only once the stale systemd-boot tree is removed; 3 until then.
+          configurationLimit = 4;
           enableCryptodisk = true;
           device = "nodev";
           efiSupport = true;
