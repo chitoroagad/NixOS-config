@@ -10,7 +10,6 @@
     mine.programs = {
       nix-ld.enable = lib.mkDefault true;
       man.enable = lib.mkDefault true;
-      virtualisation.enable = lib.mkDefault true;
     };
   };
 }
