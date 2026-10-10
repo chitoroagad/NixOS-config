@@ -20,7 +20,6 @@
 
   mine.system = {
     boot.enable = true;
-    cachix.enable = true;
     gc.enable = true;
     locale.enable = true;
     networking = {

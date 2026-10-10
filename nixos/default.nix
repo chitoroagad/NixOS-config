@@ -15,7 +15,6 @@
     ./hardware/upower.nix
 
     ./system/boot.nix
-    ./system/cachix.nix
     ./system/gc.nix
     ./system/locale.nix
     ./system/networking.nix
