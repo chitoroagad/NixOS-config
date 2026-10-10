@@ -12,6 +12,7 @@
   mine.hardware = {
     graphics.enable = true;
     keyboard.enable = true; # qmk
+    power.amdgpuActions = true; # ABM + GPU DPM in power-saver
     printing.enable = true;
     rocm.enable = true; # 7700S
     udev.enable = true;
