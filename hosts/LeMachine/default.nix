@@ -22,7 +22,10 @@
     cachix.enable = true;
     gc.enable = true;
     locale.enable = true;
-    networking.enable = true;
+    networking = {
+      enable = true;
+      stable = true;
+    };
     nix.enable = true;
     nixpkgs.enable = true;
     packages.enable = true;
