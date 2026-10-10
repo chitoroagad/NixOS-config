@@ -55,6 +55,7 @@
     mine.desktop = {
       dms.island.enable = false;
       extraBluetooth.enable = true;
+      hyprland.powerSaverRefresh.enable = true;
     };
   };
 }

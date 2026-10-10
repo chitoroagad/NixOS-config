@@ -10,6 +10,7 @@
     ./hypridle.nix
     ./hyprlauncher.nix
     ./hyprlock.nix
+    ./panel-refresh.nix
     ./wallpaper
   ];
 
@@ -58,14 +59,14 @@
       hyprlauncher = uwsmWrap (exe pkgs.hyprlauncher);
       term = uwsmWrap (exe config.programs.kitty.package);
       vpn = uwsmWrap (exe pkgs.proton-vpn);
+      panel = import ./panel.nix;
       dms = exe' inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default "dms";
     in {
       enable = true;
       configType = "lua";
       systemd. enable = false;
       extraConfig = ''
-        hl.monitor({ output = "eDP-2", mode = "2560x1600@165", position = "0x0", scale = 1, vrr = 1 })
-        hl.monitor({ output = "eDP-1", mode = "2560x1600@165", position = "0x0", scale = 1, vrr = 1 })
+        ${lib.concatMapStringsSep "\n" (output: panel.monitor output panel.rate.full) panel.outputs}
         hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
         hl.config({
