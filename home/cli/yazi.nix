@@ -27,7 +27,53 @@
       enable = true;
       package = pkgs.yazi;
       shellWrapperName = "yy";
+      # recents.yazi shells out to xmlstarlet to edit recently-used.xbel
+      extraPackages = [pkgs.xmlstarlet];
+      plugins.recents = pkgs.fetchFromGitHub {
+        owner = "nmetschke";
+        repo = "recents.yazi";
+        rev = "c21466b751daac464bef519c67b4ea0266ec1743";
+        hash = "sha256-y8qoiz+mPOgEfQSkWTVTDXLyKYttcijK2r3EBIAe+P4=";
+      };
+      vfs.recents."*" = {
+        kind = "hub";
+        run = "recents";
+      };
+      keymap.mgr.prepend_keymap = [
+        {
+          on = ["g" "r"];
+          run = ["plugin recents" "sort mtime --reverse=yes" "linemode mtime"];
+          desc = "Go to recently used";
+        }
+        {
+          on = ["o"];
+          run = ["plugin recents modify" "open"];
+          desc = "Open selected files and add to recently used";
+        }
+      ];
       settings = {
+        plugin = {
+          prepend_fetchers = [
+            {
+              group = "mime";
+              prio = "high";
+              run = "recents";
+              url = "recents://*";
+            }
+          ];
+          prepend_preloaders = [
+            {
+              mime = "recents/**";
+              run = "recents";
+            }
+          ];
+          prepend_previewers = [
+            {
+              mime = "recents/**";
+              run = "recents";
+            }
+          ];
+        };
         opener = {
           edit = [
             {
