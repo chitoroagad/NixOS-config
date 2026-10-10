@@ -11,7 +11,6 @@
     mine.services = {
       automount.enable = true;
       locate.enable = true;
-      ollama.enable = true;
       openssh.enable = true;
       timesyncd.enable = true;
     };
@@ -26,6 +25,7 @@
 
     mine.programs = {
       appimage.enable = true;
+      ollama.enable = true;
       shells.enable = true;
     };
   };

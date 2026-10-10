@@ -28,7 +28,6 @@
     ./services/automount.nix
     ./services/docker.nix
     ./services/locate.nix
-    ./services/ollama.nix
     ./services/openssh.nix
     ./services/timesyncd.nix
 
@@ -41,6 +40,7 @@
     ./programs/appimage.nix
     ./programs/man.nix
     ./programs/nix-ld.nix
+    ./programs/ollama.nix
     ./programs/shells.nix
     ./programs/steam.nix
     ./programs/virtualisation.nix
