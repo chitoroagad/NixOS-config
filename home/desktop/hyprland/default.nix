@@ -58,7 +58,7 @@
       hyprlock = uwsmWrap ((exe pkgs.hyprlock) + " --grace 3");
       hyprlauncher = uwsmWrap (exe pkgs.hyprlauncher);
       term = uwsmWrap (exe config.programs.kitty.package);
-      vpn = uwsmWrap (exe pkgs.proton-vpn);
+      vpn = uwsmWrap (exe pkgs.stable.proton-vpn);
       panel = import ./panel.nix;
       dms = exe' inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default "dms";
     in {

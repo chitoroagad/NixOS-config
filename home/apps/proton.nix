@@ -8,7 +8,7 @@
 
   config = lib.mkIf config.mine.apps.proton.enable {
     home.packages = with pkgs; [
-      proton-vpn
+      stable.proton-vpn
       proton-pass
     ];
   };
