@@ -11,6 +11,7 @@
   # Machine specifics the laptop profile does not cover.
   mine.hardware = {
     graphics.enable = true;
+    hybridGpu.enable = true; # /dev/dri/{igpu,dgpu}
     keyboard.enable = true; # qmk
     power.amdgpuActions = true; # ABM + GPU DPM in power-saver
     printing.enable = true;

@@ -7,6 +7,7 @@
     ./hardware/fingerprint.nix
     ./hardware/fwupd.nix
     ./hardware/graphics.nix
+    ./hardware/hybrid-gpu.nix
     ./hardware/keyboard.nix
     ./hardware/power.nix
     ./hardware/printing.nix
