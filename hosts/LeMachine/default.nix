@@ -19,6 +19,9 @@
     udev.enable = true;
   };
 
+  # gamemoderun games render on the 7700S. The panel stays on the iGPU: Linux can't drive the mux.
+  mine.programs.steam.dgpu = true;
+
   mine.system = {
     boot.enable = true;
     gc.enable = true;
