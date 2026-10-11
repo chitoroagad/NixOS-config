@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  osConfig,
   ...
 }: {
   options.mine.desktop.env.enable = lib.mkEnableOption "env";
@@ -17,9 +18,12 @@
       GTK_USE_PORTAL = "1";
     };
 
-    # Compositor-specific: GPU device selection, only relevant inside Hyprland session
-    home.file.".config/uwsm/env-hyprland".text = ''
-      export AQ_DRM_DEVICES="/dev/dri/card2:/dev/dri/card1"
-    '';
+    # Compositor-specific: GPU device selection, only relevant inside Hyprland session.
+    # The names come from mine.hardware.hybridGpu; aquamarine resolves symlinks.
+    home.file.".config/uwsm/env-hyprland" = lib.mkIf osConfig.mine.hardware.hybridGpu.enable {
+      text = ''
+        export AQ_DRM_DEVICES="/dev/dri/igpu:/dev/dri/dgpu"
+      '';
+    };
   };
 }
