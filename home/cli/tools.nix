@@ -9,6 +9,7 @@
   config = lib.mkIf config.mine.cli.tools.enable {
     home.packages = with pkgs; [
       fastfetch
+      python3
 
       # archives
       zip
