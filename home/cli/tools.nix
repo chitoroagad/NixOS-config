@@ -33,7 +33,6 @@
       # sys tools
       pciutils
       usbutils
-      nmap
     ];
   };
 }
