@@ -106,7 +106,12 @@
               name = "${user}@${hostname}";
               value = home-manager.lib.homeManagerConfiguration {
                 pkgs = nixpkgs.legacyPackages.${host.system};
-                extraSpecialArgs = {inherit inputs outputs;};
+                # osConfig: read-only view of this host's NixOS options, so home
+                # modules can follow machine toggles. Still applied standalone.
+                extraSpecialArgs = {
+                  inherit inputs outputs;
+                  osConfig = self.nixosConfigurations.${hostname}.config;
+                };
                 modules = [
                   ./home
                   (import ./users/${user}/common.nix).home
