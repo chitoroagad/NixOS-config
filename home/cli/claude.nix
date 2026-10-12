@@ -8,62 +8,26 @@
 
   config = lib.mkIf config.mine.cli.claude.enable {
     programs.claude-code = let
-      node = lib.getExe' pkgs.nodejs-slim "node";
-      notify = lib.getExe' pkgs.libnotify "notify-send";
-      caveman =
-        pkgs.fetchFromGitHub
-        {
-          owner = "JuliusBrussee";
-          repo = "caveman";
-          rev = "v1.10.0";
-          sha256 = "sha256-Jlfas2MPoQx3pOw+yKCta8kYlOEY27SP5NXJtSL+GGI=";
-        };
+      officialPlugins = pkgs.fetchFromGitHub {
+        owner = "anthropics";
+        repo = "claude-plugins-official";
+        rev = "f359d43b406057f1a8cdbc4ea93b827642c162e6";
+        hash = "sha256-f5mnVFXVkaMoahQv5pu5fS0gGV1uaowi/mpJM0gm/I8=";
+      };
     in {
       enable = true;
-      # settings = {
-      #   statusLine = {
-      #     type = "command";
-      #     command = "bash ${caveman}/src/hooks/caveman-statusline.sh";
-      #   };
-      #
-      #   hooks = {
-      #     Notification = [
-      #       {
-      #         matcher = "";
-      #         hooks = [
-      #           {
-      #             type = "command";
-      #             command = "${notify} -u normal 'Claude Code' 'Attention needed'";
-      #           }
-      #         ];
-      #       }
-      #     ];
-      #     SessionStart = [
-      #       {
-      #         hooks = [
-      #           {
-      #             type = "command";
-      #             command = "${node} ${caveman}/src/hooks/caveman-activate.js";
-      #             timeout = 5;
-      #             statusMessage = "Loading caveman mode...";
-      #           }
-      #         ];
-      #       }
-      #     ];
-      #     UserPromptSubmit = [
-      #       {
-      #         hooks = [
-      #           {
-      #             type = "command";
-      #             command = "${node} ${caveman}/src/hooks/caveman-mode-tracker.js";
-      #             timeout = 5;
-      #             statusMessage = "Tracking caveman mode...";
-      #           }
-      #         ];
-      #       }
-      #     ];
-      #   };
-      # };
+      plugins = {
+        caveman = pkgs.fetchFromGitHub {
+          owner = "JuliusBrussee";
+          repo = "caveman";
+          rev = "v3.2.0";
+          hash = "sha256-GfC8e+EGL7kotZQfZ9kD7ZEWJfhmXujHOHpMxeU3bEo=";
+        };
+        frontend-design = "${officialPlugins}/plugins/frontend-design";
+      };
     };
+
+    # caveman's hooks run under node and silently skip when it is missing.
+    home.packages = [pkgs.nodejs-slim];
   };
 }
