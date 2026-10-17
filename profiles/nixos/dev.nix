@@ -7,6 +7,7 @@
 
   config = lib.mkIf config.mine.profiles.dev.enable {
     mine.services.docker.enable = lib.mkDefault true;
+    mine.services.podman.enable = lib.mkDefault true;
     mine.programs = {
       nix-ld.enable = lib.mkDefault true;
       man.enable = lib.mkDefault true;

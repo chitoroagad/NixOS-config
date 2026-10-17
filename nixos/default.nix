@@ -30,6 +30,7 @@
     ./services/docker.nix
     ./services/locate.nix
     ./services/openssh.nix
+    ./services/podman.nix
     ./services/timesyncd.nix
 
     ./desktop/fonts.nix
