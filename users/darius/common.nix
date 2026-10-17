@@ -26,6 +26,7 @@
           "git"
           "network"
           "docker"
+          "podman"
           "libvirtd"
           "seat"
           "render"
