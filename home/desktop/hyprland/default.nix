@@ -79,7 +79,7 @@
           },
           animations = { enabled = true },
           dwindle = { preserve_split = true },
-          misc = { vrr = 2, force_default_wallpaper = 0 },
+          misc = { vrr = 1, force_default_wallpaper = 0 },
           input = {
             kb_layout = "us",
             kb_options = "caps:swapescape",
