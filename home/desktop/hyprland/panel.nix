@@ -6,5 +6,7 @@
     full = "165";
     saver = "60";
   };
-  monitor = output: rate: ''hl.monitor({ output = "${output}", mode = "2560x1600@${rate}", position = "0x0", scale = 1, vrr = 1 })'';
+  # vrr = 2 is fullscreen-only: always-on VRR (1) makes the desktop freeze
+  # every few seconds on this panel since BIOS 04.05.
+  monitor = output: rate: ''hl.monitor({ output = "${output}", mode = "2560x1600@${rate}", position = "0x0", scale = 1, vrr = 2 })'';
 }
