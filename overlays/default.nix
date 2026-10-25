@@ -22,6 +22,14 @@
     # ...
     # });
     utillinux = final.util-linux;
+
+    # Kernel 7.3's sphinx-build-wrapper reads $srctree, which the nixpkgs
+    # derivation doesn't set since it bypasses the Makefile.
+    linux-manual = prev.linux-manual.overrideAttrs (oldAttrs: {
+      preBuild = (oldAttrs.preBuild or "") + ''
+        export srctree="$PWD"
+      '';
+    });
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
