@@ -65,6 +65,7 @@
       enable = true;
       # Merge into the writable settings.json so in-app changes keep working.
       mutableSettings = true;
+      context = ./AGENTS.md;
       settings = {
         editorMode = "vim";
         statusLine = {

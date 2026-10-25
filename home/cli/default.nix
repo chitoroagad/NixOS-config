@@ -25,7 +25,10 @@
     programs.nh.enable = true;
     programs.nix-index.enable = true;
     programs.zoxide.enable = true;
-    programs.opencode.enable = true;
+    programs.opencode = {
+      enable = true;
+      context = ./AGENTS.md;
+    };
 
     programs.btop = {
       enable = true;
