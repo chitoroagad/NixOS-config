@@ -29,6 +29,8 @@
       trash-cli
       tldr
       cachix
+      gh
+      tree-sitter
 
       # sys tools
       pciutils
