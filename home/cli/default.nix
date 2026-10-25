@@ -25,9 +25,15 @@
     programs.nh.enable = true;
     programs.nix-index.enable = true;
     programs.zoxide.enable = true;
+    # catppuccin module still writes tui.json, which OpenCode 2 ignores
+    catppuccin.opencode.enable = false;
     programs.opencode = {
       enable = true;
       context = ./AGENTS.md;
+      cli.theme = {
+        name = "catppuccin";
+        mode = "dark";
+      };
     };
 
     programs.btop = {
