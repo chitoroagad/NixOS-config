@@ -8,11 +8,11 @@
   config = lib.mkIf config.mine.system.polkit.enable {
     # enable keyring
     services.gnome.gnome-keyring.enable = true;
-    # The secrets live in the passwordless "Default" keyring. PAM only manages
-    # a "login" keyring, and creates one from whatever password is typed first,
-    # typos at the lock screen included. go-keyring clients (supabase) prefer
-    # "login" when it exists, so a locked one makes them prompt.
-    security.pam.services.login.enableGnomeKeyring = lib.mkForce false;
+    # The secrets live in the "login" keyring, which PAM unlocks at login
+    # (see mine.system.luks-autologin for the no-password path).
+    # Do not use a passwordless keyring: it is saved as an INI text file, and
+    # secrets with line breaks (Proton VPN) make the whole file unreadable.
+    security.pam.services.login.enableGnomeKeyring = true;
     services.gnome.glib-networking.enable = true;
 
     programs.gnupg.agent.enable = true;

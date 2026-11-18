@@ -18,6 +18,7 @@
     ./system/boot.nix
     ./system/gc.nix
     ./system/locale.nix
+    ./system/luks-autologin.nix
     ./system/networking.nix
     ./system/nix.nix
     ./system/nixpkgs.nix

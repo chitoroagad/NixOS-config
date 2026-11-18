@@ -33,8 +33,11 @@
         ];
     };
 
-    # Enable automatic login for the user.
-    services.getty.autologinUser = "darius";
+    # Log in on the console with the LUKS passphrase typed at boot.
+    mine.system.luks-autologin = {
+      enable = true;
+      user = "darius";
+    };
     programs.fish.enable = true;
   };
 
