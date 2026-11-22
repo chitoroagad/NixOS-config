@@ -31,6 +31,8 @@
       cachix
       gh
       tree-sitter
+      pi-coding-agent
+      nodejs # provides npm for `pi install npm:...`
 
       # sys tools
       pciutils

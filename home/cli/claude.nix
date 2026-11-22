@@ -80,6 +80,6 @@
     };
 
     # caveman's hooks run under node and silently skip when it is missing.
-    home.packages = [pkgs.nodejs-slim];
+    home.packages = [pkgs.nodejs];
   };
 }
