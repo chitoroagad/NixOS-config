@@ -85,6 +85,7 @@
         # misc
         set -g renumber-windows on
         set -g set-clipboard on
+        set -g extended-keys on
         set -g status-position top
       '';
     };
